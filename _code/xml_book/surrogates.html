@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; eXplainable&lt;br&gt;Machine Learning</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/xmlx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <link rel="canonical" href="https://book.xmlx.io/_code/xml_book/surrogates.html" />
+    <link rel="shortcut icon" href="../../_static/bulb.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6635EH38S9"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-6635EH38S9');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/bulb.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">eXplainable<br>Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book/README.html">
+   eXplainable Machine Learning
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../book/preface/index.html">
+   Preface
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../book/preface/glossary.html">
+     Glossary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../book/preface/preliminary.html">
+     Preliminary Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../book/preface/data.html">
+     Modules, Data Sets and Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../book/meta_explainers/index.html">
+   Meta-Explainers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../book/meta_explainers/surrogates/index.html">
+     1. Surrogates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/interpretable_representations.html">
+       1.1. Binary Interpretable Representations for Tabular Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/data_sampling.html">
+       1.2. Data Sampling
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/explanation_generation.html">
+       1.3. Explanation Generation
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/examples.html">
+       1.4. Interactive Examples
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../book/meta_explainers/surrogates/ex_tabular.html">
+         1.4.1. Surrogate Explainer of Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../book/meta_explainers/surrogates/ex_ols.html">
+         1.4.2. Investigating Linear Surrogate Explainers of Tabular Data
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book/genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://book.xmlx.io/docs/">
+   XML Book Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://xmlx.io/">
+   XMLX Homepage
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <a href="https://doi.org/XX.XXXX/zenodo.XXXXXXX"><img src="https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg" alt="DOI"></a>
+
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/_code/xml_book/surrogates.py"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.py</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xmlx-io/xml-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xmlx-io/xml-book/issues/new?title=Issue%20on%20page%20%2F_code/xml_book/surrogates.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/xmlx-io/xml-book/edit/master/_code/xml_book/surrogates.py"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><no title></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">XML Book Surrogate Module</span>
+<span class="sd">=========================</span>
+
+<span class="sd">This module implements a collection of surrogate explainer functions used by</span>
+<span class="sd">the book.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Author: Kacper Sokol &lt;kacper@xmlx.io&gt;</span>
+<span class="c1">#         Alex Hepburn &lt;ah13558@bristol.ac.uk&gt;</span>
+<span class="c1"># License: MIT</span>
+
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gini_index&#39;</span><span class="p">,</span> <span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="s1">&#39;get_hyperrectangle_indices&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;weighted_purity&#39;</span><span class="p">,</span> <span class="s1">&#39;one_hot_encode&#39;</span><span class="p">,</span> <span class="s1">&#39;get_bin_sampling_values&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;undiscretise_data&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">gini_index</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes a Gini Index of a numpy array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : 1-dimensional numpy array</span>
+<span class="sd">        An array with class predictions or labels.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    gini : float</span>
+<span class="sd">        Gini Index of the ``x`` array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x_</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">frequencies</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">x_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">gini_itemwise</span> <span class="o">=</span> <span class="n">frequencies</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">frequencies</span><span class="p">)</span>
+
+    <span class="n">gini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gini_itemwise</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">gini</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">gini</span>
+
+
+<span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes entropy of a numpy array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : 1-dimensional numpy array</span>
+<span class="sd">        An array with class predictions or labels.</span>
+<span class="sd">    base : integer, optional (default=None)</span>
+<span class="sd">        Base of the logarithm used for computing entropy. By default</span>
+<span class="sd">        (``None``), the natural logarithm is used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    entropy_ : float</span>
+<span class="sd">        Entropy of the ``x`` array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">base</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;Wrong type.&#39;</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">entropy_</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">entropy_</span>
+
+
+<span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes Mean Squared Error of a numpy array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : 1-dimensional numpy array</span>
+<span class="sd">        An array with regression or probabilistic predictions.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mse_ : float</span>
+<span class="sd">        Mean Squared Error of the ``x`` array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Error</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># Squared error</span>
+    <span class="n">err_sq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="c1"># Mean Squared Error</span>
+    <span class="n">mse_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">err_sq</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mse_</span>
+
+
+<span class="k">def</span> <span class="nf">get_hyperrectangle_indices</span><span class="p">(</span><span class="n">discretised_data</span><span class="p">,</span> <span class="n">hyperrectangle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts row indices of a data array that match the specified sample.</span>
+
+<span class="sd">    This function returns row indices of the ``discretised_data`` array that</span>
+<span class="sd">    are identical to the ``hyperrectangle`` array.</span>
+<span class="sd">    The data set has to be discretised, i.e., all of its values have to be</span>
+<span class="sd">    between 0 and 3 inclusive.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    discretised_data : 2-dimensional numpy array</span>
+<span class="sd">        A 2-dimensional array with data.</span>
+<span class="sd">    hyperrectangle : 1-dimensional numpy array</span>
+<span class="sd">        A 1-dimensional array that will be matched against each row of the</span>
+<span class="sd">        ``discretised_data`` array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matching_indices : 1-dimensional numpy array</span>
+<span class="sd">        An array with indices of the matching rows.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">fatf.utils.array.validation</span> <span class="k">as</span> <span class="nn">fatf_v</span>
+    <span class="n">hyperrectangle_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hyperrectangle</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">discretised_data</span><span class="p">),</span> <span class="s1">&#39;Data probably not discretised.&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fatf_v</span><span class="o">.</span><span class="n">is_1d_array</span><span class="p">(</span><span class="n">discretised_data</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">discretised_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="o">==</span> <span class="n">hyperrectangle_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;Size mismatch.&#39;</span>
+
+    <span class="n">matching_rows</span> <span class="o">=</span> <span class="p">(</span><span class="n">discretised_data</span> <span class="o">==</span> <span class="n">hyperrectangle</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fatf_v</span><span class="o">.</span><span class="n">is_1d_array</span><span class="p">(</span><span class="n">discretised_data</span><span class="p">):</span>
+        <span class="n">matching_rows</span> <span class="o">=</span> <span class="n">matching_rows</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">matching_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">matching_rows</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">matching_indices</span>
+
+
+<span class="k">def</span> <span class="nf">weighted_purity</span><span class="p">(</span><span class="n">discretised_data</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">metric</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes weighted purity metric of ``labels`` based on grouping given by</span>
+<span class="sd">    unique encodings in the ``discretised_data`` array.</span>
+
+<span class="sd">    This function identifies unique rows in the ``discretised_data`` array and</span>
+<span class="sd">    computes user-selected purity metric for the corresponding labels</span>
+<span class="sd">    (extracted from the ``labels`` array).</span>
+<span class="sd">    The final result is computed as a weighted average of these individual</span>
+<span class="sd">    metrics, where the weights are proportions of instances used to compute</span>
+<span class="sd">    each individual metric.</span>
+
+<span class="sd">    The data set (``discretised_data``) has to be discretised, i.e., all of its</span>
+<span class="sd">    values have to be between 0 and 3 inclusive.</span>
+<span class="sd">    The labels (``labels``) are either:</span>
+
+<span class="sd">    * *crisp* predictions of a classifier or *class* labels; or</span>
+<span class="sd">    * *numbers* representing regression values or *probabilistic* predictions</span>
+<span class="sd">      for a single class (in case of probabilistic classifiers).</span>
+
+<span class="sd">    The ``metric`` has to be chosen appropriately to the type of ``labels``:</span>
+
+<span class="sd">    * ``&#39;mse&#39;`` (Mean Squared Error) used for **numerical** ``labels``; and</span>
+<span class="sd">    * ``&#39;gini&#39;`` (Gini Index) used for **crisp** ``labels``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    discretised_data : 2-dimensional numpy array</span>
+<span class="sd">        A 2-dimensional array with *discretised* data.</span>
+<span class="sd">    labels : 1-dimensional numpy array</span>
+<span class="sd">        A 1-dimensional array with labels either holding *numbers* (regression</span>
+<span class="sd">        values or probabilistic predictions of a single class) or *crisp*</span>
+<span class="sd">        labels (class predictions or ground truth labels).</span>
+<span class="sd">    metric : string</span>
+<span class="sd">        Either ``&#39;mse&#39;`` for Mean Squared Error or ``&#39;gini&#39;`` for Gini Index.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    weighted_purity_ : float</span>
+<span class="sd">        A weighted purity (``metric``) of the ``labels`` based on the partition</span>
+<span class="sd">        of the ``discretised_data`` array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">fatf.utils.array.validation</span> <span class="k">as</span> <span class="nn">fatf_v</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">discretised_data</span><span class="p">),</span> <span class="s1">&#39;Data probably not discretised.&#39;</span>
+    <span class="c1">#</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">discretised_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;Size mismatch.&#39;</span>
+    <span class="c1">#</span>
+    <span class="k">assert</span> <span class="n">metric</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="s1">&#39;gini&#39;</span><span class="p">),</span> <span class="p">(</span>
+        <span class="s1">&#39;Incorrect metric specifier. Should either be *mse* or *gini*.&#39;</span><span class="p">)</span>
+
+    <span class="n">items_count</span> <span class="o">=</span> <span class="n">discretised_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">unique_hr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">discretised_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">metric_fn</span> <span class="o">=</span> <span class="n">mse</span> <span class="k">if</span> <span class="n">metric</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;mse&#39;</span> <span class="k">else</span> <span class="n">gini_index</span>
+
+    <span class="n">individual_purity</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">encoding</span> <span class="ow">in</span> <span class="n">unique_hr</span><span class="p">:</span>
+        <span class="n">matching_rows</span> <span class="o">=</span> <span class="p">(</span><span class="n">discretised_data</span> <span class="o">==</span> <span class="n">encoding</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">fatf_v</span><span class="o">.</span><span class="n">is_1d_array</span><span class="p">(</span><span class="n">discretised_data</span><span class="p">):</span>
+            <span class="n">matching_rows</span> <span class="o">=</span> <span class="n">matching_rows</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">matching_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">matching_rows</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">hr_metric</span> <span class="o">=</span> <span class="n">metric_fn</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">matching_indices</span><span class="p">])</span>
+        <span class="n">hr_items_count</span> <span class="o">=</span> <span class="n">matching_indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">individual_purity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hr_metric</span> <span class="o">*</span> <span class="n">hr_items_count</span><span class="p">)</span>
+
+    <span class="n">weighted_purity_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">individual_purity</span><span class="p">)</span> <span class="o">/</span> <span class="n">items_count</span>
+
+    <span class="k">return</span> <span class="n">weighted_purity_</span>
+
+
+<span class="k">def</span> <span class="nf">one_hot_encode</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    One-hot-encode the ``vector``.</span>
+
+<span class="sd">    The order of one-hot-encoding is based on sorted unique values of the</span>
+<span class="sd">    ``vector``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vector : 1-dimensional numpy array</span>
+<span class="sd">        A 1-dimensional array with *discrete* values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ohe : 2-dimensional numpy array</span>
+<span class="sd">        A binary 2-dimensional array with one-hot-encoded ``vector``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">fatf.utils.array.validation</span> <span class="k">as</span> <span class="nn">fatf_v</span>
+
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">fatf_v</span><span class="o">.</span><span class="n">is_1d_array</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span> <span class="s1">&#39;vector has to be 1-D.&#39;</span>
+
+    <span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
+    <span class="n">unique_count</span> <span class="o">=</span> <span class="n">unique</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">ohe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vector</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">unique_count</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique</span><span class="p">):</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">get_hyperrectangle_indices</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">ohe</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">ohe</span>
+
+
+<span class="k">def</span> <span class="nf">get_bin_sampling_values</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">discretiser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Captures the mean and standard deviation of the ``dataset`` for each</span>
+<span class="sd">    hyper-rectangle encoded by the ``discretiser``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dataset : 2-dimensional numpy array</span>
+<span class="sd">        A data set to be analysed.</span>
+<span class="sd">    discretiser : fat-forensics discretiser object</span>
+<span class="sd">        A (fitted) discretiser that is compatible with the ``dataset``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bin_sampling_values : dictionary of dictionaries holding 4-tuples</span>
+<span class="sd">        The outer dictionary indicates the feature in the original data</span>
+<span class="sd">        representation; the inner dictionary signifies a partition (quartile)</span>
+<span class="sd">        of this feature. Under these two keys, a four-tuple holds the:</span>
+<span class="sd">        minimum, maximum, mean and standard deviation (in this order)</span>
+<span class="sd">        values of data points within this partition.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataset_discretised</span> <span class="o">=</span> <span class="n">discretiser</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+    <span class="n">bin_sampling_values</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">discretiser</span><span class="o">.</span><span class="n">features_number</span><span class="p">):</span>
+        <span class="n">bin_sampling_values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">discretised_feature</span> <span class="o">=</span> <span class="n">dataset_discretised</span><span class="p">[:,</span> <span class="n">index</span><span class="p">]</span>
+        <span class="n">feature</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="n">index</span><span class="p">]</span>
+
+        <span class="c1"># The bin IDs need to be sorted as they are retrieved from</span>
+        <span class="c1"># dictionary keys (hence may come in a random order), therefore</span>
+        <span class="c1"># interfering with the enumerate procedure.</span>
+        <span class="n">bin_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">discretiser</span><span class="o">.</span><span class="n">feature_value_names</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">bin_boundaries</span> <span class="o">=</span> <span class="n">discretiser</span><span class="o">.</span><span class="n">feature_bin_boundaries</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">bin_i</span><span class="p">,</span> <span class="n">bin_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bin_ids</span><span class="p">):</span>
+            <span class="n">bin_feature_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">discretised_feature</span> <span class="o">==</span> <span class="n">bin_id</span><span class="p">)</span>
+            <span class="n">bin_feature_values</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="n">bin_feature_indices</span><span class="p">]</span>
+
+            <span class="c1"># If there is data in the bin, get its empirical mean and</span>
+            <span class="c1"># standard deviation, otherwise use numpy nan.</span>
+            <span class="c1"># If there are no data in a bin, the frequency of this bin</span>
+            <span class="c1"># will be 0, therefore data will never get sampled from this</span>
+            <span class="c1"># bin, i.e., there will be no attempt to undiscretised them.</span>
+            <span class="k">if</span> <span class="n">bin_feature_values</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+                <span class="n">mean_val</span> <span class="o">=</span> <span class="n">bin_feature_values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="n">std_val</span> <span class="o">=</span> <span class="n">bin_feature_values</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mean_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="n">std_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+            <span class="c1"># Use the true bin boundaries (extracted from the discretiser).</span>
+            <span class="c1"># For the edge bins (with -inf and +inf edges) use the</span>
+            <span class="c1"># empirical minimum and maximum (if possible) to avoid problems</span>
+            <span class="c1"># with reverse sampling (see the _undiscretise_data method).</span>
+            <span class="k">if</span> <span class="n">bin_i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">bin_feature_values</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+                    <span class="n">min_val</span> <span class="o">=</span> <span class="n">bin_feature_values</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">min_val</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>  <span class="c1"># pragma: nocover</span>
+                    <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="p">(</span>  <span class="c1"># pragma: nocover</span>
+                        <span class="s1">&#39;Since the upper bin boundary is inclusive in &#39;</span>
+                        <span class="s1">&#39;the quartile discretiser this can never happen.&#39;</span><span class="p">)</span>
+                <span class="n">max_val</span> <span class="o">=</span> <span class="n">bin_boundaries</span><span class="p">[</span><span class="n">bin_i</span><span class="p">]</span>
+            <span class="c1"># This is bin id count (+1) and not bind boundary count.</span>
+            <span class="k">elif</span> <span class="n">bin_i</span> <span class="o">==</span> <span class="n">bin_boundaries</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">min_val</span> <span class="o">=</span> <span class="n">bin_boundaries</span><span class="p">[</span><span class="n">bin_i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">bin_feature_values</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+                    <span class="n">max_val</span> <span class="o">=</span> <span class="n">bin_feature_values</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">max_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">min_val</span> <span class="o">=</span> <span class="n">bin_boundaries</span><span class="p">[</span><span class="n">bin_i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">max_val</span> <span class="o">=</span> <span class="n">bin_boundaries</span><span class="p">[</span><span class="n">bin_i</span><span class="p">]</span>
+
+            <span class="n">bin_sampling_values</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">bin_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">,</span>
+                                                  <span class="n">mean_val</span><span class="p">,</span> <span class="n">std_val</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">bin_sampling_values</span>
+
+
+<span class="k">def</span> <span class="nf">undiscretise_data</span><span class="p">(</span><span class="n">discretised_data</span><span class="p">,</span> <span class="n">discretiser</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms discretised data back into their original representation.</span>
+
+<span class="sd">    This function uses truncated normal sampling fitted into each</span>
+<span class="sd">    hyper-rectangle.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    discretised_data : 2-dimensional numpy array</span>
+<span class="sd">        A discretised data set (in quartile representation) to be</span>
+<span class="sd">        undiscretised.</span>
+<span class="sd">    discretiser : fat-forensics discretiser object</span>
+<span class="sd">        A (fitted) discretiser that is compatible with the ``dataset``</span>
+<span class="sd">        (used to extract boundaries of hyper-rectangles).</span>
+<span class="sd">    dataset : 2-dimensional numpy array</span>
+<span class="sd">        A data set used to extract mean and standard deviation of each</span>
+<span class="sd">        hyper-rectangle.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bin_sampling_values : 2-dimensional numpy array</span>
+<span class="sd">        Undiscretised ``discretised_data``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bin_sampling_values</span> <span class="o">=</span> <span class="n">get_bin_sampling_values</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">discretiser</span><span class="p">)</span>
+    <span class="n">dataset_dtype</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">dtype</span>
+
+    <span class="c1"># Create a placeholder for undiscretised data. We copy the discretised</span>
+    <span class="c1"># array instead of creating an empty one to preserve the values of</span>
+    <span class="c1"># sampled categorical features, hence we do not need to copy them</span>
+    <span class="c1"># later on. We also need to change the type of the array to correspond</span>
+    <span class="c1"># to the original dataset.</span>
+    <span class="n">undiscretised_data</span> <span class="o">=</span> <span class="n">discretised_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dataset_dtype</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">discretised_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">discretised_column</span> <span class="o">=</span> <span class="n">discretised_data</span><span class="p">[:,</span> <span class="n">index</span><span class="p">]</span>
+        <span class="n">undiscretised_column</span> <span class="o">=</span> <span class="n">undiscretised_data</span><span class="p">[:,</span> <span class="n">index</span><span class="p">]</span>
+
+        <span class="n">unique_column_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">discretised_column</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">bin_id</span><span class="p">,</span> <span class="n">bin_values</span> <span class="ow">in</span> <span class="n">bin_sampling_values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">bin_id</span> <span class="ow">in</span> <span class="n">unique_column_values</span><span class="p">:</span>
+                <span class="c1"># Since sampling values must have been found in this bin,</span>
+                <span class="c1"># there should be an empirical mean (2) and</span>
+                <span class="c1"># standard deviation (3).</span>
+
+                <span class="n">bin_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">discretised_column</span> <span class="o">==</span> <span class="n">bin_id</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">samples_number</span> <span class="o">=</span> <span class="n">bin_indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="n">min_</span><span class="p">,</span> <span class="n">max_</span><span class="p">,</span> <span class="n">mean_</span><span class="p">,</span> <span class="n">std_</span> <span class="o">=</span> <span class="n">bin_values</span>
+                <span class="k">if</span> <span class="n">std_</span><span class="p">:</span>
+                    <span class="n">lower_bound</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_</span> <span class="o">-</span> <span class="n">mean_</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_</span>
+                    <span class="n">upper_bound</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_</span> <span class="o">-</span> <span class="n">mean_</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_</span>
+
+                    <span class="n">unsampled</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">truncnorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span>
+                        <span class="n">lower_bound</span><span class="p">,</span>
+                        <span class="n">upper_bound</span><span class="p">,</span>
+                        <span class="n">loc</span><span class="o">=</span><span class="n">mean_</span><span class="p">,</span>
+                        <span class="n">scale</span><span class="o">=</span><span class="n">std_</span><span class="p">,</span>
+                        <span class="n">size</span><span class="o">=</span><span class="n">samples_number</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">unsampled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">samples_number</span> <span class="o">*</span> <span class="p">[</span><span class="n">mean_</span><span class="p">])</span>
+
+                <span class="n">undiscretised_column</span><span class="p">[</span><span class="n">bin_indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">unsampled</span>
+    <span class="k">return</span> <span class="n">undiscretised_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./_code/xml_book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="mailto:kacper@xmlx.io">Kacper Sokol</a> and <a href="mailto:team@xmlx.io">XMLX Team</a> – <a href="https://xmlx.io/">xmlx.io</a>.<br> Distributed under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+<br/>
+    
+        &copy; Copyright 2021–2022.<br/>
+      <div class="extra_footer">
+        <p> This book delivers a comprehensive outlook on the most popular explainability concepts in Machine Learning. It covers a range of theoretical and practical topics across different difficulty levels, including but not limited to: high-level overviews & introductory examples; mathematical foundations; algorithmic implementations; practical advice & real-life caveats; and success & failure case studies. </p>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

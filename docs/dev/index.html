@@ -1,0 +1,1992 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation of the XML book">
+      
+      
+        <meta name="author" content="XMLX Team">
+      
+      
+        <link rel="canonical" href="https://book.xmlx.io/docs/dev/">
+      
+      <link rel="icon" href="../img/bulb.svg">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.0">
+    
+    
+      
+        <title>Dev - XML Book Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.82f3c0b9.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.9204c3b2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-FNYPV6M97X"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-FNYPV6M97X",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNYPV6M97X"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#developer-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="XML Book Documentation" class="md-header__button md-logo" aria-label="XML Book Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XML Book Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dev
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="teal"  aria-label="Switch to Dark Mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to Dark Mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="teal"  aria-label="Switch to Light Mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to Light Mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xmlx-io/xml-book/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xmlx-io/xml-book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        Welcome
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Dev Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../news/" class="md-tabs__link">
+        News
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="https://book.xmlx.io" class="md-tabs__link">
+      Book 🔗
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="XML Book Documentation" class="md-nav__button md-logo" aria-label="XML Book Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+
+    </a>
+    XML Book Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xmlx-io/xml-book/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xmlx-io/xml-book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="..">Welcome</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Welcome" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Welcome
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contact/" class="md-nav__link">
+        Contact
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credits/" class="md-nav__link">
+        Contributors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conduct/" class="md-nav__link">
+        Code of Conduct
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Dev Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Dev Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Dev Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Dev
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Dev
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-files" class="md-nav__link">
+    Setup Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-and-scripts" class="md-nav__link">
+    Tools and Scripts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-source" class="md-nav__link">
+    Documentation Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#book-source" class="md-nav__link">
+    Book Source
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing-to-the-project" class="md-nav__link">
+    Contributing to the Project
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing to the Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#licencing-and-agreements" class="md-nav__link">
+    Licencing and Agreements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-workflow" class="md-nav__link">
+    GitHub Workflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-environment-setup" class="md-nav__link">
+    Development Environment Setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Environment Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-repository" class="md-nav__link">
+    Code Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-documentation" class="md-nav__link">
+    Building the Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-book" class="md-nav__link">
+    Building the Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automation" class="md-nav__link">
+    Automation
+  </a>
+  
+    <nav class="md-nav" aria-label="Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-pre-commit-git-hooks" class="md-nav__link">
+    Installing Pre-Commit Git Hooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-cleanliness-of-jupyter-notebooks" class="md-nav__link">
+    Checking Cleanliness of Jupyter Notebooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spell-checking" class="md-nav__link">
+    Spell-Checking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-aliases" class="md-nav__link">
+    Build Aliases
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/" class="md-nav__link">
+        Documentation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book/" class="md-nav__link">
+        Book
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          News
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="News" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          News
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../news/" class="md-nav__link">
+        News
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://book.xmlx.io" class="md-nav__link">
+        Book 🔗
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-files" class="md-nav__link">
+    Setup Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-and-scripts" class="md-nav__link">
+    Tools and Scripts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-source" class="md-nav__link">
+    Documentation Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#book-source" class="md-nav__link">
+    Book Source
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing-to-the-project" class="md-nav__link">
+    Contributing to the Project
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing to the Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#licencing-and-agreements" class="md-nav__link">
+    Licencing and Agreements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-workflow" class="md-nav__link">
+    GitHub Workflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-environment-setup" class="md-nav__link">
+    Development Environment Setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Environment Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-repository" class="md-nav__link">
+    Code Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-documentation" class="md-nav__link">
+    Building the Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-book" class="md-nav__link">
+    Building the Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automation" class="md-nav__link">
+    Automation
+  </a>
+  
+    <nav class="md-nav" aria-label="Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-pre-commit-git-hooks" class="md-nav__link">
+    Installing Pre-Commit Git Hooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-cleanliness-of-jupyter-notebooks" class="md-nav__link">
+    Checking Cleanliness of Jupyter Notebooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spell-checking" class="md-nav__link">
+    Spell-Checking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-aliases" class="md-nav__link">
+    Build Aliases
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/xmlx-io/xml-book/edit/master/docs/dev.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="developer-guide">Developer Guide<a class="headerlink" href="#developer-guide" title="Permanent link">&para;</a></h1>
+<p>This guide provides technical details on building the book and documentation.
+It also outlines general rules, format and page structure for authoring and
+contributing <a href="../docs/">documentation</a> and <a href="../book/">book</a> content.
+To streamline the process, please read this document carefully before
+committing any time to the project.</p>
+<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<p>The project source is hosted on GitHub in the
+<a href="https://github.com/xmlx-io/xml-book">xmlx-io/xml-book</a> repository.
+There are 4 main components of this project&rsquo;s file structure:</p>
+<ul>
+<li>(GitHub repository) setup files;</li>
+<li>support tools and configuration files;</li>
+<li>book source files; and</li>
+<li>documentation source files.</li>
+</ul>
+<h3 id="setup-files">Setup Files<a class="headerlink" href="#setup-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── book_content_issue.md
+│   │   ├── book_technical_issue.md
+│   │   ├── config.yml
+│   │   ├── docs_issue.md
+│   │   └── technical_issue.md
+│   ├── PULL_REQUEST_TEMPLATE
+│   │   └── generic_pr.md
+│   └── workflows
+│       ├── build-and-deploy.yml
+│       └── cla-assistant.yml
+├── .gitignore
+├── .nojekyll
+├── CNAME
+├── LICENCE
+└── README.md
+</code></pre></div>
+<p>This part of the project source provides:</p>
+<ul>
+<li>templates for and configuration of GitHub Issues (<code>.github/ISSUE_TEMPLATE</code>)</li>
+<li>templates for GitHub Pull Requests (<code>.github/PULL_REQUEST_TEMPLATE</code>)</li>
+<li>
+<p>configuration of GitHub Actions (<code>.github/workflows</code>)</p>
+<ul>
+<li><code>build-and-deploy.yml</code> is responsible for testing and building the book
+  and the documentation, and deploying them to GitHub Pages, which are
+  served from the <a href="https://github.com/xmlx-io/xml-book/tree/gh-pages"><code>gh-pages</code></a> branch of the
+  <a href="https://github.com/xmlx-io/xml-book">xmlx-io/xml-book</a> repository</li>
+<li><code>cla-assistant.yml</code> prompts users to sign
+  <a href="./#licencing-and-agreements">Contributor Licence Agreement</a>
+  via comments in GitHub Pull Requests;
+  it is based on the <a href="https://github.com/contributor-assistant/github-action">CLA Assistant</a> GitHub Action</li>
+</ul>
+</li>
+<li>
+<p>a list of files for git to ignore (<code>.gitignore</code>)</p>
+</li>
+<li>GitHub Pages configuration file indicating that the webpage should not be
+  built with Jekyll (<code>.nojekyll</code>)</li>
+<li>GitHub Pages configuration file specifying our custom domain
+  (<a href="https://book.xmlx.io">https://book.xmlx.io</a>) under which the book is published (<code>CNAME</code>)</li>
+<li>licence for our content (<code>LICENCE</code>)</li>
+<li>general information about the repository and its content (<code>README.md</code>)</li>
+</ul>
+<h3 id="tools-and-scripts">Tools and Scripts<a class="headerlink" href="#tools-and-scripts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.
+├── requirements-tools.txt
+└── tools
+    ├── fn.sh
+    ├── pyspelling.yml
+    ├── pyspelling_en_GB-custom.txt
+    └── pyspelling_filters_ipynb.py
+</code></pre></div>
+<p>The second group of source files includes:</p>
+<ul>
+<li>a list of Python packages required for running the support tools
+  (<code>requirements-tools.txt</code>)</li>
+<li>a collection of Bash scripts to automate various tasks (<code>tools/fn.sh</code>) &ndash;
+  see the <a href="./#automation">Automation</a> section for more details</li>
+<li>
+<p>automated spell-checking resources (<code>tools</code> directory)</p>
+<ul>
+<li><code>pyspelling.yml</code> configures the <a href="https://facelessuser.github.io/pyspelling/">PySpelling</a> Python package</li>
+<li><code>pyspelling_en_GB-custom.txt</code> extends the British English
+  dictionary with a lists of custom words</li>
+<li><code>pyspelling_filters_ipynb.py</code> defines a custom filter for the
+  <a href="https://facelessuser.github.io/pyspelling/">PySpelling</a> Python package to extract Markdown cells of
+  Jupyter Notebooks</li>
+</ul>
+</li>
+</ul>
+<h3 id="documentation-source">Documentation Source<a class="headerlink" href="#documentation-source" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.
+├── CLA.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── docs
+│   ├── cla.md          -&gt; ../CLA.md
+│   ├── conduct.md      -&gt; ../CODE_OF_CONDUCT.md
+│   ├── dev.md          -&gt; ../CONTRIBUTING.md
+│   ├── book_templates
+│   │   └── ...
+│   └── ...
+├── mkdocs.yml
+└── requirements-docs.txt
+</code></pre></div>
+<p>The documentation source tree consists of:</p>
+<ul>
+<li><a href="./#licencing-and-agreements">Contributor Licence Agreement</a>
+  (<code>CLA.md</code>)</li>
+<li><a href="../conduct/">Code of Conduct</a> (<code>CODE_OF_CONDUCT.md</code>)</li>
+<li>guidelines for <a href="./">contributing to the project</a>
+  (<code>CONTRIBUTING.md</code> &ndash; the source of this document)</li>
+<li>a collection of documentation source files (the <code>docs</code> directory);
+  to access the source file underlying any documentation page click the
+  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg></span> button appearing in the top-right corner of each page<ul>
+<li><code>book_templates</code> holds content templates for the book</li>
+</ul>
+</li>
+<li>configuration of the <a href="https://www.mkdocs.org/">MkDocs</a> documentation builder and the
+  <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> template (<code>mkdocs.yml</code>)</li>
+<li>a list of Python packages required for building the documentation
+  (<code>requirements-docs.txt</code>)</li>
+</ul>
+<h3 id="book-source">Book Source<a class="headerlink" href="#book-source" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.
+├── _config.yml
+├── _static
+│   └── xmlx.css
+├── _toc.yml
+├── book
+│   └── ...
+└── requirements-book.txt
+</code></pre></div>
+<p>The book source tree consists of:</p>
+<ul>
+<li><a href="https://jupyterbook.org/">Jupyter Book</a> configuration (<code>_config.yml</code>)</li>
+<li>
+<p>static files to be included in the HTML book build (the <code>_static</code> directory)</p>
+<ul>
+<li><code>xmlx.css</code> defines custom CSS styles to be used with the book</li>
+</ul>
+</li>
+<li>
+<p>table of content structure and specification (<code>_toc.yml</code>)</p>
+</li>
+<li>a collection of book source files (the <code>book</code> directory);
+  to access the source file underlying any book page click the
+  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m497.9 142.1-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8 21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg></span> button appearing in the
+  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> drop-down menu located in the top-right corner
+  of each page</li>
+<li>a list of Python packages required for building the book
+  (<code>requirements-book.txt</code>)</li>
+</ul>
+<h2 id="contributing-to-the-project">Contributing to the Project<a class="headerlink" href="#contributing-to-the-project" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/xmlx-io/xml-book/blob/master/CODE_OF_CONDUCT.md"><img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" /></a></p>
+<p>Project contributions are governed by our <a href="../conduct/">Code of Conduct</a>
+and subject to acceptance of the repository licence and our
+Contributor Licence Agreement.
+We have put in place a dedicated <em>contribution workflow</em> (outlined by this
+document) to streamline the entire process.</p>
+<h3 id="licencing-and-agreements">Licencing and Agreements<a class="headerlink" href="#licencing-and-agreements" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE"><img alt="Licence" src="https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-red" /></a>
+<a href="https://github.com/xmlx-io/xml-book/blob/master/CLA.md"><img alt="CLA" src="https://img.shields.io/badge/CLA-Apache%202.2-red" /></a></p>
+<p>The book is licenced under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International</a>.</p>
+<details class="note">
+<summary><a name="licence"></a>Licence</summary>
+<div class="highlight"><pre><span></span><code>Attribution-NonCommercial-ShareAlike 4.0 International
+
+Copyright (c) 2021, Kacper Sokol
+All rights reserved.
+
+=======================================================================
+
+Human-readable summary of the license:
+  https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Creative Commons Corporation (&quot;Creative Commons&quot;) is not a law firm and
+does not provide legal services or legal advice. Distribution of
+Creative Commons public licenses does not create a lawyer-client or
+other relationship. Creative Commons makes its licenses and related
+information available on an &quot;as-is&quot; basis. Creative Commons gives no
+warranties regarding its licenses, any material licensed under their
+terms and conditions, or any related information. Creative Commons
+disclaims all liability for damages resulting from their use to the
+fullest extent possible.
+
+Using Creative Commons Public Licenses
+
+Creative Commons public licenses provide a standard set of terms and
+conditions that creators and other rights holders may use to share
+original works of authorship and other material subject to copyright
+and certain other rights specified in the public license below. The
+following considerations are for informational purposes only, are not
+exhaustive, and do not form part of our licenses.
+
+     Considerations for licensors: Our public licenses are
+     intended for use by those authorized to give the public
+     permission to use material in ways otherwise restricted by
+     copyright and certain other rights. Our licenses are
+     irrevocable. Licensors should read and understand the terms
+     and conditions of the license they choose before applying it.
+     Licensors should also secure all rights necessary before
+     applying our licenses so that the public can reuse the
+     material as expected. Licensors should clearly mark any
+     material not subject to the license. This includes other CC-
+     licensed material, or material used under an exception or
+     limitation to copyright. More considerations for licensors:
+     wiki.creativecommons.org/Considerations_for_licensors
+
+     Considerations for the public: By using one of our public
+     licenses, a licensor grants the public permission to use the
+     licensed material under specified terms and conditions. If
+     the licensor&#39;s permission is not necessary for any reason--for
+     example, because of any applicable exception or limitation to
+     copyright--then that use is not regulated by the license. Our
+     licenses grant only permissions under copyright and certain
+     other rights that a licensor has authority to grant. Use of
+     the licensed material may still be restricted for other
+     reasons, including because others have copyright or other
+     rights in the material. A licensor may make special requests,
+     such as asking that all changes be marked or described.
+     Although not required by our licenses, you are encouraged to
+     respect those requests where reasonable. More considerations
+     for the public:
+     wiki.creativecommons.org/Considerations_for_licensees
+
+=======================================================================
+
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+Public License
+
+By exercising the Licensed Rights (defined below), You accept and agree
+to be bound by the terms and conditions of this Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International Public License
+(&quot;Public License&quot;). To the extent this Public License may be
+interpreted as a contract, You are granted the Licensed Rights in
+consideration of Your acceptance of these terms and conditions, and the
+Licensor grants You such rights in consideration of benefits the
+Licensor receives from making the Licensed Material available under
+these terms and conditions.
+
+
+Section 1 -- Definitions.
+
+  a. Adapted Material means material subject to Copyright and Similar
+     Rights that is derived from or based upon the Licensed Material
+     and in which the Licensed Material is translated, altered,
+     arranged, transformed, or otherwise modified in a manner requiring
+     permission under the Copyright and Similar Rights held by the
+     Licensor. For purposes of this Public License, where the Licensed
+     Material is a musical work, performance, or sound recording,
+     Adapted Material is always produced where the Licensed Material is
+     synched in timed relation with a moving image.
+
+  b. Adapter&#39;s License means the license You apply to Your Copyright
+     and Similar Rights in Your contributions to Adapted Material in
+     accordance with the terms and conditions of this Public License.
+
+  c. BY-NC-SA Compatible License means a license listed at
+     creativecommons.org/compatiblelicenses, approved by Creative
+     Commons as essentially the equivalent of this Public License.
+
+  d. Copyright and Similar Rights means copyright and/or similar rights
+     closely related to copyright including, without limitation,
+     performance, broadcast, sound recording, and Sui Generis Database
+     Rights, without regard to how the rights are labeled or
+     categorized. For purposes of this Public License, the rights
+     specified in Section 2(b)(1)-(2) are not Copyright and Similar
+     Rights.
+
+  e. Effective Technological Measures means those measures that, in the
+     absence of proper authority, may not be circumvented under laws
+     fulfilling obligations under Article 11 of the WIPO Copyright
+     Treaty adopted on December 20, 1996, and/or similar international
+     agreements.
+
+  f. Exceptions and Limitations means fair use, fair dealing, and/or
+     any other exception or limitation to Copyright and Similar Rights
+     that applies to Your use of the Licensed Material.
+
+  g. License Elements means the license attributes listed in the name
+     of a Creative Commons Public License. The License Elements of this
+     Public License are Attribution, NonCommercial, and ShareAlike.
+
+  h. Licensed Material means the artistic or literary work, database,
+     or other material to which the Licensor applied this Public
+     License.
+
+  i. Licensed Rights means the rights granted to You subject to the
+     terms and conditions of this Public License, which are limited to
+     all Copyright and Similar Rights that apply to Your use of the
+     Licensed Material and that the Licensor has authority to license.
+
+  j. Licensor means the individual(s) or entity(ies) granting rights
+     under this Public License.
+
+  k. NonCommercial means not primarily intended for or directed towards
+     commercial advantage or monetary compensation. For purposes of
+     this Public License, the exchange of the Licensed Material for
+     other material subject to Copyright and Similar Rights by digital
+     file-sharing or similar means is NonCommercial provided there is
+     no payment of monetary compensation in connection with the
+     exchange.
+
+  l. Share means to provide material to the public by any means or
+     process that requires permission under the Licensed Rights, such
+     as reproduction, public display, public performance, distribution,
+     dissemination, communication, or importation, and to make material
+     available to the public including in ways that members of the
+     public may access the material from a place and at a time
+     individually chosen by them.
+
+  m. Sui Generis Database Rights means rights other than copyright
+     resulting from Directive 96/9/EC of the European Parliament and of
+     the Council of 11 March 1996 on the legal protection of databases,
+     as amended and/or succeeded, as well as other essentially
+     equivalent rights anywhere in the world.
+
+  n. You means the individual or entity exercising the Licensed Rights
+     under this Public License. Your has a corresponding meaning.
+
+
+Section 2 -- Scope.
+
+  a. License grant.
+
+       1. Subject to the terms and conditions of this Public License,
+          the Licensor hereby grants You a worldwide, royalty-free,
+          non-sublicensable, non-exclusive, irrevocable license to
+          exercise the Licensed Rights in the Licensed Material to:
+
+            a. reproduce and Share the Licensed Material, in whole or
+               in part, for NonCommercial purposes only; and
+
+            b. produce, reproduce, and Share Adapted Material for
+               NonCommercial purposes only.
+
+       2. Exceptions and Limitations. For the avoidance of doubt, where
+          Exceptions and Limitations apply to Your use, this Public
+          License does not apply, and You do not need to comply with
+          its terms and conditions.
+
+       3. Term. The term of this Public License is specified in Section
+          6(a).
+
+       4. Media and formats; technical modifications allowed. The
+          Licensor authorizes You to exercise the Licensed Rights in
+          all media and formats whether now known or hereafter created,
+          and to make technical modifications necessary to do so. The
+          Licensor waives and/or agrees not to assert any right or
+          authority to forbid You from making technical modifications
+          necessary to exercise the Licensed Rights, including
+          technical modifications necessary to circumvent Effective
+          Technological Measures. For purposes of this Public License,
+          simply making modifications authorized by this Section 2(a)
+          (4) never produces Adapted Material.
+
+       5. Downstream recipients.
+
+            a. Offer from the Licensor -- Licensed Material. Every
+               recipient of the Licensed Material automatically
+               receives an offer from the Licensor to exercise the
+               Licensed Rights under the terms and conditions of this
+               Public License.
+
+            b. Additional offer from the Licensor -- Adapted Material.
+               Every recipient of Adapted Material from You
+               automatically receives an offer from the Licensor to
+               exercise the Licensed Rights in the Adapted Material
+               under the conditions of the Adapter&#39;s License You apply.
+
+            c. No downstream restrictions. You may not offer or impose
+               any additional or different terms or conditions on, or
+               apply any Effective Technological Measures to, the
+               Licensed Material if doing so restricts exercise of the
+               Licensed Rights by any recipient of the Licensed
+               Material.
+
+       6. No endorsement. Nothing in this Public License constitutes or
+          may be construed as permission to assert or imply that You
+          are, or that Your use of the Licensed Material is, connected
+          with, or sponsored, endorsed, or granted official status by,
+          the Licensor or others designated to receive attribution as
+          provided in Section 3(a)(1)(A)(i).
+
+  b. Other rights.
+
+       1. Moral rights, such as the right of integrity, are not
+          licensed under this Public License, nor are publicity,
+          privacy, and/or other similar personality rights; however, to
+          the extent possible, the Licensor waives and/or agrees not to
+          assert any such rights held by the Licensor to the limited
+          extent necessary to allow You to exercise the Licensed
+          Rights, but not otherwise.
+
+       2. Patent and trademark rights are not licensed under this
+          Public License.
+
+       3. To the extent possible, the Licensor waives any right to
+          collect royalties from You for the exercise of the Licensed
+          Rights, whether directly or through a collecting society
+          under any voluntary or waivable statutory or compulsory
+          licensing scheme. In all other cases the Licensor expressly
+          reserves any right to collect such royalties, including when
+          the Licensed Material is used other than for NonCommercial
+          purposes.
+
+
+Section 3 -- License Conditions.
+
+Your exercise of the Licensed Rights is expressly made subject to the
+following conditions.
+
+  a. Attribution.
+
+       1. If You Share the Licensed Material (including in modified
+          form), You must:
+
+            a. retain the following if it is supplied by the Licensor
+               with the Licensed Material:
+
+                 i. identification of the creator(s) of the Licensed
+                    Material and any others designated to receive
+                    attribution, in any reasonable manner requested by
+                    the Licensor (including by pseudonym if
+                    designated);
+
+                ii. a copyright notice;
+
+               iii. a notice that refers to this Public License;
+
+                iv. a notice that refers to the disclaimer of
+                    warranties;
+
+                 v. a URI or hyperlink to the Licensed Material to the
+                    extent reasonably practicable;
+
+            b. indicate if You modified the Licensed Material and
+               retain an indication of any previous modifications; and
+
+            c. indicate the Licensed Material is licensed under this
+               Public License, and include the text of, or the URI or
+               hyperlink to, this Public License.
+
+       2. You may satisfy the conditions in Section 3(a)(1) in any
+          reasonable manner based on the medium, means, and context in
+          which You Share the Licensed Material. For example, it may be
+          reasonable to satisfy the conditions by providing a URI or
+          hyperlink to a resource that includes the required
+          information.
+       3. If requested by the Licensor, You must remove any of the
+          information required by Section 3(a)(1)(A) to the extent
+          reasonably practicable.
+
+  b. ShareAlike.
+
+     In addition to the conditions in Section 3(a), if You Share
+     Adapted Material You produce, the following conditions also apply.
+
+       1. The Adapter&#39;s License You apply must be a Creative Commons
+          license with the same License Elements, this version or
+          later, or a BY-NC-SA Compatible License.
+
+       2. You must include the text of, or the URI or hyperlink to, the
+          Adapter&#39;s License You apply. You may satisfy this condition
+          in any reasonable manner based on the medium, means, and
+          context in which You Share Adapted Material.
+
+       3. You may not offer or impose any additional or different terms
+          or conditions on, or apply any Effective Technological
+          Measures to, Adapted Material that restrict exercise of the
+          rights granted under the Adapter&#39;s License You apply.
+
+
+Section 4 -- Sui Generis Database Rights.
+
+Where the Licensed Rights include Sui Generis Database Rights that
+apply to Your use of the Licensed Material:
+
+  a. for the avoidance of doubt, Section 2(a)(1) grants You the right
+     to extract, reuse, reproduce, and Share all or a substantial
+     portion of the contents of the database for NonCommercial purposes
+     only;
+
+  b. if You include all or a substantial portion of the database
+     contents in a database in which You have Sui Generis Database
+     Rights, then the database in which You have Sui Generis Database
+     Rights (but not its individual contents) is Adapted Material,
+     including for purposes of Section 3(b); and
+
+  c. You must comply with the conditions in Section 3(a) if You Share
+     all or a substantial portion of the contents of the database.
+
+For the avoidance of doubt, this Section 4 supplements and does not
+replace Your obligations under this Public License where the Licensed
+Rights include other Copyright and Similar Rights.
+
+
+Section 5 -- Disclaimer of Warranties and Limitation of Liability.
+
+  a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE
+     EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS
+     AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF
+     ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,
+     IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,
+     WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR
+     PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,
+     ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT
+     KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT
+     ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.
+
+  b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE
+     TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,
+     NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,
+     INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,
+     COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR
+     USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN
+     ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR
+     DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR
+     IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.
+
+  c. The disclaimer of warranties and limitation of liability provided
+     above shall be interpreted in a manner that, to the extent
+     possible, most closely approximates an absolute disclaimer and
+     waiver of all liability.
+
+
+Section 6 -- Term and Termination.
+
+  a. This Public License applies for the term of the Copyright and
+     Similar Rights licensed here. However, if You fail to comply with
+     this Public License, then Your rights under this Public License
+     terminate automatically.
+
+  b. Where Your right to use the Licensed Material has terminated under
+     Section 6(a), it reinstates:
+
+       1. automatically as of the date the violation is cured, provided
+          it is cured within 30 days of Your discovery of the
+          violation; or
+
+       2. upon express reinstatement by the Licensor.
+
+     For the avoidance of doubt, this Section 6(b) does not affect any
+     right the Licensor may have to seek remedies for Your violations
+     of this Public License.
+
+  c. For the avoidance of doubt, the Licensor may also offer the
+     Licensed Material under separate terms or conditions or stop
+     distributing the Licensed Material at any time; however, doing so
+     will not terminate this Public License.
+
+  d. Sections 1, 5, 6, 7, and 8 survive termination of this Public
+     License.
+
+
+Section 7 -- Other Terms and Conditions.
+
+  a. The Licensor shall not be bound by any additional or different
+     terms or conditions communicated by You unless expressly agreed.
+
+  b. Any arrangements, understandings, or agreements regarding the
+     Licensed Material not stated herein are separate from and
+     independent of the terms and conditions of this Public License.
+
+
+Section 8 -- Interpretation.
+
+  a. For the avoidance of doubt, this Public License does not, and
+     shall not be interpreted to, reduce, limit, restrict, or impose
+     conditions on any use of the Licensed Material that could lawfully
+     be made without permission under this Public License.
+
+  b. To the extent possible, if any provision of this Public License is
+     deemed unenforceable, it shall be automatically reformed to the
+     minimum extent necessary to make it enforceable. If the provision
+     cannot be reformed, it shall be severed from this Public License
+     without affecting the enforceability of the remaining terms and
+     conditions.
+
+  c. No term or condition of this Public License will be waived and no
+     failure to comply consented to unless expressly agreed to by the
+     Licensor.
+
+  d. Nothing in this Public License constitutes or may be interpreted
+     as a limitation upon, or waiver of, any privileges and immunities
+     that apply to the Licensor or You, including from the legal
+     processes of any jurisdiction or authority.
+
+=======================================================================
+
+Creative Commons is not a party to its public
+licenses. Notwithstanding, Creative Commons may elect to apply one of
+its public licenses to material it publishes and in those instances
+will be considered the “Licensor.” The text of the Creative Commons
+public licenses is dedicated to the public domain under the CC0 Public
+Domain Dedication. Except for the limited purpose of indicating that
+material is shared under a Creative Commons public license or as
+otherwise permitted by the Creative Commons policies published at
+creativecommons.org/policies, Creative Commons does not authorize the
+use of the trademark &quot;Creative Commons&quot; or any other trademark or logo
+of Creative Commons without its prior written consent including,
+without limitation, in connection with any unauthorized modifications
+to any of its public licenses or any other arrangements,
+understandings, or agreements concerning use of licensed material. For
+the avoidance of doubt, this paragraph does not form part of the
+public licenses.
+
+Creative Commons may be contacted at creativecommons.org.
+</code></pre></div>
+</details>
+<p>Contributors are required to accept and sign
+<a href="https://github.com/xmlx-io/xml-book/blob/master/CLA.md">Apache Individual Contributor Licence Agreement 2.2</a>.
+This process is managed by the <a href="https://github.com/contributor-assistant/github-action">CLA Assistant</a> GitHub Action
+(configured in the <code>.github/workflows/cla-assistant.yml</code> workflow file),
+which prompts new contributors to read and sign the
+Contributor Licence Agreement (CLA) directly within the relevant
+GitHub Pull Request.
+The list of CLA signatures is stored in a <strong>private</strong> GitHub repository
+(<code>xmlx-io/cla</code>) for our record;
+the automation is achieved through the <code>xmlx-io-concierge</code>
+GitHub <em>bot account</em>.</p>
+<details class="warning">
+<summary><a name="cla"></a>Contributor Licence Agreement</summary>
+<p><strong>Individual Contributor Licence Agreement (&ldquo;Agreement&rdquo;)</strong></p>
+<blockquote>
+<p>Adapted from the
+<a href="https://www.apache.org/licenses/icla.pdf">Apache Individual Contributor License Agreement V2.2</a>.
+See the <a href="https://www.apache.org/licenses/contributor-agreements.html">Apache Contributor Agreements</a> page for more details.</p>
+</blockquote>
+<p>Thank you for your interest in XMLX.
+To clarify the intellectual property licence granted with Contributions from
+any person or entity, XMLX must have on file a digitally signed
+Contributor Licence Agreement (&ldquo;CLA&rdquo;) from each Contributor, indicating
+agreement with the licence terms below.
+This agreement is for your protection as a Contributor as well as the
+protection of XMLX and its users.
+It does not change your rights to use your own Contributions for any other
+purpose.
+Read this document carefully before digitally signing and keep a copy for your
+records.</p>
+<p>You accept and agree to the following terms and conditions for Your
+Contributions (present and future) that you submit to XMLX.
+Except for the licence granted herein to XMLX and recipients of
+software and materials distributed by XMLX, You reserve all right, title,
+and interest in and to Your Contributions.</p>
+<ol>
+<li>
+<p>Definitions.</p>
+<p>&ldquo;You&rdquo; (or &ldquo;Your&rdquo;) shall mean the copyright owner or legal entity
+authorised by the copyright owner that is making this Agreement
+with XMLX.
+For legal entities, the entity making a Contribution and all other
+entities that control, are controlled by, or are under common control
+with that entity are considered to be a single Contributor.
+For the purposes of this definition, &ldquo;control&rdquo; means (i) the power,
+direct or indirect, to cause the direction or management of such entity,
+whether by contract or otherwise, or (ii) ownership of fifty percent (50%)
+or more of the outstanding shares, or (iii) beneficial ownership of
+such entity.</p>
+<p>&ldquo;Contribution&rdquo; shall mean any original work of authorship,
+including any modifications or additions to an existing work, that
+is intentionally submitted by You to XMLX for inclusion
+in, or documentation of, any of the products owned or managed by
+XMLX (the &ldquo;Work&rdquo;).
+For the purposes of this definition, &ldquo;submitted&rdquo; means any form of
+electronic, verbal, or written communication sent to XMLX or its
+representatives, including but not limited to communication on
+electronic mailing lists, source code control systems, and issue
+tracking systems that are managed by, or on behalf of, XMLX for the
+purpose of discussing and improving the Work, but excluding communication
+that is conspicuously marked or otherwise designated in writing by You
+as &ldquo;Not a Contribution.&rdquo;</p>
+</li>
+<li>
+<p>Grant of Copyright Licence.</p>
+<p>Subject to the terms and conditions of this Agreement, You hereby grant
+to XMLX and to recipients of software and materials distributed by XMLX
+a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+copyright licence to reproduce, prepare derivative works of, publicly
+display, publicly perform, sublicence, and distribute Your Contributions
+and such derivative works.</p>
+</li>
+<li>
+<p>Grant of Patent Licence.</p>
+<p>Subject to the terms and conditions of this Agreement, You hereby grant
+to XMLX and to recipients of software and materials distributed by XMLX
+a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+(except as stated in this section) patent licence to make, have made, use,
+offer to sell, sell, import, and otherwise transfer the Work, where such
+licence applies only to those patent claims licencable by You that are
+necessarily infringed by Your Contribution(s) alone or by combination of
+Your Contribution(s) with the Work to which such Contribution(s) was
+submitted.
+If any entity institutes patent litigation against You or any other entity
+(including a cross-claim or counterclaim in a lawsuit) alleging
+that your Contribution, or the Work to which you have contributed,
+constitutes direct or contributory patent infringement, then any
+patent licences granted to that entity under this Agreement for
+that Contribution or Work shall terminate as of the date such
+litigation is filed.</p>
+</li>
+<li>
+<p>You represent that you are legally entitled to grant the above licence.
+   If your employer(s) has rights to intellectual property
+   that you create that includes your Contributions, you represent
+   that you have received permission to make Contributions on behalf
+   of that employer, that your employer has waived such rights for
+   your Contributions to XMLX, or that your employer has
+   executed a separate Corporate CLA with XMLX.</p>
+</li>
+<li>
+<p>You represent that each of Your Contributions is Your original
+   creation (see section 7 for submissions on behalf of others).
+   You represent that Your Contribution submissions include complete
+   details of any third-party licence or other restriction (including,
+   but not limited to, related patents and trademarks) of which you
+   are personally aware and which are associated with any part of Your
+   Contributions.</p>
+</li>
+<li>
+<p>You are not expected to provide support for Your Contributions,
+   except to the extent You desire to provide support.
+   You may provide support for free, for a fee, or not at all.
+   Unless required by applicable law or agreed to in writing, You provide
+   Your Contributions on an &ldquo;AS IS&rdquo; BASIS, WITHOUT WARRANTIES OR CONDITIONS
+   OF ANY KIND, either express or implied, including, without
+   limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT,
+   MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE.</p>
+</li>
+<li>
+<p>Should You wish to submit work that is not Your original creation,
+   You may submit it to XMLX separately from any Contribution,
+   identifying the complete details of its source and of
+   any licence or other restriction (including, but not limited to,
+   related patents, trademarks, and licence agreements) of which you
+   are personally aware, and conspicuously marking the work as
+   &ldquo;Submitted on behalf of a third-party: [named here].&rdquo;</p>
+</li>
+<li>
+<p>You agree to notify XMLX of any facts or circumstances of
+   which you become aware that would make these representations
+   inaccurate in any respect.</p>
+</li>
+</ol>
+<p>By digitally signing this agreement through this GitHub Pull Request
+interaction, You accept and agree with its content.</p>
+<p>This is a legal contract containing Personally Identifiable Information.
+We retain the details of your agreement in a private GitHub repository
+only for administrative purposes beyond which this information will not
+be used or shared.</p>
+</details>
+<p>This arrangement allows us to offer the book online for <strong>free</strong> for personal,
+educational and other not-for-profit purposes.</p>
+<h3 id="github-workflow">GitHub Workflow<a class="headerlink" href="#github-workflow" title="Permanent link">&para;</a></h3>
+<p>Please use GitHub Issues to <a href="https://github.com/xmlx-io/xml-book/issues">report problems</a> pertaining to this
+repository.
+Choose one of the pre-defined issue templates;
+it will guide you through the reporting process.
+We have templates for problems with:</p>
+<ul>
+<li>the book content,</li>
+<li>technical infrastructure of the book,</li>
+<li>technical aspects and content of the documentation, and</li>
+<li>technical infrastructure of the repository.</li>
+</ul>
+<p>Prior to opening an issue, make sure that the reported problem is not already
+covered by one of the <a href="https://github.com/xmlx-io/xml-book/issues">existing issues</a>.
+If you would like to discuss the problem before opening an issue,
+you can use our <a href="https://github.com/xmlx-io/xml-book/discussions">GitHub Discussion</a> board or get in touch
+via any other suitable <a href="../contact/">communication channel</a>.</p>
+<hr />
+<p>If you wish to contribute to the project, <strong>you must open an issue first</strong> to
+discuss the envisaged changes and additions.
+This procedure is in place to ensure that work is not duplicated and that the
+proposed changes will make it into the book release (otherwise we cannot
+guarantee accepting your contributions).
+Also, once the outline of the contribution is agreed,
+other people can more easily join in to help with the development
+and make the most out of everybody&rsquo;s time commitment.
+Furthermore, this workflow allows us to maintain excellent quality of the
+content, its factual correctness and adherence to our <a href="../book/">book</a> and
+<a href="../docs/">documentation</a> contribution guidelines.</p>
+<p>Any contributions should be submitted as <a href="https://github.com/xmlx-io/xml-book/pulls">GitHub Pull Requests</a> against
+the <a href="https://github.com/xmlx-io/xml-book/tree/dev"><code>dev</code></a> branch of the <a href="https://github.com/xmlx-io/xml-book">xmlx-io/xml-book</a>
+repository from your personal fork of the codebase &ndash; see the following
+sections for more details.</p>
+<p>To get an inspiration for a contribution, have a look at our work plan by
+navigating to <a href="https://github.com/xmlx-io/xml-book/projects">GitHub Projects</a>, where we maintain a simple
+<em>kanban</em>-esque board.</p>
+<h2 id="development-environment-setup">Development Environment Setup<a class="headerlink" href="#development-environment-setup" title="Permanent link">&para;</a></h2>
+<p>Most of the tools and workflows utilised by this project are written in Python.
+Consider using Python virtual environments (e.g., <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a> with
+<a href="https://github.com/pyenv/pyenv-virtualenv"><code>pyenv-virtualenv</code></a>) for setting up your development environment.</p>
+<h3 id="code-repository">Code Repository<a class="headerlink" href="#code-repository" title="Permanent link">&para;</a></h3>
+<p>You should start by <a href="https://github.com/xmlx-io/xml-book">forking</a> the
+<a href="https://github.com/xmlx-io/xml-book">xmlx-io/xml-book</a> GitHub repository.
+Next, clone it onto your local machine and enter the source directory
+<div class="highlight"><pre><span></span><code>git clone git@github.com:&lt;your GitHub user ID&gt;/xml-book.git
+<span class="nb">cd</span> xml-book
+</code></pre></div>
+Then, move to the <a href="https://github.com/xmlx-io/xml-book/tree/dev"><code>dev</code></a> branch, and create a new branch
+for your contributions
+<div class="highlight"><pre><span></span><code>git checkout dev
+git checkout -b my-contribution-branch
+</code></pre></div>
+It is important that you branch off <a href="https://github.com/xmlx-io/xml-book/tree/dev"><code>dev</code></a>, as this source
+tree holds the latest version of the book (which may have not necessarily been
+released yet).</p>
+<blockquote>
+<p>Consider setting up
+<a href="./#installing-pre-commit-git-hooks">pre-commit git hooks</a>
+to ensure that your individual contributions are consistent with our
+quality standards.</p>
+</blockquote>
+<p>When you are done with your contributions, open a <a href="https://github.com/xmlx-io/xml-book/pulls">GitHub Pull Request</a>
+from the feature branch in your fork (<code>my-contribution-branch</code>) onto the
+<a href="https://github.com/xmlx-io/xml-book/tree/dev"><code>dev</code></a> branch in the main repository
+(<a href="https://github.com/xmlx-io/xml-book">xmlx-io/xml-book</a>).</p>
+<h3 id="building-the-documentation">Building the Documentation<a class="headerlink" href="#building-the-documentation" title="Permanent link">&para;</a></h3>
+<p>To build the documentation, you need to have relevant Python packages
+installed.
+You can do this with
+<div class="highlight"><pre><span></span><code>pip install -r requirements-docs.txt
+</code></pre></div>
+Then, you can start a local live documentation server that automatically
+reloads upon detecting any changes to the source tree by executing
+<div class="highlight"><pre><span></span><code>mkdocs serve
+</code></pre></div>
+from the root of this repository.
+Alternatively, you can build the documentation website with
+<div class="highlight"><pre><span></span><code>mkdocs build -s -d ./_build/docs
+</code></pre></div>
+and browse through the resulting HTML files, which are placed in the
+<code>./_build/docs</code> directory.</p>
+<h3 id="building-the-book">Building the Book<a class="headerlink" href="#building-the-book" title="Permanent link">&para;</a></h3>
+<p>To build the book, you need to have relevant Python packages installed.
+You can do this with
+<div class="highlight"><pre><span></span><code>pip install -r requirements-book.txt
+</code></pre></div>
+You can then build the book website with
+<div class="highlight"><pre><span></span><code>jb build -nW ./
+</code></pre></div>
+and browse through the resulting HTML files, which are placed in the
+<code>./_build/html</code> directory.
+Alternatively, you may serve the book website with the builtin Python
+HTTP server, like so
+<div class="highlight"><pre><span></span><code>python -m http.server ./_build/html
+</code></pre></div></p>
+<h3 id="automation">Automation<a class="headerlink" href="#automation" title="Permanent link">&para;</a></h3>
+<p>To help automate and streamline some development tasks, the repository is
+shipped with a collection of helper functions.
+These require some relevant Python packages to be installed on your system
+<div class="highlight"><pre><span></span><code>pip install -r requirements-tools.txt
+</code></pre></div>
+in addition to having the <code>aspell</code> spell-checking software installed
+(the following command is for Ubuntu Linux)
+<div class="highlight"><pre><span></span><code>apt-get install -y aspell aspell-en
+</code></pre></div>
+(Use a package manager relevant to your operating system to install <code>aspell</code>,
+e.g., <code>brew install aspell</code> for MacOS.)
+These functions are invoked through the <code>./tools/fn.sh</code> Bash scrip with
+<div class="highlight"><pre><span></span><code>./tools/fn.sh &lt;function_name&gt;
+</code></pre></div>
+e.g., <code>./tools/fn.sh check_spelling</code>.</p>
+<h4 id="installing-pre-commit-git-hooks">Installing Pre-Commit Git Hooks<a class="headerlink" href="#installing-pre-commit-git-hooks" title="Permanent link">&para;</a></h4>
+<p>Pre-commit git hooks are scripts executed before every commit;
+if any of them fails, you will not be allowed to commit your changes.
+This quality-checking system helps you to maintain high standards of your
+contributions along the way, thus saving you from fixing all of the small
+errors when opening a pull request.
+To set them up execute
+<div class="highlight"><pre><span></span><code>./tools/fn.sh setup_git_hooks
+</code></pre></div></p>
+<p>To disable pre-commit hooks, comment out relevant lines in the
+<code>.git/hooks/pre-commit</code> file.
+If you want to commit changes without running pre-commit hooks, add the <code>-n</code>
+flag (<code>--no-verify</code>) to your <code>git commit</code> command.
+(Make sure that you do not abuse this flag as side-stepping pre-commit
+checks can lead to a build-up of errors that will need to be fixed prior to
+merging your changes.)</p>
+<h4 id="checking-cleanliness-of-jupyter-notebooks">Checking Cleanliness of Jupyter Notebooks<a class="headerlink" href="#checking-cleanliness-of-jupyter-notebooks" title="Permanent link">&para;</a></h4>
+<p>Since our book environment (<a href="https://jupyterbook.org/">Jupyter Book</a>) supports content written in
+<a href="https://myst-parser.readthedocs.io/">(MyST) Markdown</a> and Jupyter Notebooks (among many
+<a href="https://jupyterbook.org/file-types/index.html#allowed-content-types">others formats</a>), we need to ensure that the source files are
+clean.
+This is particularly important for Jupyter Notebook, which may contain cell
+execution artefacts (output) and metadata.
+To maintain a small footprint of the book source and avoid unexpected build
+errors, Jupyter Notebooks committed to the repository should be clean.
+You can check the status of your notebooks with the following command
+(which is also executed as one of the pre-commit hooks)
+<div class="highlight"><pre><span></span><code>./tools/fn.sh check_clean_ipynb
+</code></pre></div>
+If necessary, you can clean your notebooks with
+<div class="highlight"><pre><span></span><code>./tools/fn.sh clean_ipynb
+</code></pre></div>
+<strong>Note that the notebooks are cleaned in-place so you will not be able to
+restore discarded output cells and metadata.</strong></p>
+<h4 id="spell-checking">Spell-Checking<a class="headerlink" href="#spell-checking" title="Permanent link">&para;</a></h4>
+<p>Given the textual nature of the project, it is important to ensure a correct
+and consistent spelling throughout.
+We achieve this with <a href="https://facelessuser.github.io/pyspelling/">PySpelling</a> &ndash; a Python automation framework built
+around <a href="http://aspell.net/"><code>aspell</code></a>.
+You can check the spelling of all the relevant project files like so
+<div class="highlight"><pre><span></span><code>./tools/fn.sh check_spelling
+</code></pre></div>
+(which is also one of the pre-commit hooks).</p>
+<p>If you find that a certain word is missing from the spell-check dictionary,
+you can extend it by placing the word in question in the
+<code>tools/pyspelling_en_GB-custom.txt</code> file.
+This list of words must be sorted alphanumerically (case insensitive) and it
+extends the standard British English dictionary.</p>
+<h4 id="build-aliases">Build Aliases<a class="headerlink" href="#build-aliases" title="Permanent link">&para;</a></h4>
+<p>The <code>./tools/fn.sh</code> Bash script also implements a collection of shortcuts
+for common build tasks:</p>
+<ul>
+<li><code>build_book</code> builds the book,</li>
+<li><code>linkcheck_book</code> checks whether all of the links placed in the book are
+  accessible,</li>
+<li><code>build_docs</code> builds the documentation,</li>
+<li><code>link_docs</code> integrates the documentation build (static HTML website) into
+  the book build (by copying the <code>_build/docs</code> directory into the
+  <code>_build/html/</code> directory),</li>
+<li><code>build</code> builds the book and the documentation, and links the two.</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      2021-12-12
+    
+  </small>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../changelog/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Changelog" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Changelog
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../docs/" class="md-footer__link md-footer__link--next" aria-label="Next: Documentation" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Documentation
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021–2021 Kacper Sokol and XMLX Team
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://xmlx.io" target="_blank" rel="noopener" title="XMLX Homepage" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M280.37 148.26 96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47 488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://github.com/xmlx-io" target="_blank" rel="noopener" title="XMLX GitHub organisation" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://book.xmlx.io" target="_blank" rel="noopener" title="XML Book" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://github.com/xmlx-io/xml-book" target="_blank" rel="noopener" title="XML Book GitHub repository" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    <a href="mailto:team@xmlx.io" target="_blank" rel="noopener" title="Email us" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M476 3.2 12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.cefbb252.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.17f42bbf.min.js"></script>
+      
+    
+  </body>
+</html>

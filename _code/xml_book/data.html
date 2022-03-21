@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; eXplainable&lt;br&gt;Machine Learning</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/xmlx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <link rel="canonical" href="https://book.xmlx.io/_code/xml_book/data.html" />
+    <link rel="shortcut icon" href="../../_static/bulb.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6635EH38S9"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-6635EH38S9');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/bulb.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">eXplainable<br>Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book/README.html">
+   eXplainable Machine Learning
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../book/preface/index.html">
+   Preface
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../book/preface/glossary.html">
+     Glossary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../book/preface/preliminary.html">
+     Preliminary Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../book/preface/data.html">
+     Modules, Data Sets and Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../book/meta_explainers/index.html">
+   Meta-Explainers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../book/meta_explainers/surrogates/index.html">
+     1. Surrogates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/interpretable_representations.html">
+       1.1. Binary Interpretable Representations for Tabular Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/data_sampling.html">
+       1.2. Data Sampling
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/explanation_generation.html">
+       1.3. Explanation Generation
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../book/meta_explainers/surrogates/examples.html">
+       1.4. Interactive Examples
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../book/meta_explainers/surrogates/ex_tabular.html">
+         1.4.1. Surrogate Explainer of Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../book/meta_explainers/surrogates/ex_ols.html">
+         1.4.2. Investigating Linear Surrogate Explainers of Tabular Data
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book/genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://book.xmlx.io/docs/">
+   XML Book Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://xmlx.io/">
+   XMLX Homepage
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <a href="https://doi.org/XX.XXXX/zenodo.XXXXXXX"><img src="https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg" alt="DOI"></a>
+
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/_code/xml_book/data.py"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.py</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xmlx-io/xml-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xmlx-io/xml-book/issues/new?title=Issue%20on%20page%20%2F_code/xml_book/data.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/xmlx-io/xml-book/edit/master/_code/xml_book/data.py"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><no title></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">XML Book Data Module</span>
+<span class="sd">====================</span>
+
+<span class="sd">This module implements a collection of data functions used by the book.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Author: Kacper Sokol &lt;kacper@xmlx.io&gt;</span>
+<span class="c1">#         Alex Hepburn &lt;ah13558@bristol.ac.uk&gt;</span>
+<span class="c1"># License: MIT</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="kn">import</span> <span class="nn">sklearn.datasets</span>
+<span class="kn">import</span> <span class="nn">sklearn.model_selection</span>
+<span class="kn">import</span> <span class="nn">sklearn.preprocessing</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;generate_2d_moons&#39;</span><span class="p">,</span> <span class="s1">&#39;generate_bikes&#39;</span><span class="p">,</span> <span class="s1">&#39;get_boston&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">generate_2d_moons</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a two-dimensional *Two Moons* data set.</span>
+
+<span class="sd">    The data set has 1200 training instances and 300 test instances.</span>
+<span class="sd">    It is generated with 0.25 noise parameter and its features are scaled</span>
+<span class="sd">    to the [0, 1] range.</span>
+
+<span class="sd">    For reproducibility of the data sampling and train/test split,</span>
+<span class="sd">    you may wish to set the ``random_seed`` parameter.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    random_seed : integer, optional (default=None)</span>
+<span class="sd">        A random seed used to initialise Python&#39;s and numpy&#39;s ``random``</span>
+<span class="sd">        modules. If ``None``, the random seeds are not fixed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    train_X : 2-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the train data.</span>
+<span class="sd">    test_X : 2-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the test data.</span>
+<span class="sd">    train_y : 1-dimensional numpy array</span>
+<span class="sd">        A numpy array holding labels of the train data.</span>
+<span class="sd">    test_y : 1-dimensional numpy array</span>
+<span class="sd">        A numpy array holding labels of the test data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">random_seed</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">random_seed</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;Incorrect seed.&#39;</span>
+    <span class="k">if</span> <span class="n">random_seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">fatf</span>
+        <span class="n">fatf</span><span class="o">.</span><span class="n">setup_random_seed</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+
+    <span class="c1"># Load Moons Dataset</span>
+    <span class="n">moons_data</span><span class="p">,</span> <span class="n">moons_target</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">make_moons</span><span class="p">(</span>
+        <span class="n">n_samples</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+    <span class="c1"># Scale it between 0 and 1</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">moons_data</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">moons_data</span><span class="p">)</span>
+
+    <span class="c1"># Split into test and train data</span>
+    <span class="n">train_X</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+          <span class="n">moons_data</span><span class="p">,</span> <span class="n">moons_target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_y</span>
+
+
+<span class="k">def</span> <span class="nf">_download_bikes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Downloads the UCI Bike Sharing data set and extracts a subset of its features.</span>
+
+<span class="sd">    This function downloads the UCI Bike Sharing data set</span>
+<span class="sd">    &lt;https://archive.ics.uci.edu/ml/datasets/bike+sharing+dataset&gt;</span>
+<span class="sd">    and removes the following two features:</span>
+
+<span class="sd">    * record index, and</span>
+<span class="sd">    * date.</span>
+
+<span class="sd">    Out of the three target variables (casual, registered and cnt),</span>
+<span class="sd">    it selects *cnt*, which represents the total number of bikes rented</span>
+<span class="sd">    during a given day.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bikes_data : 2-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the data.</span>
+<span class="sd">    bikes_target : 1-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the target variable of the data (the number of</span>
+<span class="sd">        bikes rented on a given day).</span>
+<span class="sd">    bikes_feature_names : list of strings</span>
+<span class="sd">        A Python list holding the feature names.</span>
+<span class="sd">    bikes_target_name : string</span>
+<span class="sd">        A string with the name of the target variable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Load Bikes</span>
+    <span class="n">url</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;https://archive.ics.uci.edu/ml/machine-learning-databases/00275/&#39;</span>
+         <span class="s1">&#39;Bike-Sharing-Dataset.zip&#39;</span><span class="p">)</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">request_io_stream</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">request_io_stream</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;day.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Do not read the first two columns (0: index, 1: date); and skip the two</span>
+    <span class="c1"># penultimate ones (13: casual users count, 14: registered users count)</span>
+    <span class="c1"># since the last one (15) is the total count.</span>
+    <span class="n">column_ids</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">_bikes_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span>
+        <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+        <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>
+        <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">usecols</span><span class="o">=</span><span class="n">column_ids</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="c1"># Separate data from target</span>
+    <span class="c1">## Drop the target column</span>
+    <span class="n">bikes_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">_bikes_data</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">## Target is the total bike rental count</span>
+    <span class="n">bikes_target</span> <span class="o">=</span> <span class="n">_bikes_data</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Get the feature names from the csv header</span>
+    <span class="n">_bikes_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">column_ids</span><span class="p">:</span>
+            <span class="n">_bikes_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+    <span class="c1"># Separate data from target</span>
+    <span class="n">bikes_feature_names</span> <span class="o">=</span> <span class="n">_bikes_names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">bikes_target_name</span> <span class="o">=</span> <span class="n">_bikes_names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">bikes_data</span><span class="p">,</span> <span class="n">bikes_target</span><span class="p">,</span> <span class="n">bikes_feature_names</span><span class="p">,</span> <span class="n">bikes_target_name</span>
+
+
+<span class="k">def</span> <span class="nf">_preprocess_bikes_target</span><span class="p">(</span><span class="n">bikes_target</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Discretises the target variable of the UCI Bike Sharing data set.</span>
+
+<span class="sd">    This function bins the regression target variable of the UCI Bike Sharing</span>
+<span class="sd">    data set (see :func:`_download_bikes`) into three classes, making it a</span>
+<span class="sd">    classification task:</span>
+
+<span class="sd">    * ``0`` is *low*: 0 &lt;= y &lt; 4000;</span>
+<span class="sd">    * ``1`` is *medium*: 4000 &lt;= y &lt; 6000; and</span>
+<span class="sd">    * ``2`` is *high*: 6000 &lt;= y &lt; 9000.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bikes_target : 1-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the target variable of the UCI Bike Sharing data</span>
+<span class="sd">        set (the number of bikes rented on a given day).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bikes_binned_target : 1-dimensional numpy array</span>
+<span class="sd">        A discretised version of the ``bikes_target`` array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">4000.0</span><span class="p">,</span> <span class="mf">6000.0</span><span class="p">,</span> <span class="mf">9000.0</span><span class="p">]</span>
+    <span class="c1"># Subtract 1 to start the count from 0</span>
+    <span class="n">bikes_binned_target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">bikes_target</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">bikes_binned_target</span>
+
+
+<span class="k">def</span> <span class="nf">generate_bikes</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates the UCI Bike Sharing data set.</span>
+
+<span class="sd">    This function downloads the Bike Sharing data set from the UCI repository</span>
+<span class="sd">    and removes *record index* and *date* features</span>
+<span class="sd">    (see :func:`_download_bikes`).</span>
+<span class="sd">    It also discretises the target variable into three classes: *low* (0),</span>
+<span class="sd">    *medium* (1) and *high* (2) -- see :func:`_preprocess_bikes_target`.</span>
+
+<span class="sd">    For reproducibility of the train/test split, you may wish to set the</span>
+<span class="sd">    ``random_seed`` parameter.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    random_seed : integer, optional (default=None)</span>
+<span class="sd">        A random seed used to initialise Python&#39;s and numpy&#39;s ``random``</span>
+<span class="sd">        modules. If ``None``, the random seeds are not fixed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    train_X : 2-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the train data.</span>
+<span class="sd">    test_X : 2-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the test data.</span>
+<span class="sd">    train_y : 1-dimensional numpy array</span>
+<span class="sd">        A numpy array holding labels of the train data.</span>
+<span class="sd">    test_y : 1-dimensional numpy array</span>
+<span class="sd">        A numpy array holding labels of the test data.</span>
+<span class="sd">    bikes_feature_names : list of strings</span>
+<span class="sd">        A Python list holding the feature names.</span>
+<span class="sd">    bikes_target_name : string</span>
+<span class="sd">        A string with the name of the target variable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">random_seed</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">random_seed</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;Incorrect seed.&#39;</span>
+    <span class="k">if</span> <span class="n">random_seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">fatf</span>
+        <span class="n">fatf</span><span class="o">.</span><span class="n">setup_random_seed</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+
+    <span class="c1"># Load Bikes</span>
+    <span class="n">bikes_data</span><span class="p">,</span> <span class="n">bikes_target</span><span class="p">,</span> <span class="n">bikes_feature_names</span><span class="p">,</span> <span class="n">bikes_target_name</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">_download_bikes</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Convert the regression target into classification</span>
+    <span class="n">bikes_classification_target</span> <span class="o">=</span> <span class="n">_preprocess_bikes_target</span><span class="p">(</span><span class="n">bikes_target</span><span class="p">)</span>
+
+    <span class="c1"># Split into test and train data</span>
+    <span class="n">train_X</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">bikes_data</span><span class="p">,</span> <span class="n">bikes_classification_target</span><span class="p">,</span>
+        <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">stratify</span><span class="o">=</span><span class="n">bikes_classification_target</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span>
+            <span class="n">bikes_feature_names</span><span class="p">,</span> <span class="n">bikes_target_name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_boston</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates the Boston Housing data set.</span>
+
+<span class="sd">    The target variable is discretised into two classes: *low* (0) and</span>
+<span class="sd">    *high* (1).</span>
+<span class="sd">    The discretisation threshold is fixed at 20.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    X : 2-dimensional numpy array</span>
+<span class="sd">        A numpy array holding the data.</span>
+<span class="sd">    y_class : 1-dimensional numpy array</span>
+<span class="sd">        A numpy array holding discretised labels of the data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">y_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+    <span class="n">y_class</span><span class="p">[</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y_class</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./_code/xml_book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="mailto:kacper@xmlx.io">Kacper Sokol</a> and <a href="mailto:team@xmlx.io">XMLX Team</a> – <a href="https://xmlx.io/">xmlx.io</a>.<br> Distributed under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+<br/>
+    
+        &copy; Copyright 2021–2022.<br/>
+      <div class="extra_footer">
+        <p> This book delivers a comprehensive outlook on the most popular explainability concepts in Machine Learning. It covers a range of theoretical and practical topics across different difficulty levels, including but not limited to: high-level overviews & introductory examples; mathematical foundations; algorithmic implementations; practical advice & real-life caveats; and success & failure case studies. </p>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

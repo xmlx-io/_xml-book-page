@@ -1,0 +1,1136 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Modules, Data Sets and Models &#8212; eXplainable&lt;br&gt;Machine Learning</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/xmlx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://book.xmlx.io/book/preface/data.html" />
+    <link rel="shortcut icon" href="../../_static/bulb.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Meta-Explainers" href="../meta_explainers/index.html" />
+    <link rel="prev" title="Preliminary Information" href="preliminary.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6635EH38S9"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-6635EH38S9');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/bulb.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">eXplainable<br>Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   eXplainable Machine Learning
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Preface
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="glossary.html">
+     Glossary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preliminary.html">
+     Preliminary Information
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Modules, Data Sets and Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../meta_explainers/index.html">
+   Meta-Explainers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_explainers/surrogates/index.html">
+     1. Surrogates
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../meta_explainers/surrogates/interpretable_representations.html">
+       1.1. Binary Interpretable Representations for Tabular Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../meta_explainers/surrogates/data_sampling.html">
+       1.2. Data Sampling
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../meta_explainers/surrogates/explanation_generation.html">
+       1.3. Explanation Generation
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../meta_explainers/surrogates/examples.html">
+       1.4. Interactive Examples
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../meta_explainers/surrogates/ex_tabular.html">
+         1.4.1. Surrogate Explainer of Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../meta_explainers/surrogates/ex_ols.html">
+         1.4.2. Investigating Linear Surrogate Explainers of Tabular Data
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://book.xmlx.io/docs/">
+   XML Book Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://xmlx.io/">
+   XMLX Homepage
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <a href="https://doi.org/XX.XXXX/zenodo.XXXXXXX"><img src="https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg" alt="DOI"></a>
+
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/book/preface/data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/book/preface/data.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xmlx-io/xml-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xmlx-io/xml-book/issues/new?title=Issue%20on%20page%20%2Fbook/preface/data.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/xmlx-io/xml-book/edit/master/book/preface/data.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/xmlx-io/xml-book/master?urlpath=lab/tree/book/preface/data.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-moons">
+   Two Moons
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bikes">
+   Bikes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models">
+   Training Models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Two Moons
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-forest">
+       Random Forest
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#support-vector-machine">
+       Support Vector Machine
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Bikes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Random Forest
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Support Vector Machine
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-variable-storage">
+   Jupyter Variable Storage
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Modules, Data Sets and Models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-moons">
+   Two Moons
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bikes">
+   Bikes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models">
+   Training Models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Two Moons
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-forest">
+       Random Forest
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#support-vector-machine">
+       Support Vector Machine
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Bikes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Random Forest
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Support Vector Machine
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-variable-storage">
+   Jupyter Variable Storage
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="modules-data-sets-and-models">
+<span id="text-preface-modules-data-models"></span><h1>Modules, Data Sets and Models<a class="headerlink" href="#modules-data-sets-and-models" title="Permalink to this headline">¶</a></h1>
+<p>TODO: discuss the code in <code class="docutils literal notranslate"><span class="pre">_code</span></code>.</p>
+<p>This section briefly introduces example data sets that we will use throughout this book.</p>
+<ul class="simple">
+<li><p><em>Two Moons</em> – a two-dimensional toy data set generated with <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html">scikit-learn</a>; and</p></li>
+<li><p><em>Bikes Sharing</em> – a real-life data set that captures bike rentals (available via the <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/bike+sharing+dataset">UCI repository</a>).</p></li>
+</ul>
+<p>Moreover, it discusses two classifiers that will serve as our <em>black boxes</em> (trained on said data):</p>
+<ul class="simple">
+<li><p><em>Random Forest</em> – utilises the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html"><code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.RandomForestClassifier</span></code></a> class and serves as a probabilistic black box; and</p></li>
+<li><p><em>Support Vector Machine</em> – uses the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC</span></code></a> class and serves as a non-probabilistic black box.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Reproducibility</strong>    
+To ensure reproducibility of the data – random generation of Two Moons and train/test split of both data sets – we fix the random seeds of the Python’s and numpy’s <code class="docutils literal notranslate"><span class="pre">random</span></code> modules.
+This can be easily done by calling <code class="docutils literal notranslate"><span class="pre">fatf.setup_random_seed(42)</span></code>, where <code class="docutils literal notranslate"><span class="pre">42</span></code> is the chosen random seed.
+This step is already integrated into the data set creation functions – <code class="docutils literal notranslate"><span class="pre">xml_book.data.generate_2d_moons</span></code> and <code class="docutils literal notranslate"><span class="pre">xml_book.data.generate_bikes</span></code> – and can be accessed with their <code class="docutils literal notranslate"><span class="pre">random_seed</span></code> parameter, e.g.:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">generate_2d_moons</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If called without this parameter or with <code class="docutils literal notranslate"><span class="pre">None</span></code>, the random seed is not fixed.</p>
+<p>Similarly, we may wish to train reproducible models.
+This can be achieved by using the <code class="docutils literal notranslate"><span class="pre">random_state</span></code> parameter, which is available for every scikit-learn model class, e.g., <code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC(random_state=42)</span></code>.
+Again, this functionality has already been integrated into the model creation functions in the <code class="docutils literal notranslate"><span class="pre">xml_book.models</span></code> library – <code class="docutils literal notranslate"><span class="pre">xml_book.models.get_random_forest</span></code> and <code class="docutils literal notranslate"><span class="pre">xml_book.models.get_svc</span></code> – and can be accessed via their <code class="docutils literal notranslate"><span class="pre">random_seed</span></code> parameter, e.g.:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If called without this parameter or with <code class="docutils literal notranslate"><span class="pre">None</span></code>, the random seed is not fixed.</p>
+<div class="tip admonition">
+<p class="admonition-title">Displaying the source of a function</p>
+<p>If you want to see the source code of any function, you can use the following <em>magic</em> command available in Jupyter Notebooks:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">??</span> xml_book.models.get_random_forest
+</pre></div>
+</div>
+</div>
+<section id="two-moons">
+<h2>Two Moons<a class="headerlink" href="#two-moons" title="Permalink to this headline">¶</a></h2>
+<p>First, let’s generate a <em>toy</em> data set that is two-dimensional and easy to visualise.
+It will help us to introduce plenty of concepts throughout this book.</p>
+<p>To this end, we use scikit-learn’s <code class="docutils literal notranslate"><span class="pre">sklearn.datasets.make_moons</span></code> function.
+We generate a two moons data set with 1500 samples and 0.25 noise.
+Next, we scale both of its features to the [0, 1] range.
+Then, we separate 20% of the data into a dedicated <em>test</em> set.</p>
+<p>For convenience, this procedure is neatly wrapped inside the <code class="docutils literal notranslate"><span class="pre">generate_2d_moons</span></code> function in a dedicated module <code class="docutils literal notranslate"><span class="pre">xml_book.data</span></code> distributed with this book.</p>
+<p>Let’s generate this data set and plot the corresponding <em>training</em> and <em>test</em> set.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate 2-D moons data set</span>
+<span class="n">moons_train_X</span><span class="p">,</span> <span class="n">moons_test_X</span><span class="p">,</span> <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">moons_test_y</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">xml_book</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">generate_2d_moons</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/data_5_0.png"><img alt="moons-train" src="../../_images/data_5_0.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text"><p>Two Moons training data.</p>
+</span></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/data_6_0.png"><img alt="moons-test" src="../../_images/data_6_0.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text"><p>Two Moons test data.</p>
+</span></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="bikes">
+<h2>Bikes<a class="headerlink" href="#bikes" title="Permalink to this headline">¶</a></h2>
+<p>Our second data set is <em>Bike Sharing</em>, which is distributed via the <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/bike+sharing+dataset">UCI repository</a>.
+It records a number of bike rentals (target) along various weather conditions and date artefacts (features).
+The version used in this tutorial has the following 11 features:</p>
+<ul class="simple">
+<li><p>season:</p>
+<ol class="simple">
+<li><p>winter,</p></li>
+<li><p>spring,</p></li>
+<li><p>summer, and</p></li>
+<li><p>fall;</p></li>
+</ol>
+</li>
+<li><p>year:
+0. 2011, and</p>
+<ol class="simple">
+<li><p>2012;</p></li>
+</ol>
+</li>
+<li><p>month – 1 to 12;</p></li>
+<li><p>holiday – weather the day is a holiday or not;</p></li>
+<li><p>weekday – the day of the week;</p></li>
+<li><p>workingday – 1 if the day is neither during the weekend nor a holiday,
+otherwise 0;</p></li>
+<li><p>weathersit:</p>
+<ol class="simple">
+<li><p>clear, few clouds, partly cloudy, partly cloudy,</p></li>
+<li><p>mist + cloudy, mist + broken clouds, mist + few clouds, mist,</p></li>
+<li><p>light snow, light rain + thunderstorm + scattered clouds,
+light rain + scattered clouds, and</p></li>
+<li><p>heavy rain + ice pallets + thunderstorm + mist, snow + fog;</p></li>
+</ol>
+</li>
+<li><p>temp – normalized temperature in Celsius;</p></li>
+<li><p>atemp – normalized feeling temperature in Celsius;</p></li>
+<li><p>hum – normalized humidity; and</p></li>
+<li><p>windspeed – normalized wind speed.</p></li>
+</ul>
+<p>In its original form, the target of the data set is the number of bikes used on a given day, making it a regression task.
+However, for the purposes of this tutorial, we convert it into a classification problem.
+We create a target variable that describes the day as having <strong>low</strong>, <strong>medium</strong> or <strong>high</strong> bike usage, which are defined by the following thresholds:</p>
+<ul class="simple">
+<li><p><strong>low:</strong> <span class="math notranslate nohighlight">\(0 \leq y &lt; 4000\)</span>,</p></li>
+<li><p><strong>medium:</strong> <span class="math notranslate nohighlight">\(4000 \leq y &lt; 6000\)</span>, and</p></li>
+<li><p><strong>high:</strong> <span class="math notranslate nohighlight">\(6000 \leq y &lt; 9000\)</span>;</p></li>
+</ul>
+<p>where <span class="math notranslate nohighlight">\(y\)</span> is the number of bikes rented on a given day.</p>
+<hr class="docutils" />
+<p>All of this processing is done in the <code class="docutils literal notranslate"><span class="pre">generate_bikes</span></code> function, which
+is available in the <code class="docutils literal notranslate"><span class="pre">xml_book.data</span></code> library.
+Let’s use it to load the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">bikes_train_X</span><span class="p">,</span>
+ <span class="n">bikes_test_X</span><span class="p">,</span>
+ <span class="n">bikes_train_y</span><span class="p">,</span>
+ <span class="n">bikes_test_y</span><span class="p">,</span>
+ <span class="n">bikes_feature_names</span><span class="p">,</span>
+ <span class="n">bikes_target_name</span><span class="p">)</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">generate_bikes</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">bikes_target_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:47 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:47 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Features number: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bikes_train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training instances number: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bikes_train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing instances number: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bikes_test_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Features number: 11.
+Training instances number: 584.
+Testing instances number: 147.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s visualise the class proportions for the training and test sets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">,</span> <span class="mi">9000</span><span class="p">]</span>
+<span class="n">bin_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;</span><span class="si">{:.0f}</span><span class="s1">&lt;=y&lt;</span><span class="si">{:.0f}</span><span class="se">\n</span><span class="s1">Low&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="s1">&#39;</span><span class="si">{:.0f}</span><span class="s1">&lt;=y&lt;</span><span class="si">{:.0f}</span><span class="se">\n</span><span class="s1">Medium&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bins</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+    <span class="s1">&#39;</span><span class="si">{:.0f}</span><span class="s1">&lt;=y&lt;</span><span class="si">{:.0f}</span><span class="se">\n</span><span class="s1">High&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bins</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">train_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bin_names</span><span class="p">,</span> <span class="n">train_counts</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Class Distribution of Train Data&#39;</span><span class="p">)</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">test_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">bikes_test_y</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bin_names</span><span class="p">,</span> <span class="n">test_counts</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Class Distribution of Test Data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Class Distribution of Test Data&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/data_11_1.png" src="../../_images/data_11_1.png" />
+</div>
+</div>
+</section>
+<section id="training-models">
+<h2>Training Models<a class="headerlink" href="#training-models" title="Permalink to this headline">¶</a></h2>
+<p>Now, let’s train <em>black box</em> models on these data sets and evaluate their
+train and test set predictive performance.
+We will use two models:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.RandomForestClassifier</span></code> treated as a <em>probabilistic</em>
+classifier; and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC</span></code> operated as a <em>crisp</em> (non-probabilistic) classifier.</p></li>
+</ul>
+<section id="id1">
+<h3>Two Moons<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="random-forest">
+<h4>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h4>
+<p>Let’s start with a simple <em>probabilistic</em> model based on the Random Forest
+classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_moons_probabilistic</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_random_forest</span><span class="p">(</span>
+    <span class="n">moons_train_X</span><span class="p">,</span> <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following training set log loss:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_prob_predictions_train</span> <span class="o">=</span> <span class="n">clf_moons_probabilistic</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+    <span class="n">moons_train_X</span><span class="p">)</span>
+
+<span class="n">moons_prob_train_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">log_loss</span><span class="p">(</span>
+    <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">moons_prob_predictions_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training set *log loss*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">moons_prob_train_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training set *log loss*: 0.116.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following testing set log loss:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_prob_predictions_test</span> <span class="o">=</span> <span class="n">clf_moons_probabilistic</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+    <span class="n">moons_test_X</span><span class="p">)</span>
+
+<span class="n">moons_prob_test_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">log_loss</span><span class="p">(</span>
+    <span class="n">moons_test_y</span><span class="p">,</span> <span class="n">moons_prob_predictions_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing set *log loss*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">moons_prob_test_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing set *log loss*: 0.225.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="support-vector-machine">
+<h4>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">¶</a></h4>
+<p>Next, we train a simple crisp (non-probabilistic) model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_moons_crisp</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span>
+    <span class="n">moons_train_X</span><span class="p">,</span> <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following training set accuracy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_crisp_predictions_train</span> <span class="o">=</span> <span class="n">clf_moons_crisp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">moons_train_X</span><span class="p">)</span>
+
+<span class="n">moons_crisp_train_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span>
+    <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">moons_crisp_predictions_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training set *accuracy*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">moons_crisp_train_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training set *accuracy*: 0.939.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following testing set accuracy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_crisp_predictions_test</span> <span class="o">=</span> <span class="n">clf_moons_crisp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">moons_test_X</span><span class="p">)</span>
+
+<span class="n">moons_crisp_test_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span>
+    <span class="n">moons_test_y</span><span class="p">,</span> <span class="n">moons_crisp_predictions_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing set *accuracy*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">moons_crisp_test_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing set *accuracy*: 0.91.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id2">
+<h3>Bikes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<section id="id3">
+<h4>Random Forest<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Let’s start with a simple <em>probabilistic</em> model based on the Random Forest
+classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_probabilistic</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_random_forest</span><span class="p">(</span>
+    <span class="n">bikes_train_X</span><span class="p">,</span> <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following training set log loss:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikes_prob_predictions_train</span> <span class="o">=</span> <span class="n">clf_bikes_probabilistic</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+    <span class="n">bikes_train_X</span><span class="p">)</span>
+
+<span class="n">bikes_prob_train_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">log_loss</span><span class="p">(</span>
+    <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">bikes_prob_predictions_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training set *log loss*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bikes_prob_train_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training set *log loss*: 0.267.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following testing set log loss:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikes_prob_predictions_test</span> <span class="o">=</span> <span class="n">clf_bikes_probabilistic</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+    <span class="n">bikes_test_X</span><span class="p">)</span>
+
+<span class="n">bikes_prob_test_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">log_loss</span><span class="p">(</span>
+    <span class="n">bikes_test_y</span><span class="p">,</span> <span class="n">bikes_prob_predictions_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing set *log loss*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bikes_prob_test_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing set *log loss*: 0.411.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h4>Support Vector Machine<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>Next, we train a simple crisp (non-probabilistic) model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_crisp</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span>
+    <span class="n">bikes_train_X</span><span class="p">,</span> <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following training set accuracy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikes_crisp_predictions_train</span> <span class="o">=</span> <span class="n">clf_bikes_crisp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">bikes_train_X</span><span class="p">)</span>
+
+<span class="n">moons_crisp_train_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span>
+    <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">bikes_crisp_predictions_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training set *accuracy*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">moons_crisp_train_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training set *accuracy*: 0.771.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has the following testing set accuracy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikes_crisp_predictions_test</span> <span class="o">=</span> <span class="n">clf_bikes_crisp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">bikes_test_X</span><span class="p">)</span>
+
+<span class="n">moons_crisp_test_performance</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span>
+    <span class="n">bikes_test_y</span><span class="p">,</span> <span class="n">bikes_crisp_predictions_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training set *accuracy*: </span><span class="si">{:.3}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">moons_crisp_test_performance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training set *accuracy*: 0.776.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="jupyter-variable-storage">
+<h2>Jupyter Variable Storage<a class="headerlink" href="#jupyter-variable-storage" title="Permalink to this headline">¶</a></h2>
+<p>(<strong>This functionality is not available in Colab.</strong>)</p>
+<p>If you wish to reuse any of these variables in other notebooks,
+you can store and load them with Jupyter <em>magic</em>: <code class="docutils literal notranslate"><span class="pre">%store</span></code> and <code class="docutils literal notranslate"><span class="pre">%store</span> <span class="pre">-r</span></code>
+respectively, e.g.:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_data_dictionary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">moons_train_X</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">moons_train_y</span> 
+    <span class="p">},</span>
+    <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">moons_test_X</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">moons_test_y</span> 
+    <span class="p">},</span>
+    <span class="s1">&#39;feature_names&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;feature_1&#39;</span><span class="p">,</span> <span class="s1">&#39;feature_2&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;class_names&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;class_1&#39;</span><span class="p">,</span> <span class="s1">&#39;class_2&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">bikes_data_dictionary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">bikes_train_X</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">bikes_train_y</span> 
+    <span class="p">},</span>
+    <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">bikes_test_X</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">bikes_test_y</span> 
+    <span class="p">},</span>
+    <span class="s1">&#39;feature_names&#39;</span><span class="p">:</span> <span class="n">bikes_feature_names</span><span class="p">,</span>
+    <span class="s1">&#39;class_names&#39;</span><span class="p">:</span>  <span class="n">bikes_target_classes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> moons_data_dictionary
+<span class="o">%</span><span class="k">store</span> clf_moons_probabilistic
+<span class="o">%</span><span class="k">store</span> clf_moons_crisp
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Stored &#39;moons_data_dictionary&#39; (dict)
+Stored &#39;clf_moons_probabilistic&#39; (RandomForestClassifier)
+Stored &#39;clf_moons_crisp&#39; (SVC)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> bikes_data_dictionary
+<span class="o">%</span><span class="k">store</span> clf_bikes_probabilistic
+<span class="o">%</span><span class="k">store</span> clf_bikes_crisp
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Stored &#39;bikes_data_dictionary&#39; (dict)
+Stored &#39;clf_bikes_probabilistic&#39; (RandomForestClassifier)
+Stored &#39;clf_bikes_crisp&#39; (SVC)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see what variables are stored.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Stored variables and their in-db values:
+bikes_data_dictionary               -&gt; {&#39;train&#39;: {&#39;X&#39;: array([[ 2.       ,  0.       ,  4
+clf_bikes_crisp                     -&gt; SVC(random_state=42)
+clf_bikes_probabilistic             -&gt; RandomForestClassifier(max_depth=7, n_estimators=5
+clf_moons_crisp                     -&gt; SVC(random_state=42)
+clf_moons_probabilistic             -&gt; RandomForestClassifier(max_depth=7, n_estimators=5
+moons_data_dictionary               -&gt; {&#39;train&#39;: {&#39;X&#39;: array([[0.5708247 , 0.31394848],
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s overwrite one of them and restore it with <code class="docutils literal notranslate"><span class="pre">%store</span> <span class="pre">-r</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_data_dictionary</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">moons_data_dictionary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r moons_data_dictionary
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_data_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;train&#39;, &#39;test&#39;, &#39;feature_names&#39;, &#39;class_names&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Passing variables between Jupyter Notebooks</p>
+<p>It is possible to <em>store</em> a variable in one Jupyter Notebook and <em>retrieve</em> it in another.
+You can do so with two <a class="reference external" href="https://ipython.readthedocs.io/en/stable/config/extensions/storemagic.html"><em>magic</em></a> commands:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> variable_name
+</pre></div>
+</div>
+<p>to store a variable named <code class="docutils literal notranslate"><span class="pre">variable_name</span></code> and</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r variable_name
+</pre></div>
+</div>
+<p>to load a variable named <code class="docutils literal notranslate"><span class="pre">variable_name</span></code>.
+You can also list all of the stored variables by using the <code class="docutils literal notranslate"><span class="pre">%store</span></code> magic function without any parameter, i.e.:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span>
+</pre></div>
+</div>
+<p>More information can be found <a class="reference external" href="https://ipython.readthedocs.io/en/stable/config/extensions/storemagic.html">here</a>.
+<strong>Note that this feature does not work with Google Colab.</strong></p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./book/preface"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="preliminary.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Preliminary Information</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../meta_explainers/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Meta-Explainers</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="mailto:kacper@xmlx.io">Kacper Sokol</a> and <a href="mailto:team@xmlx.io">XMLX Team</a> – <a href="https://xmlx.io/">xmlx.io</a>.<br> Distributed under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+<br/>
+    
+        &copy; Copyright 2021–2022.<br/>
+      <div class="extra_footer">
+        <p> This book delivers a comprehensive outlook on the most popular explainability concepts in Machine Learning. It covers a range of theoretical and practical topics across different difficulty levels, including but not limited to: high-level overviews & introductory examples; mathematical foundations; algorithmic implementations; practical advice & real-life caveats; and success & failure case studies. </p>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
