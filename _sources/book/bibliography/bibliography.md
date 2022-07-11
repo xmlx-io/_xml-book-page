@@ -1,0 +1,5 @@
+(text:bibliography)=
+# Bibliography #
+
+```{bibliography}
+```

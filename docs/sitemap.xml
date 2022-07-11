@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://book.xmlx.io/docs/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/book/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/changelog/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/conduct/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/contact/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/credits/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/dev/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/docs/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/news/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.xmlx.io/docs/book_templates/template/</loc>
-         <lastmod>2022-03-21</lastmod>
+         <lastmod>2022-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

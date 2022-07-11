@@ -23,20 +23,12 @@ TODO: discuss the code in `_code`.
 tags: [remove-cell]
 ---
 # First, we need to set up the environment.
-
-import sys
-sys.path.insert(0, '../../_code')
-
 import sklearn.metrics
-import xml_book.data
-import xml_book.models
+import xml_book.data.data as xmlb_data
+import xml_book.models.tabular as xmlb_tabular_models
 
 import matplotlib.pyplot as plt
 import numpy as np
-
-from IPython.display import display
-
-plt.style.use('seaborn')
 ```
 
 +++
@@ -61,17 +53,17 @@ Moreover, it discusses two classifiers that will serve as our *black boxes* (tra
 **Reproducibility**&nbsp;&nbsp;&nbsp;&nbsp;
 To ensure reproducibility of the data -- random generation of Two Moons and train/test split of both data sets -- we fix the random seeds of the Python's and numpy's `random` modules.
 This can be easily done by calling `fatf.setup_random_seed(42)`, where `42` is the chosen random seed.
-This step is already integrated into the data set creation functions -- `xml_book.data.generate_2d_moons` and `xml_book.data.generate_bikes` -- and can be accessed with their `random_seed` parameter, e.g.:
+This step is already integrated into the data set creation functions -- `xml_book.data.data.generate_2d_moons` and `xml_book.data.data.generate_bikes` -- and can be accessed with their `random_seed` parameter, e.g.:
 ``` ipython
->>> xml_book.data.generate_2d_moons(random_seed=42)
+>>> xml_book.data.data.generate_2d_moons(random_seed=42)
 ```
 If called without this parameter or with `None`, the random seed is not fixed.
 
 Similarly, we may wish to train reproducible models.
 This can be achieved by using the `random_state` parameter, which is available for every scikit-learn model class, e.g., `sklearn.svm.SVC(random_state=42)`.
-Again, this functionality has already been integrated into the model creation functions in the `xml_book.models` library -- `xml_book.models.get_random_forest` and `xml_book.models.get_svc` -- and can be accessed via their `random_seed` parameter, e.g.:
+Again, this functionality has already been integrated into the model creation functions in the `xml_book.models.tabular` library -- `xml_book.models.tabular.get_random_forest` and `xml_book.models.tabular.get_svc` -- and can be accessed via their `random_seed` parameter, e.g.:
 ``` ipython
->>> xml_book.models.get_svc(data, target, random_seed=42)
+>>> xml_book.models.tabular.get_svc(data, target, random_seed=42)
 ```
 If called without this parameter or with `None`, the random seed is not fixed.
 
@@ -80,7 +72,7 @@ If called without this parameter or with `None`, the random seed is not fixed.
 
 If you want to see the source code of any function, you can use the following *magic* command available in Jupyter Notebooks:
 ``` ipython
-?? xml_book.models.get_random_forest
+?? xml_book.models.tabular.get_random_forest
 ```
 :::
 
@@ -96,7 +88,7 @@ We generate a two moons data set with 1500 samples and 0.25 noise.
 Next, we scale both of its features to the [0, 1] range.
 Then, we separate 20% of the data into a dedicated *test* set.
 
-For convenience, this procedure is neatly wrapped inside the `generate_2d_moons` function in a dedicated module `xml_book.data` distributed with this book.
+For convenience, this procedure is neatly wrapped inside the `generate_2d_moons` function in a dedicated module `xml_book.data.data` distributed with this book.
 
 Let's generate this data set and plot the corresponding *training* and *test* set.
 
@@ -106,7 +98,7 @@ tags: [remove-output]
 ---
 # Generate 2-D moons data set
 moons_train_X, moons_test_X, moons_train_y, moons_test_y = (
-    xml_book.data.generate_2d_moons(random_seed=42)
+    xmlb_data.generate_2d_moons(random_seed=42)
 )
 ```
 
@@ -120,7 +112,7 @@ render:
   figure:
     caption: |
       Two Moons training data.
-#    name: fig-moons-train
+    name: 'fig:moons:train'
 ---
 # Plot training data and their labels
 plt.figure(figsize=(8, 8), dpi=80)
@@ -142,7 +134,7 @@ render:
   figure:
     caption: |
       Two Moons test data.
-#    name: fig-moons-test
+#    name: 'fig:moons:test'
 ---
 # Plot test data and their labels
 plt.figure(figsize=(8, 8), dpi=80)
@@ -201,7 +193,7 @@ where $y$ is the number of bikes rented on a given day.
 ---
 
 All of this processing is done in the `generate_bikes` function, which
-is available in the `xml_book.data` library.
+is available in the `xml_book.data.data` library.
 Let's use it to load the data.
 
 ```{code-cell} python
@@ -210,7 +202,7 @@ Let's use it to load the data.
  bikes_train_y,
  bikes_test_y,
  bikes_feature_names,
- bikes_target_name) = xml_book.data.generate_bikes(random_seed=42)
+ bikes_target_name) = xmlb_data.generate_bikes(random_seed=42)
 
 bikes_target_classes = ['low', 'medium', 'high']
 ```
@@ -266,7 +258,7 @@ Let's start with a simple *probabilistic* model based on the Random Forest
 classifier.
 
 ```{code-cell} python
-clf_moons_probabilistic = xml_book.models.get_random_forest(
+clf_moons_probabilistic = xmlb_tabular_models.get_random_forest(
     moons_train_X, moons_train_y, random_seed=42)
 ```
 
@@ -304,7 +296,7 @@ print('Testing set *log loss*: {:.3}.'.format(moons_prob_test_performance))
 Next, we train a simple crisp (non-probabilistic) model.
 
 ```{code-cell} python
-clf_moons_crisp = xml_book.models.get_svc(
+clf_moons_crisp = xmlb_tabular_models.get_svc(
     moons_train_X, moons_train_y, random_seed=42)
 ```
 
@@ -347,7 +339,7 @@ Let's start with a simple *probabilistic* model based on the Random Forest
 classifier.
 
 ```{code-cell} python
-clf_bikes_probabilistic = xml_book.models.get_random_forest(
+clf_bikes_probabilistic = xmlb_tabular_models.get_random_forest(
     bikes_train_X, bikes_train_y, random_seed=42)
 ```
 
@@ -385,7 +377,7 @@ print('Testing set *log loss*: {:.3}.'.format(bikes_prob_test_performance))
 Next, we train a simple crisp (non-probabilistic) model.
 
 ```{code-cell} python
-clf_bikes_crisp = xml_book.models.get_svc(
+clf_bikes_crisp = xmlb_tabular_models.get_svc(
     bikes_train_X, bikes_train_y, random_seed=42)
 ```
 

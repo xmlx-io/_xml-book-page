@@ -1,0 +1,2248 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1.3.1. Binary Interpretable Representations for Tabular Data &#8212; eXplainable&lt;br&gt;Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/xmlx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"IR": "\\mathit{IR}", "argmin": "\\mathop{\\operatorname{arg\\,min}}\\limits", "argmax": "\\mathop{\\operatorname{arg\\,max}}\\limits"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://book.xmlx.io/book/meta_explainers/surrogates/tabular/interpretable_representation.html" />
+    <link rel="shortcut icon" href="../../../../_static/bulb.svg"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="1.3.2. Data Sampling" href="data_sampling.html" />
+    <link rel="prev" title="1.3. Tabular Surrogates" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6635EH38S9"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-6635EH38S9');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/bulb.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">eXplainable<br>Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    eXplainable Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../preface/index.html">
+   Preface
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../preface/glossary.html">
+     Glossary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../preface/preliminary.html">
+     Preliminary Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../preface/data.html">
+     Modules, Data Sets and Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../index.html">
+   Meta-Explainers
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../index.html">
+     1. Surrogates
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../intro.html">
+       1.1. Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../image.html">
+       1.2. Image Surrogates
+      </a>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="index.html">
+       1.3. Tabular Surrogates
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         1.3.1. Binary Interpretable Representations for Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="data_sampling.html">
+         1.3.2. Data Sampling
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="explanation_generation.html">
+         1.3.3. Explanation Generation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../examples/index.html">
+       1.4. Interactive Examples
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/ex_tabular.html">
+         1.4.1. Surrogate Explainer of Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/ex_ols.html">
+         1.4.2. Investigating Linear Surrogate Explainers of Tabular Data
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../bibliography/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://book.xmlx.io/docs/">
+   XML Book Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://xmlx.io/">
+   XMLX Homepage
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE"><img src="https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-lightgrey" alt="Licence"></a> </br> <a href="https://doi.org/XX.XXXX/zenodo.XXXXXXX"><img src="https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg" alt="DOI"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/xmlx-io/xml-book/master?urlpath=lab/tree/book/meta_explainers/surrogates/tabular/interpretable_representation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/xmlx-io/xml-book/blob/master/book/meta_explainers/surrogates/tabular/interpretable_representation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book/issues/new?title=Issue%20on%20page%20%2Fbook/meta_explainers/surrogates/tabular/interpretable_representation.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book/edit/master/book/meta_explainers/surrogates/tabular/interpretable_representation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../../_sources/book/meta_explainers/surrogates/tabular/interpretable_representation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../../_sources/book/meta_explainers/surrogates/tabular/interpretable_representation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toy-example-two-moons">
+   Toy Example – Two Moons
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-data">
+     Loading the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-an-instance-to-be-explained">
+     Selecting an Instance to be Explained
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quartile-based-interpretable-representation">
+     Quartile-based Interpretable Representation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-quartile-discretisation">
+       Step 1: Quartile Discretisation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-binarisation">
+       Step 2: Binarisation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree-based-interpretable-representation">
+     Tree-based Interpretable Representation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tree-based-discretisation">
+       Tree-based Discretisation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binarisation">
+       Binarisation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#real-data-bike-sharing">
+   Real Data – Bike Sharing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretable-representation-based-on-quartile-discretisation">
+     Interpretable Representation Based on Quartile Discretisation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#whole-data-discretisation">
+       Whole Data Discretisation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sampled-data-discretisation">
+       Sampled Data Discretisation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretable-representation-based-on-a-decision-tree">
+     Interpretable Representation Based on a Decision Tree
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Binary Interpretable Representations for Tabular Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toy-example-two-moons">
+   Toy Example – Two Moons
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-data">
+     Loading the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-an-instance-to-be-explained">
+     Selecting an Instance to be Explained
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quartile-based-interpretable-representation">
+     Quartile-based Interpretable Representation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-quartile-discretisation">
+       Step 1: Quartile Discretisation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-binarisation">
+       Step 2: Binarisation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree-based-interpretable-representation">
+     Tree-based Interpretable Representation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tree-based-discretisation">
+       Tree-based Discretisation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binarisation">
+       Binarisation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#real-data-bike-sharing">
+   Real Data – Bike Sharing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretable-representation-based-on-quartile-discretisation">
+     Interpretable Representation Based on Quartile Discretisation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#whole-data-discretisation">
+       Whole Data Discretisation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sampled-data-discretisation">
+       Sampled Data Discretisation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretable-representation-based-on-a-decision-tree">
+     Interpretable Representation Based on a Decision Tree
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="binary-interpretable-representations-for-tabular-data">
+<span id="text-meta-explainers-surrogates-tabular-interpretable-representation"></span><h1><span class="section-number">1.3.1. </span>Binary Interpretable Representations for Tabular Data<a class="headerlink" href="#binary-interpretable-representations-for-tabular-data" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, we need to set up the environment.</span>
+<span class="kn">import</span> <span class="nn">fatf</span>
+<span class="kn">import</span> <span class="nn">sklearn.tree</span>
+<span class="kn">import</span> <span class="nn">xml_book.data.data</span> <span class="k">as</span> <span class="nn">xmlb_data</span>
+<span class="kn">import</span> <span class="nn">xml_book.models.tabular</span> <span class="k">as</span> <span class="nn">xmlb_tabular_models</span>
+<span class="kn">import</span> <span class="nn">xml_book.meta_explainers.surrogates</span> <span class="k">as</span> <span class="nn">xmlb_surrogates</span>
+
+<span class="kn">import</span> <span class="nn">fatf.utils.data.discretisation</span> <span class="k">as</span> <span class="nn">fatf_discretisation</span>
+<span class="kn">import</span> <span class="nn">fatf.utils.data.transformation</span> <span class="k">as</span> <span class="nn">fatf_transformation</span>
+
+<span class="kn">import</span> <span class="nn">fatf.utils.data.augmentation</span> <span class="k">as</span> <span class="nn">fatf_augmentation</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:03 fatf.utils.array.tools INFO     Using numpy&#39;s numpy.lib.recfunctions.structured_to_unstructured as fatf.utils.array.tools.structured_to_unstructured and fatf.utils.array.tools.structured_to_unstructured_row.
+</pre></div>
+</div>
+</div>
+</div>
+<p>In search of a binary interpretable representation for tabular data.</p>
+<section id="toy-example-two-moons">
+<h2>Toy Example – Two Moons<a class="headerlink" href="#toy-example-two-moons" title="Permalink to this headline">#</a></h2>
+<section id="loading-the-data">
+<h3>Loading the Data<a class="headerlink" href="#loading-the-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X</span><span class="p">,</span> <span class="n">moons_X_test</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">,</span> <span class="n">moons_y_test</span> <span class="o">=</span> <span class="n">xmlb_data</span><span class="o">.</span><span class="n">generate_2d_moons</span><span class="p">(</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:03 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:03 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x28a07a460&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/interpretable_representation_6_1.svg" src="../../../../_images/interpretable_representation_6_1.svg" /></div>
+</div>
+</section>
+<section id="selecting-an-instance-to-be-explained">
+<h3>Selecting an Instance to be Explained<a class="headerlink" href="#selecting-an-instance-to-be-explained" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_m_index</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">instance_m</span> <span class="o">=</span> <span class="n">moons_X_test</span><span class="p">[</span><span class="n">instance_m_index</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">instance_m_label</span> <span class="o">=</span> <span class="n">moons_y_test</span><span class="p">[</span><span class="n">instance_m_index</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Instance *m*:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">instance_m</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">instance_m_label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Instance *m*:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.30886033, 0.73748125])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">)</span>
+
+<span class="c1"># Plot explained instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">instance_m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">instance_m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x28a112490&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/interpretable_representation_9_1.svg" src="../../../../_images/interpretable_representation_9_1.svg" /></div>
+</div>
+</section>
+<section id="quartile-based-interpretable-representation">
+<h3>Quartile-based Interpretable Representation<a class="headerlink" href="#quartile-based-interpretable-representation" title="Permalink to this headline">#</a></h3>
+<p>This interpretable representation is built in two steps:</p>
+<ul class="simple">
+<li><p>discretising each <em>numerical</em> feature into 4 bins based on
+data quartiles; and</p></li>
+<li><p>encoding the hyper-rectangles built in the previous step
+in a binary in/out representation that depends on the
+location of the explained instance.</p></li>
+</ul>
+<p>Let’s go through these steps one by one.</p>
+<p>Before building a binary interpretable representation, we generate a sample of
+250 data points in the neighbourhood of the explained instance (<em>m</em>), which are
+required for building a surrogate – see the <em>data sampling</em> notebook for more
+details.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">augmenter_moons</span> <span class="o">=</span> <span class="n">fatf_augmentation</span><span class="o">.</span><span class="n">NormalSampling</span><span class="p">(</span><span class="n">moons_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_moons_m</span> <span class="o">=</span> <span class="n">augmenter_moons</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+    <span class="n">instance_m</span><span class="p">,</span> <span class="n">samples_number</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">)</span>
+
+<span class="c1"># Plot explained instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">instance_m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">instance_m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot augmented data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample_moons_m</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sample_moons_m</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x28b31eb80&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/interpretable_representation_14_1.svg" src="../../../../_images/interpretable_representation_14_1.svg" /></div>
+</div>
+<section id="step-1-quartile-discretisation">
+<h4>Step 1: Quartile Discretisation<a class="headerlink" href="#step-1-quartile-discretisation" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_discretiser_moons</span> <span class="o">=</span> <span class="n">fatf_discretisation</span><span class="o">.</span><span class="n">QuartileDiscretiser</span><span class="p">(</span><span class="n">moons_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X_discrete</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">moons_X</span><span class="p">)</span>
+<span class="n">moons_X_test_discrete</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">moons_X_test</span><span class="p">)</span>
+
+<span class="n">sample_moons_m_discrete</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">sample_moons_m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s print out and visualise our quartiles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">feature_bin_boundaries</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: array([0.35216058, 0.48959027, 0.64267622]),
+ 1: array([0.36564816, 0.52390789, 0.67212217])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">)</span>
+
+<span class="c1"># Plot explained instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">instance_m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">instance_m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot x-axis quartiles</span>
+<span class="n">x_quartiles_m</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">feature_bin_boundaries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x_quartiles_m</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot y-axis quartiles</span>
+<span class="n">y_quartiles_m</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">feature_bin_boundaries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y_quartiles_m</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/interpretable_representation_20_0.svg" src="../../../../_images/interpretable_representation_20_0.svg" /></div>
+</div>
+<p>We can also get a discretised version of the explained instance <em>m</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_m_discrete</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">instance_m</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">instance_m_discrete</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The faithfulness of this discretisation (with respect to the labels of the
+training data) seems to be really good.
+In this particular case, it is possible to assess this property by means of
+visual inspection since the data set is two-dimensional.
+However, when dealing with a higher number of dimensions, we need a proxy to
+measure the quality of our discretisation.
+To this end, we propose two metrics that can be applied to each individual
+hyper-rectangle:</p>
+<ul class="simple">
+<li><p><strong>Gini Index</strong> for <em>crisp</em> classification tasks; and</p></li>
+<li><p><strong>Mean Squared Error</strong> for <em>probabilistic</em> classification and regression.</p></li>
+</ul>
+<p>Let’s count the labels and measure <em>Gini Index</em> of the hyper-rectangle
+enclosing our explained instance <em>m</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X_hr_m_indices</span> <span class="o">=</span> <span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">get_hyperrectangle_indices</span><span class="p">(</span>
+    <span class="n">moons_X_discrete</span><span class="p">,</span> <span class="n">instance_m_discrete</span><span class="p">)</span>
+
+<span class="n">moons_X_hr_m</span> <span class="o">=</span> <span class="n">moons_X_discrete</span><span class="p">[</span><span class="n">moons_X_hr_m_indices</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">moons_y_hr_m</span> <span class="o">=</span> <span class="n">moons_y</span><span class="p">[</span><span class="n">moons_X_hr_m_indices</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">moons_y_hr_m</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1]), array([134,   1]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">gini_index</span><span class="p">(</span><span class="n">moons_y_hr_m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.014705075445816198
+</pre></div>
+</div>
+</div>
+</div>
+<p>It seems to be fairly pure, which agrees with the label count and our
+intuition based on the visualisations.</p>
+<p>Now, we need to do the same for all of the hyper-rectangles.
+Since some partitions may hold a relatively small number of data points, e.g.,
+the top-right and bottom-left hyper-rectangles, this observation needs to be
+taken into account to avoid biasing our metric.
+To this end, we employ an average <strong>weighted</strong> by the number of instances in
+each partition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span><span class="n">moons_X_discrete</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">,</span> <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.13028591315141477
+</pre></div>
+</div>
+</div>
+</div>
+<p>This number is consistent with what we have seen so far – it is a pretty good
+discretisation.</p>
+<p>Next, we move on to <strong>binarisation</strong> – creating a binary interpretable
+representation with respect to the explained instance.</p>
+</section>
+<section id="step-2-binarisation">
+<h4>Step 2: Binarisation<a class="headerlink" href="#step-2-binarisation" title="Permalink to this headline">#</a></h4>
+<p>So far so good.
+However, discretisation is not the representation used for fitting a local surrogate model.
+While Step 1 is universally applicable to any instance we may wish to explain,
+Step 2 is specific to the explained data point.
+To be more precise, it is specific to each unique <em>hyper-rectangle</em>, i.e.,
+a partition of the feature space resulting from the discretisation step.</p>
+<hr class="docutils" />
+<p>The binarisation procedure is <em>XNOR</em> – 1 if the same, 0 if different –
+applied between the discrete representation of a data sample and the explained
+data point.
+Therefore, for each dimension – <em>x</em> and <em>y</em> axes independently in our example –
+it encodes whether a given partition of this feature is the one holding the
+explained data point.</p>
+<p>Before processing the data, let’s see a visualisation of this step for our
+explained instance <em>m</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">)</span>
+
+<span class="c1"># Plot explained instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">instance_m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">instance_m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot x-axis quartiles</span>
+<span class="n">x_quartiles_m</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">feature_bin_boundaries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x_quartiles_m</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot y-axis quartiles</span>
+<span class="n">y_quartiles_m</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">feature_bin_boundaries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y_quartiles_m</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot binarisation of the x-axis</span>
+<span class="n">hyper_rectangle_m_x</span> <span class="o">=</span> <span class="n">instance_m_discrete</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">hyper_rectangle_m_x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_x_min</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_x_max</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_x_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
+    <span class="n">hyper_rectangle_m_x_max</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_x_min</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_x_max</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">hyper_rectangle_m_x_min</span><span class="p">,</span> <span class="n">hyper_rectangle_m_x_max</span><span class="p">,</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># Plot binarisation of the y-axis</span>
+<span class="n">hyper_rectangle_m_y</span> <span class="o">=</span> <span class="n">instance_m_discrete</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">hyper_rectangle_m_y</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_y_min</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_y_max</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_y_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
+    <span class="n">hyper_rectangle_m_y_max</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_y</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_y_min</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_y_max</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhspan</span><span class="p">(</span><span class="n">hyper_rectangle_m_y_min</span><span class="p">,</span> <span class="n">hyper_rectangle_m_y_max</span><span class="p">,</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Polygon at 0x28b3f2880&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/interpretable_representation_31_1.svg" src="../../../../_images/interpretable_representation_31_1.svg" /></div>
+</div>
+<p>Since we have two dimensions:</p>
+<ul class="simple">
+<li><p><strong>blue</strong> encodes the x-axis partition that holds the explained instance; and</p></li>
+<li><p><strong>yellow</strong> encodes the y-axis partition that holds the explained instance.</p></li>
+</ul>
+<p>This <em>binarisation</em> results in four distinct encodings in the
+<em>binary interpretable representation</em>:</p>
+<ul class="simple">
+<li><p><strong>blue &amp; yellow</strong> – (1, 1);</p></li>
+<li><p><strong>blue &amp; not yellow</strong> – (1, 0);</p></li>
+<li><p><strong>not blue &amp; yellow</strong> – (0, 1); and</p></li>
+<li><p><strong>not blue &amp; not yellow</strong> – (0, 0).</p></li>
+</ul>
+<hr class="docutils" />
+<p>Now, let’s compute this representation and visualise it with different markers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X_m_binary</span> <span class="o">=</span> <span class="n">fatf_transformation</span><span class="o">.</span><span class="n">dataset_row_masking</span><span class="p">(</span>
+    <span class="n">moons_X_discrete</span><span class="p">,</span> <span class="n">instance_m_discrete</span><span class="p">)</span>
+
+<span class="n">instance_m_binary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">instance_m_discrete</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">instance_m_binary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># Plot data using a unique marker for each binary encoding</span>
+<span class="n">moons_unique_binary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">moons_X_m_binary</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="n">moons_unique_binary</span><span class="p">:</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">get_hyperrectangle_indices</span><span class="p">(</span>
+        <span class="n">moons_X_m_binary</span><span class="p">,</span> <span class="n">rep</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">rep</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]):</span>
+        <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">rep</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>
+        <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">rep</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]):</span>
+        <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;v&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">)</span>
+
+<span class="c1"># Plot explained instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">instance_m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">instance_m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot x-axis quartiles</span>
+<span class="n">x_quartiles_m</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">feature_bin_boundaries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x_quartiles_m</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot y-axis quartiles</span>
+<span class="n">y_quartiles_m</span> <span class="o">=</span> <span class="n">q_discretiser_moons</span><span class="o">.</span><span class="n">feature_bin_boundaries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y_quartiles_m</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot binarisation of the x-axis</span>
+<span class="n">hyper_rectangle_m_x</span> <span class="o">=</span> <span class="n">instance_m_discrete</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">hyper_rectangle_m_x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_x_min</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_x_max</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_x_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
+    <span class="n">hyper_rectangle_m_x_max</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_x_min</span> <span class="o">=</span> <span class="n">x_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_x_max</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">hyper_rectangle_m_x_min</span><span class="p">,</span> <span class="n">hyper_rectangle_m_x_max</span><span class="p">,</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># Plot binarisation of the y-axis</span>
+<span class="n">hyper_rectangle_m_y</span> <span class="o">=</span> <span class="n">instance_m_discrete</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">hyper_rectangle_m_y</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_y_min</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_y_max</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_y_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
+    <span class="n">hyper_rectangle_m_y_max</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">hyper_rectangle_m_y</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">hyper_rectangle_m_y_min</span> <span class="o">=</span> <span class="n">y_quartiles_m</span><span class="p">[</span><span class="n">hyper_rectangle_m_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">hyper_rectangle_m_y_max</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhspan</span><span class="p">(</span><span class="n">hyper_rectangle_m_y_min</span><span class="p">,</span> <span class="n">hyper_rectangle_m_y_max</span><span class="p">,</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Polygon at 0x28b4cc490&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/interpretable_representation_34_1.svg" src="../../../../_images/interpretable_representation_34_1.svg" /></div>
+</div>
+<p>Everything is as expected.</p>
+<hr class="docutils" />
+<p>Having seen this visualisation, you may have noticed an undesired consequence
+of applying the bianrisation step – it partially breaks the purity of
+our discretisation.
+Since this step combines multiple hyper-rectangles that may hold different
+classes, the purity of the binary representation may suffer despite having
+nearly perfect discretisation.
+This is especially visible for the (0, 0) encoding in the binary interpretable
+representation – the regions without any shading, i.e., the
+bottom-right partitions, which mix red and grey instances.</p>
+<p>A complementary observation is the <em>unnecessity</em> of splitting each numerical
+feature into more than <em>three</em> partitions.
+Two sections are enough for bordering partitions – see the x-axis and y-axis
+splits – and three are required when the explained instance is “sandwiched”
+between two partitions.</p>
+<p>Finally, let’s see how these visual observations translate into our proxy
+metrics for split purity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X_binary_m_indices</span> <span class="o">=</span> <span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">get_hyperrectangle_indices</span><span class="p">(</span>
+    <span class="n">moons_X_m_binary</span><span class="p">,</span> <span class="n">instance_m_binary</span><span class="p">)</span>
+
+<span class="n">moons_X_binary_m</span> <span class="o">=</span> <span class="n">moons_X_discrete</span><span class="p">[</span><span class="n">moons_X_binary_m_indices</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">moons_y_binary_m</span> <span class="o">=</span> <span class="n">moons_y</span><span class="p">[</span><span class="n">moons_X_binary_m_indices</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">moons_y_binary_m</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1]), array([134,   1]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">gini_index</span><span class="p">(</span><span class="n">moons_y_binary_m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.014705075445816198
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unsurprisingly, the label count and purity of the explained hyper-rectangle
+have not changed – it was not (and never is) merged with any other partition
+unlike the remaining hyper-rectangles.</p>
+<p>Let’s compute the overall purity then.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span><span class="n">moons_X_m_binary</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">,</span> <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.26466978171740074
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, the impurity has seen a considerable jump.</p>
+</section>
+</section>
+<section id="tree-based-interpretable-representation">
+<h3>Tree-based Interpretable Representation<a class="headerlink" href="#tree-based-interpretable-representation" title="Permalink to this headline">#</a></h3>
+<p>Let’s try something different – generating an interpretable representation
+based on a feature space partition created by a decision tree.
+Conceptually, such an approach has the advantage over quartile-based
+discretisation since it has access to data labels in the selected region
+(either ground truth or black-box predictions).
+To check our intuition, we can calculate purity of this discretisation and
+compare it visually to our previous results.</p>
+<section id="tree-based-discretisation">
+<h4>Tree-based Discretisation<a class="headerlink" href="#tree-based-discretisation" title="Permalink to this headline">#</a></h4>
+<p>Since each feature was split into 4 bins with quartile-based discretisation,
+this discrete space had the cardinality of <span class="math notranslate nohighlight">\(4^d\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the number of
+features in the original representation.
+Here, we limit the number of tree leaves to <span class="math notranslate nohighlight">\(4^2 = 16\)</span> to give the tree
+comparable expressiveness.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_discretiser_moons</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">tree_discretiser_moons</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">moons_X</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier(max_leaf_nodes=16, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeClassifier</label><div class="sk-toggleable__content"><pre>DecisionTreeClassifier(max_leaf_nodes=16, random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<p>Let’s plot the decision tree splits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Compute the decision boundary of the tree</span>
+<span class="n">x_y_step</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">x_y_step</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">x_y_step</span><span class="p">))</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">tree_discretiser_moons</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">Z_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Z</span><span class="p">)):</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">Z</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">Z_norm</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="c1"># Plot the boundary</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z_norm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">tab20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">)</span>
+
+<span class="c1"># Plot explained instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">instance_m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">instance_m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x28b37c6d0&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/interpretable_representation_46_1.svg" src="../../../../_images/interpretable_representation_46_1.svg" /></div>
+</div>
+<p>Also, let’s compute the purity of this discretisation.</p>
+<blockquote>
+<div><p><strong>Note that we are using the <code class="docutils literal notranslate"><span class="pre">apply</span></code> method of our tree classifier – it
+returns the leaf ID of each instance, i.e., its hyper-rectangle ID.</strong></p>
+</div></blockquote>
+<p>We start with purity of the partition assigned to the explained instance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X_discrete_tree</span> <span class="o">=</span> <span class="n">tree_discretiser_moons</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">moons_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_m_discrete_tree</span> <span class="o">=</span> <span class="n">tree_discretiser_moons</span><span class="o">.</span><span class="n">apply</span><span class="p">([</span><span class="n">instance_m</span><span class="p">])</span>
+
+<span class="n">moons_X_tree_m_indices</span> <span class="o">=</span> <span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">get_hyperrectangle_indices</span><span class="p">(</span>
+    <span class="n">moons_X_discrete_tree</span><span class="p">,</span> <span class="n">instance_m_discrete_tree</span><span class="p">)</span>
+
+<span class="n">moons_y_tree_m</span> <span class="o">=</span> <span class="n">moons_y</span><span class="p">[</span><span class="n">moons_X_tree_m_indices</span><span class="p">]</span>
+
+<span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">gini_index</span><span class="p">(</span><span class="n">moons_y_tree_m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04032871972318343
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is slightly worse than the one achieved with quartiles (0.015).</p>
+<hr class="docutils" />
+<p>Now, let’s compute purity of the whole discretisation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span><span class="n">moons_X_discrete_tree</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">,</span> <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06319989994928496
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which gives a better result than quartiles (0.13).</p>
+</section>
+<section id="binarisation">
+<h4>Binarisation<a class="headerlink" href="#binarisation" title="Permalink to this headline">#</a></h4>
+<p>Binarisation of the tree-based discretisation is not a well-defined concept.
+The best we can do is one-hot encode each tree partitioni, i.e., hyper-rectangle.
+Such a representation, however, would have higher expressiveness than
+binarised quartile-based discretisation, hence the two should not be compared
+directly.
+<strong>Nonetheless, the purity calculations should not change in this case.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X_binary_tree</span> <span class="o">=</span> <span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">one_hot_encode</span><span class="p">(</span><span class="n">moons_X_discrete_tree</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span><span class="n">moons_X_binary_tree</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">,</span> <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06319989994928496
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, a tree-based representation that is comparable to a
+quartile-based binarisation is generated by a tree with no more than
+<span class="math notranslate nohighlight">\(2^d\)</span> leaves, where <span class="math notranslate nohighlight">\(d\)</span> is the number of features in the original
+data representation.
+Let’s compute purity of such a partition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_binariser_moons</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">tree_binariser_moons</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">moons_X</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier(max_leaf_nodes=4, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeClassifier</label><div class="sk-toggleable__content"><pre>DecisionTreeClassifier(max_leaf_nodes=4, random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Compute the decision boundary of the tree</span>
+<span class="n">x_y_step</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">x_y_step</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">x_y_step</span><span class="p">))</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">tree_binariser_moons</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">Z_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Z</span><span class="p">)):</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">Z</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">Z_norm</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="c1"># Plot the boundary</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z_norm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">tab20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">moons_X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">moons_y</span><span class="p">)</span>
+
+<span class="c1"># Plot explained instance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">instance_m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">instance_m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x28b543a30&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/interpretable_representation_58_1.svg" src="../../../../_images/interpretable_representation_58_1.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moons_X_binary_tree</span> <span class="o">=</span> <span class="n">tree_binariser_moons</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">moons_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span><span class="n">moons_X_binary_tree</span><span class="p">,</span> <span class="n">moons_y</span><span class="p">,</span> <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.13809164792390438
+</pre></div>
+</div>
+</div>
+</div>
+<p>This result is on a par with the binary representation achieved with
+quartile-based discretisation (0.13).</p>
+</section>
+</section>
+</section>
+<section id="real-data-bike-sharing">
+<h2>Real Data – Bike Sharing<a class="headerlink" href="#real-data-bike-sharing" title="Permalink to this headline">#</a></h2>
+<p>Let’s repeat the same procedure with a real-life data set.
+In the example above, we generated the representations based on the <strong>entire</strong>
+data set and used <strong>ground truth</strong> labels, neither of which is done when
+building a <em>local</em> surrogate.
+Therefore, with the Bike Sharing data set we will:</p>
+<ul class="simple">
+<li><p>generate a data sample around a data point chosen to be explained and
+use these data to evaluate purity of the interpretable representation; and</p></li>
+<li><p>evaluate purity based on predictions of a black box.</p></li>
+</ul>
+<p>Since this data set has more than two feature, we cannot visualise the
+behaviour of the interpretable representation.
+Instead, we will rely on the numerical purity: Gini Index for <em>crisp</em> and
+Mean Squared Error for <em>probabilistic</em> classifiers.</p>
+<p>First, let’s get the data set and build one probabilistic and one crisp
+black-box model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">bikes_train_X</span><span class="p">,</span>
+ <span class="n">bikes_test_X</span><span class="p">,</span>
+ <span class="n">bikes_train_y</span><span class="p">,</span>
+ <span class="n">bikes_test_y</span><span class="p">,</span>
+ <span class="n">bikes_feature_names</span><span class="p">,</span>
+ <span class="n">bikes_target_name</span><span class="p">)</span> <span class="o">=</span> <span class="n">xmlb_data</span><span class="o">.</span><span class="n">generate_bikes</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">bikes_target_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:03 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:03 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_probabilistic</span> <span class="o">=</span> <span class="n">xmlb_tabular_models</span><span class="o">.</span><span class="n">get_random_forest</span><span class="p">(</span>
+    <span class="n">bikes_train_X</span><span class="p">,</span> <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:04 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:04 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_crisp</span> <span class="o">=</span> <span class="n">xmlb_tabular_models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span>
+    <span class="n">bikes_train_X</span><span class="p">,</span> <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:04 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:04 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s select a data point to be explained and generate a sample of 10,000
+instances around it (see the <em>Data Sampling</em> notebook for more details on
+sampling).</p>
+<p>We also predict the sample with both of our black boxes to get crisp
+predictions and probabilities, which we use to investigate purity
+of the interpretable representations.
+This can serve as a proxy for how well interpretable representations capture
+a black-box decision boundary, which we try to approximate with our surrogate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_b_index</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">instance_b</span> <span class="o">=</span> <span class="n">bikes_test_X</span><span class="p">[</span><span class="n">instance_b_index</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">instance_b_label</span> <span class="o">=</span> <span class="n">bikes_test_y</span><span class="p">[</span><span class="n">instance_b_index</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">instance_b</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">instance_b_label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.      , 0.      , 6.      , 0.      , 6.      , 0.      ,
+       1.      , 0.696667, 0.643954, 0.670417, 0.119408], dtype=float32)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fatf</span><span class="o">.</span><span class="n">setup_random_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">augmenter_bikes</span> <span class="o">=</span> <span class="n">fatf_augmentation</span><span class="o">.</span><span class="n">NormalSampling</span><span class="p">(</span><span class="n">bikes_train_X</span><span class="p">)</span>
+
+<span class="n">sample_bikes_b</span> <span class="o">=</span> <span class="n">augmenter_bikes</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+    <span class="n">instance_b</span><span class="p">,</span> <span class="n">samples_number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:04 fatf         INFO     Seeding RNGs using the input parameter.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:04 fatf         INFO     Seeding RNGs with 42.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that for the probabilistic classifier, we only choose the probabilities
+of a single class – the one predicted by the black box for the explained
+instance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_b_prediction_proba</span> <span class="o">=</span> <span class="n">clf_bikes_probabilistic</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">instance_b</span><span class="p">])</span>
+<span class="n">instance_b_prediction</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">instance_b_prediction_proba</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">instance_b_prediction</span><span class="p">)</span>
+
+<span class="n">sample_bikes_b_predictions_proba</span> <span class="o">=</span> <span class="n">clf_bikes_probabilistic</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+    <span class="n">sample_bikes_b</span><span class="p">)</span>
+
+<span class="n">sample_bikes_b_predictions_proba</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sample_bikes_b_predictions_proba</span><span class="p">[:,</span> <span class="n">instance_b_prediction</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_b_prediction_crisp</span> <span class="o">=</span> <span class="n">clf_bikes_crisp</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">instance_b</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">instance_b_prediction_crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">sample_bikes_b_predictions_crisp</span> <span class="o">=</span> <span class="n">clf_bikes_crisp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a point of reference, let’s measure the purity of the sample without either
+discretisation or binarisation.
+We start with the probabilistic sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">mse</span><span class="p">(</span><span class="n">sample_bikes_b_predictions_proba</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05288705751874819
+</pre></div>
+</div>
+</div>
+</div>
+<p>This number may be difficult to read.
+Let’s visualise the probability distribution of this class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample_bikes_b_predictions_proba</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/interpretable_representation_75_0.svg" src="../../../../_images/interpretable_representation_75_0.svg" /></div>
+</div>
+<p>It is quite a diverse sample, which is desirable (see the <em>Data Sampling</em>
+notebook for more details).</p>
+<hr class="docutils" />
+<p>Let’s move on to the crisp sample.
+(Recall that <em>Gini Impurity</em> for <em>three</em> classes can have the maximum value of
+<span class="math notranslate nohighlight">\(\frac{2}{3}\)</span>.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">gini_index</span><span class="p">(</span><span class="n">sample_bikes_b_predictions_crisp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5654105
+</pre></div>
+</div>
+</div>
+</div>
+<p>The latter score is quite high.
+Let’s inspect the class counts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sample_bikes_b_predictions_crisp</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1, 2]), array([4385, 4865,  750]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to probabilities, this sample is fairly diverse as well.</p>
+<section id="interpretable-representation-based-on-quartile-discretisation">
+<h3>Interpretable Representation Based on Quartile Discretisation<a class="headerlink" href="#interpretable-representation-based-on-quartile-discretisation" title="Permalink to this headline">#</a></h3>
+<p>For quartile-based discretisation, we are facing with a choice of data to be
+used for computing the quartiles.
+Shall we use data from the same distribution as our entire Bikes data set,
+or instead use the data sampled in the neighbourhood of the explained instance?</p>
+<p>While you may think that the latter approach is desired, the choice is not obvious
+because of the curse of dimensionality.
+With 11 features and 4 bins per feature, we will be creating
+<span class="math notranslate nohighlight">\(4^{11} = 4,194,304\)</span> hyper-rectangles.
+This granularity is overwhelming when compared to the number of instances
+in the data set or the number of sampled data points.
+With this many partitions, it may actually be better to apply discretisation
+step to the entire feature space.</p>
+<p>The next step is binarisation.
+Similarly, it will give <span class="math notranslate nohighlight">\(2^{11} = 2,048\)</span> partitions –
+it is more manageable but still a lot.</p>
+<p>Let’s do both approaches – the entire data distribution and the local sample
+– and compare the purity of each step: discretisation and binarisation.</p>
+<section id="whole-data-discretisation">
+<h4>Whole Data Discretisation<a class="headerlink" href="#whole-data-discretisation" title="Permalink to this headline">#</a></h4>
+<p>In this case the quartiles are computed based on the distribution of the
+entire data set (this is how LIME operates).
+To this end, we will use the <em>Bikes Sharing</em> <strong>test</strong> set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikes_test_q_discretiser</span> <span class="o">=</span> <span class="n">fatf_discretisation</span><span class="o">.</span><span class="n">QuartileDiscretiser</span><span class="p">(</span><span class="n">bikes_test_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_b_discrete_t</span> <span class="o">=</span> <span class="n">bikes_test_q_discretiser</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">instance_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_discrete_t</span> <span class="o">=</span> <span class="n">bikes_test_q_discretiser</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_discrete_t</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">,</span>
+    <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05524230158730158
+</pre></div>
+</div>
+</div>
+</div>
+<p>Discretisation based on quartiles that are determined by the <strong>entire data
+distribution</strong> give a considerable reduction in impurity.
+Recall that the entire sample had Gini Index of 0.565.
+However, this is not the representation used for computing surrogate
+explanations.
+We still need to binarise this space, which, as we have seen above, is the
+step that causes troubles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_binary_t</span> <span class="o">=</span> <span class="n">fatf_transformation</span><span class="o">.</span><span class="n">dataset_row_masking</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_discrete_t</span><span class="p">,</span> <span class="n">instance_b_discrete_t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_binary_t</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">,</span>
+    <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.41021482545580185
+</pre></div>
+</div>
+</div>
+</div>
+<p>It seems that by combining hyper-rectangles we are not too far off from
+where we started.
+This does not look promising for the quality of our future explanations.</p>
+<hr class="docutils" />
+<p>Let’s have a look at the probabilistic black box now, before we move on
+to quartiles based on the sampled data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_discrete_t</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_proba</span><span class="p">,</span>
+    <span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.007986073566028934
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_binary_t</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_proba</span><span class="p">,</span>
+    <span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03765456999193213
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, we notice a similar trend.
+Discretisation gives us a considerable reduction (0.008 from 0.053), followed
+by a binarisation-induced increase to 0.038.</p>
+</section>
+<section id="sampled-data-discretisation">
+<h4>Sampled Data Discretisation<a class="headerlink" href="#sampled-data-discretisation" title="Permalink to this headline">#</a></h4>
+<p>In this case, the quartiles are computed based on the distribution of the
+<strong>data sampled in the neighbourhood</strong> of the explained instance.
+Let’s compute purity of this discretisation and binarisation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikes_sample_q_discretiser</span> <span class="o">=</span> <span class="n">fatf_discretisation</span><span class="o">.</span><span class="n">QuartileDiscretiser</span><span class="p">(</span>
+    <span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">instance_b_discrete_s</span> <span class="o">=</span> <span class="n">bikes_sample_q_discretiser</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span><span class="n">instance_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_discrete_s</span> <span class="o">=</span> <span class="n">bikes_sample_q_discretiser</span><span class="o">.</span><span class="n">discretise</span><span class="p">(</span>
+    <span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_discrete_s</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">,</span>
+    <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0005
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_binary_s</span> <span class="o">=</span> <span class="n">fatf_transformation</span><span class="o">.</span><span class="n">dataset_row_masking</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_discrete_s</span><span class="p">,</span> <span class="n">instance_b_discrete_s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_binary_s</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">,</span>
+    <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4294403699716251
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case the discretisation purity is nearly perfect.
+However, it should not come as a surprise.
+With 4,194,304 hyper-rectangles and just 10,000 data points points, each one
+can be assigned to a separate partition.
+When compared to the quartiles computed with the entire data set, local
+partition is simply <strong>overfitted</strong>.
+We can observe this lack of generalisation when moving from the discrete into
+the binary representation, which has considerable impurity of 0.429.</p>
+<p>We can validate our theory by inspecting counts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sample_bikes_b_discrete_s</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/interpretable_representation_102_0.svg" src="../../../../_images/interpretable_representation_102_0.svg" /></div>
+</div>
+<p>The vast majority of hyper-rectangles enclose just a <em>single</em> data point.</p>
+<hr class="docutils" />
+<p>Let’s check purity for the probabilistic model.
+We should observe a similar behaviour.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_discrete_s</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_proba</span><span class="p">,</span>
+    <span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.746483187175399e-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_binary_s</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_proba</span><span class="p">,</span>
+    <span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04412780561123212
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, we observe a reduction of the Mean Squared Error to 0.000037
+for discretisation and increase to 0.044 for binarisation (the overall purity
+is 0.053).</p>
+</section>
+</section>
+<section id="interpretable-representation-based-on-a-decision-tree">
+<h3>Interpretable Representation Based on a Decision Tree<a class="headerlink" href="#interpretable-representation-based-on-a-decision-tree" title="Permalink to this headline">#</a></h3>
+<p>For tree-based interpretable representations it is only reasonable to
+fit the tree to the local sample.
+Otherwise, we would be competing with the black box, which is not
+any different from actually using a decision tree to model the entire
+data in a more transparent way.
+(And the black box was chosen for a reason…)</p>
+<p>There are two possible approaches to ensure comparability with the
+quartile-based interpretable representation.
+One is to limit the number of tree leaves to <span class="math notranslate nohighlight">\(2^{11} = 2,048\)</span>, which
+corresponds to the number of unique representations in the binarised
+quartile-based representation.
+Alternatively, if we choose to one-hot-encode the tree partitions, we
+should limit the number of leaves to 11.</p>
+<p>Let’s see how both of these scenarios play out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_bikes_crisp_2048</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">2048</span><span class="p">)</span>
+<span class="n">tree_bikes_crisp_2048</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">,</span> <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-3 {color: black;background-color: white;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier(max_leaf_nodes=2048, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeClassifier</label><div class="sk-toggleable__content"><pre>DecisionTreeClassifier(max_leaf_nodes=2048, random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_tree_crisp_2048</span> <span class="o">=</span> <span class="n">tree_bikes_crisp_2048</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_tree_crisp_2048</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">,</span>
+    <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sample_bikes_b_tree_crisp_2048</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Leaves #: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unique</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Leaves #: 577.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore, with “just” 577 partitions we can reduce the impurity to 0,
+compared to the original impurity of 0.565 and best quartile-based binarised
+score of 0.410.</p>
+<p>Let’s see how we will do with just 11 leaves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_bikes_crisp_11</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">tree_bikes_crisp_11</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">,</span> <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-4 {color: black;background-color: white;}#sk-container-id-4 pre{padding: 0;}#sk-container-id-4 div.sk-toggleable {background-color: white;}#sk-container-id-4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-4 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-4 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-4 div.sk-item {position: relative;z-index: 1;}#sk-container-id-4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-4 div.sk-item::before, #sk-container-id-4 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-4 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-4 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-4 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-4 div.sk-label-container {text-align: center;}#sk-container-id-4 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-4 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier(max_leaf_nodes=11, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeClassifier</label><div class="sk-toggleable__content"><pre>DecisionTreeClassifier(max_leaf_nodes=11, random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_tree_crisp_11</span> <span class="o">=</span> <span class="n">tree_bikes_crisp_11</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_tree_crisp_11</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_crisp</span><span class="p">,</span>
+    <span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2340876374955482
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not too bad.
+We managed to reduce the impurity 2.5 times with just 11 leaves.</p>
+<hr class="docutils" />
+<p>Let’s execute the same experiments for the probabilistic model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_bikes_proba_2048</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeRegressor</span><span class="p">(</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">2048</span><span class="p">)</span>
+<span class="n">tree_bikes_proba_2048</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">,</span> <span class="n">sample_bikes_b_predictions_proba</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-5 {color: black;background-color: white;}#sk-container-id-5 pre{padding: 0;}#sk-container-id-5 div.sk-toggleable {background-color: white;}#sk-container-id-5 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-5 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-5 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-5 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-5 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-5 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-5 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-5 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-5 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-5 div.sk-item {position: relative;z-index: 1;}#sk-container-id-5 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-5 div.sk-item::before, #sk-container-id-5 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-5 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-5 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-5 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-5 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-5 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-5 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-5 div.sk-label-container {text-align: center;}#sk-container-id-5 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-5 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeRegressor(max_leaf_nodes=2048, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" checked><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeRegressor</label><div class="sk-toggleable__content"><pre>DecisionTreeRegressor(max_leaf_nodes=2048, random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_tree_proba_2048</span> <span class="o">=</span> <span class="n">tree_bikes_proba_2048</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_tree_proba_2048</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_proba</span><span class="p">,</span>
+    <span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8717372707635692e-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sample_bikes_b_tree_proba_2048</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Leaves #: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unique</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Leaves #: 2048.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree_bikes_proba_11</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeRegressor</span><span class="p">(</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">tree_bikes_proba_11</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">,</span> <span class="n">sample_bikes_b_predictions_proba</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-6 {color: black;background-color: white;}#sk-container-id-6 pre{padding: 0;}#sk-container-id-6 div.sk-toggleable {background-color: white;}#sk-container-id-6 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-6 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-6 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-6 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-6 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-6 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-6 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-6 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-6 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-6 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-6 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-6 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-6 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-6 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-6 div.sk-item {position: relative;z-index: 1;}#sk-container-id-6 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-6 div.sk-item::before, #sk-container-id-6 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-6 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-6 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-6 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-6 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-6 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-6 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-6 div.sk-label-container {text-align: center;}#sk-container-id-6 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-6 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-6" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeRegressor(max_leaf_nodes=11, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" checked><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeRegressor</label><div class="sk-toggleable__content"><pre>DecisionTreeRegressor(max_leaf_nodes=11, random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bikes_b_tree_proba_11</span> <span class="o">=</span> <span class="n">tree_bikes_proba_11</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sample_bikes_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmlb_surrogates</span><span class="o">.</span><span class="n">weighted_purity</span><span class="p">(</span>
+    <span class="n">sample_bikes_b_tree_proba_11</span><span class="p">,</span>
+    <span class="n">sample_bikes_b_predictions_proba</span><span class="p">,</span>
+    <span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.026033229911113745
+</pre></div>
+</div>
+</div>
+</div>
+<p>In case of the probabilistic model, we can reduce the MSE to 0.000029 with
+the full expressiveness of 2,048 partitions, which increases to 0.026
+with just 11 partitions – recall that the whole sample has the Mean Squared
+Error of 0.053.</p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<p>This notebook showed two distinct approaches to generating interpretable
+representations of tabular data and variants thereof.
+It is worth noting that these insights should <strong>not</strong> be generalised to other
+data sets and use cases.
+Instead, a similar <strong>exploratory</strong> procedure should be employed, with various approaches
+analysed to choose the most suitable interpretable representation for the
+problem at hand.</p>
+<blockquote>
+<div><p>In summary, the core premise of analysing purity (or uniformity) of <strong>black-box
+predictions</strong> when distributed across <strong>partitions</strong> of a tabular interpretable
+representation is to ensure that our hyper-rectangles <strong>align</strong> with black-box
+decision boundaries in the modelled neighbourhood.
+If such a partition is pure, the decision boundary coincides with our feature space
+separation, hence our approximation is faithful.
+If a black-box decision boundary runs across a hyper-rectangle, on the other hand,
+its purity score should reflect it.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>Now, let’s move on to <em>sampling</em> data in the neighbourhood of the explained
+instance, which is the next step of building local surrogate explainers.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./book/meta_explainers/surrogates/tabular"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1.3. </span>Tabular Surrogates</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="data_sampling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.3.2. </span>Data Sampling</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:kacper@xmlx.io">Kacper Sokol</a> and <a href="mailto:team@xmlx.io">XMLX Team</a> &ndash; <a href="https://xmlx.io/">xmlx.io</a>.<br> Distributed under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+<br/>
+  
+      &copy; Copyright 2021–2022.<br/>
+    <div class="extra_footer">
+      <p> This book delivers a comprehensive outlook on the most popular explainability concepts in Machine Learning. It covers a range of theoretical and practical topics across different difficulty levels, including but not limited to: high-level overviews & introductory examples; mathematical foundations; algorithmic implementations; practical advice & real-life caveats; and success & failure case studies. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

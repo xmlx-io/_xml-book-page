@@ -1,0 +1,1087 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1.1. Overview &#8212; eXplainable&lt;br&gt;Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/xmlx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"IR": "\\mathit{IR}", "argmin": "\\mathop{\\operatorname{arg\\,min}}\\limits", "argmax": "\\mathop{\\operatorname{arg\\,max}}\\limits"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://book.xmlx.io/book/meta_explainers/surrogates/intro.html" />
+    <link rel="shortcut icon" href="../../../_static/bulb.svg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="1.2. Image Surrogates" href="image.html" />
+    <link rel="prev" title="1. Surrogates" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6635EH38S9"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-6635EH38S9');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/bulb.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">eXplainable<br>Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    eXplainable Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../preface/index.html">
+   Preface
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../preface/glossary.html">
+     Glossary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../preface/preliminary.html">
+     Preliminary Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../preface/data.html">
+     Modules, Data Sets and Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Meta-Explainers
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     1. Surrogates
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       1.1. Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="image.html">
+       1.2. Image Surrogates
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="tabular/index.html">
+       1.3. Tabular Surrogates
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="tabular/interpretable_representation.html">
+         1.3.1. Binary Interpretable Representations for Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="tabular/data_sampling.html">
+         1.3.2. Data Sampling
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="tabular/explanation_generation.html">
+         1.3.3. Explanation Generation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="examples/index.html">
+       1.4. Interactive Examples
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="examples/ex_tabular.html">
+         1.4.1. Surrogate Explainer of Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="examples/ex_ols.html">
+         1.4.2. Investigating Linear Surrogate Explainers of Tabular Data
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://book.xmlx.io/docs/">
+   XML Book Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://xmlx.io/">
+   XMLX Homepage
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE"><img src="https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-lightgrey" alt="Licence"></a> </br> <a href="https://doi.org/XX.XXXX/zenodo.XXXXXXX"><img src="https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg" alt="DOI"></a>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/xmlx-io/xml-book/master?urlpath=lab/tree/book/meta_explainers/surrogates/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/xmlx-io/xml-book/blob/master/book/meta_explainers/surrogates/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book/issues/new?title=Issue%20on%20page%20%2Fbook/meta_explainers/surrogates/intro.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book/edit/master/book/meta_explainers/surrogates/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/book/meta_explainers/surrogates/intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../../_sources/book/meta_explainers/surrogates/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-surrogates">
+   1.1.1. Building Surrogates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#surrogates-across-data-types">
+   1.1.2. Surrogates Across Data Types
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text">
+     Text
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#images">
+     Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tabular-data">
+     Tabular Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explanations">
+   1.1.3. Explanations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear">
+     Linear
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree">
+     Tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-output-tree">
+     Multi-output Tree
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   1.1.4. Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caveats">
+   1.1.5. Caveats
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-materials">
+   1.1.6. Additional Materials
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Overview</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-surrogates">
+   1.1.1. Building Surrogates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#surrogates-across-data-types">
+   1.1.2. Surrogates Across Data Types
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text">
+     Text
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#images">
+     Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tabular-data">
+     Tabular Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explanations">
+   1.1.3. Explanations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear">
+     Linear
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree">
+     Tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-output-tree">
+     Multi-output Tree
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   1.1.4. Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caveats">
+   1.1.5. Caveats
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-materials">
+   1.1.6. Additional Materials
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="overview">
+<span id="text-meta-explainers-surrogates-overview"></span><h1><span class="section-number">1.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h1>
+<p>To better understand surrogate explainers, we discuss them on multiple levels: abstract, theoretical and algorithmic, for image, text and tabular data.
+Next, we overview explanations that can be generated with surrogate trees and linear models; introduce evaluation criteria and strategies; go through caveats of surrogate explainers; and present relevant literature.
+You can navigate through these sections using the right-hand side <em>Contents</em> panel.</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">Mathematical Notation Summary</p>
+<table class="table" id="text-meta-explainers-surrogates-maths">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span></p></td>
+<td><p>Original representation of data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span></p></td>
+<td><p>Interpretable representation of data.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X\)</span></p></td>
+<td><p>A subset of data in the original representation <span class="math notranslate nohighlight">\(X \subset \mathcal{X}\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(X^\prime\)</span></p></td>
+<td><p>A subset of data in the interpretable representation <span class="math notranslate nohighlight">\(X^\prime \subset \mathcal{X}^\prime\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td><p>A data point in the original representation <span class="math notranslate nohighlight">\(x \in \mathcal{X}\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x^\prime\)</span></p></td>
+<td><p>A data point in the interpretable representation <span class="math notranslate nohighlight">\(x^\prime \in \mathcal{X}^\prime\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathring{x}\)</span></p></td>
+<td><p>A data point selected to be explained in the original representation <span class="math notranslate nohighlight">\(\mathring{x} \in \mathcal{X}\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathring{x}^\prime\)</span></p></td>
+<td><p>A data point selected to be explained in the interpretable representation <span class="math notranslate nohighlight">\(\mathring{x}^\prime \in \mathcal{X}^\prime\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathcal{Y}\)</span></p></td>
+<td><p>The label space of the data <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>.
+For crisp classification it encodes unique classes <span class="math notranslate nohighlight">\(c \in \mathcal{Y}\)</span>;
+for probabilistic classification <span class="math notranslate nohighlight">\(\mathcal{Y} \;\colon= \left[ 0, 1 \right]^C\)</span>, where <span class="math notranslate nohighlight">\(C\)</span> is the set of all classes and <span class="math notranslate nohighlight">\(c \in C\)</span> denotes an individual class; and
+for regression it is a numerical range, e.g., <span class="math notranslate nohighlight">\(\mathcal{Y} \equiv \mathbb{R}\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Y\)</span></p></td>
+<td><p>Labels <span class="math notranslate nohighlight">\(Y \subset \mathcal{Y}\)</span> for a subset of data <span class="math notranslate nohighlight">\(X \subset \mathcal{X}\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathring{C}\)</span></p></td>
+<td><p>A subset of classes <span class="math notranslate nohighlight">\(\mathring{C} \subseteq \mathcal{Y}\)</span> selected to be explained.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathring{c}\)</span></p></td>
+<td><p>A class <span class="math notranslate nohighlight">\(\mathring{c} \in \mathcal{Y}\)</span> selected to be explained.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(d\)</span></p></td>
+<td><p>Dimensionality – i.e., number of features – of the data space <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span></p></td>
+<td><p>A family of black-box models compatible with the explainer.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f \in \mathcal{F} : \mathcal{X} \rightarrow \mathcal{Y}\)</span></p></td>
+<td><p>A black-box model being investigated.
+If the model is probabilistic or crisp classifier, a subscript <span class="math notranslate nohighlight">\(c\)</span> – i.e., <span class="math notranslate nohighlight">\(f_c\)</span> – is used to indicate that it outputs: a probability of class <span class="math notranslate nohighlight">\(c\)</span> for the former type; and for the latter <span class="math notranslate nohighlight">\(1\)</span> if the predicted class is <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(0\)</span> otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathcal{G}\)</span></p></td>
+<td><p>A family of inherently transparent and human-comprehensible models that can be used as surrogates.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(g \in \mathcal{G} : \mathcal{X}\)</span> or <span class="math notranslate nohighlight">\(\mathcal{X}^\prime \rightarrow [0, 1]\)</span> or <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> or <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span></p></td>
+<td><p>A surrogate model fitted to the original <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> (specific to tabular) or interpretable <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span> (tabular, image and text) data representation;
+and a probability of a selected class (<span class="math notranslate nohighlight">\([0, 1]\)</span>) for probabilistic classifiers, the <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> encoding of a selected class for crisp models, and a numerical output for regressors.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\IR : \mathcal{X} \rightarrow \mathcal{X}^\prime\)</span></p></td>
+<td><p>A transformation function from the original into the interpretable domain.
+The inverse transformation is dented with <span class="math notranslate nohighlight">\(\IR^{-1}\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(L : \mathcal{X} \times \mathcal{X}\)</span> or <span class="math notranslate nohighlight">\(\mathcal{X}^\prime \times \mathcal{X}^\prime \rightarrow \mathbb{R}\)</span></p></td>
+<td><p>A distance metric compatible with either the original <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> or <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span> data domains.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(k : \mathbb{R} \rightarrow \mathbb{R}\)</span></p></td>
+<td><p>A kernel transforming distances into similarity scores.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Omega : \mathcal{G} \rightarrow \mathbb{R}\)</span></p></td>
+<td><p>A function that measures complexity of a surrogate model as perceived by a human <a class="reference internal" href="../../preface/glossary.html#term-explainee"><span class="xref std std-term">explainee</span></a>; for example the number of non-zero parameters in a linear model or a size (depth or width) of a decision tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathcal{L} : \mathcal{F} \times \mathcal{G} \rightarrow \mathbb{R}\)</span></p></td>
+<td><p>A function that calculates the quality of a surrogate model by assessing how well it mimics the predictions of the explained black box (also known as <a class="reference internal" href="../../preface/glossary.html#term-fidelity"><span class="xref std std-term">fidelity</span></a>).</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\({\Large\mathbb{1}} : \mathbb{R} \rightarrow \{0, 1\}\)</span></p></td>
+<td><p>An indicator function for a specific condition, e.g.,
+<span class="math notranslate nohighlight">\({\Large\mathbb{1}}\left(x\right) =
+ \begin{cases}
+   1, &amp; \text{if} \;\; x &gt; 0\\
+   0, &amp; \text{otherwise}
+ \end{cases}\)</span>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="building-surrogates">
+<h2><span class="section-number">1.1.1. </span>Building Surrogates<a class="headerlink" href="#building-surrogates" title="Permalink to this headline">#</a></h2>
+<p>The introduction to <a class="reference internal" href="index.html#text-meta-explainers-surrogates"><span class="std std-numref">Chapter 1</span></a> provided a high-level overview of surrogate explainers.
+It also introduced the three fundamental components of the <a class="reference internal" href="../../preface/glossary.html#term-bLIMEy"><span class="xref std std-term">bLIMEy</span></a> framework, which can be codified in a meta-algorithm (the steps of <a class="reference internal" href="#algo:meta-explainers:surrogates:blimey">Algorithm 1.1</a> corresponding to each module are given in parentheses):</p>
+<ul class="simple">
+<li><p>interpretable data representation composition (step 1);</p></li>
+<li><p>data sampling (steps 2–4); and</p></li>
+<li><p>explanation generation (steps 5–8).</p></li>
+</ul>
+<p>In this process, <span class="math notranslate nohighlight">\(\IR : \mathcal{X} \rightarrow \mathcal{X}^\prime\)</span> is a function transforming data from their original domain <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> into the interpretable representation <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span>;
+<span class="math notranslate nohighlight">\(X \subset \mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(X^\prime \subset \mathcal{X}^\prime\)</span> are the sampled data respectively in their original and interpretable representations;
+<span class="math notranslate nohighlight">\(f \in \mathcal{F} : \mathcal{X} \rightarrow \mathcal{Y}\)</span> is the black-box model being explained, with a <span class="math notranslate nohighlight">\(\mathring{c}\)</span> subscript – i.e., <span class="math notranslate nohighlight">\(f_\mathring{c}\)</span> – indicating the class to be predicted (and explained);
+<span class="math notranslate nohighlight">\(L : \mathcal{X}^\prime \times \mathcal{X}^\prime \rightarrow \mathbb{R}\)</span> is a distance metric; and
+<span class="math notranslate nohighlight">\(k : \mathbb{R} \rightarrow \mathbb{R}\)</span> is a kernel transforming distances into similarity scores.
+Note that sampling (step 2) and distance calculation (step 5) are done in the interpretable domain <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span>, but these operations can also be performed in the original domain <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> (with certain caveats).
+Additionally, the order of steps 5 and 6 – which are <em>optional</em> – can be reversed.
+Refer to the <em><a class="reference internal" href="#text-meta-explainers-surrogates-maths"><span class="std std-ref">Mathematical Notation Summary</span></a></em> box at the top of this page for an overview of mathematical notation used throughout this chapter.</p>
+<div class="proof algorithm admonition" id="algo:meta-explainers:surrogates:blimey">
+<p class="admonition-title"><span class="caption-number">Algorithm 1.1 </span> (bLIMEy meta-algorithm)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Given an instance to be explained <span class="math notranslate nohighlight">\(\mathring{x}\)</span>, a class to be explained <span class="math notranslate nohighlight">\(\mathring{c}\)</span> and a black-box model <span class="math notranslate nohighlight">\(f\)</span></p>
+<p><strong>Output</strong> Compute an explanation <span class="math notranslate nohighlight">\(e\)</span></p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathring{x}^\prime \gets \IR(\mathring{x})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X^\prime \gets \mathtt{sample\_data}(\mathring{x}^\prime, \;\; \mathtt{scope}=\{\mathtt{local},\; \mathtt{cohort},\; \mathtt{global}\})\)</span> <em>(performed in <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span>)</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(X \gets \IR^{-1}(X^\prime)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y \gets f_\mathring{c}(X)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w \gets k(L(\mathring{x}^\prime, \; X^\prime))\)</span> <em>(get weights via kernelised distance)</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{X}^\prime \gets \mathtt{reduce\_dimensionality}(X^\prime)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(g \gets \mathtt{fit\_surrogate}(\overline{X}^\prime, \; y, \; \mathtt{sample\_weight}=w)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(e \gets \mathtt{extract\_explanation}(g)\)</span></p></li>
+</ol>
+</section>
+</div><p>A concrete example of this meta-algorithm for two-dimensional tabular data with numerical features is shown in <a class="reference internal" href="#fig-surrogates-full-overview"><span class="std std-numref">Figure 1.2</span></a>.
+In this particular case, an interpretable representation is not used to offer more clarity and a better intuition of the process.
+Therefore, the representation transformations are not needed (steps 1 and 3);
+the data are sampled in their original domain <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> (step 2);
+the distance is computed in the original domain <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> as well (step 5);
+the dimensionality reduction is not needed (step 6); and
+the surrogate if fitted into the data sample in the original domain <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> (step 7).</p>
+<figure class="align-default" id="fig-surrogates-full-overview" style="width: 95%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/intro_2_0.svg" src="../../../_images/intro_2_0.svg" /></div>
+<figcaption>
+<p><span class="caption-number">Figure 1.2 </span><span class="caption-text">Steps required to build a <em>local</em>, <em>linear</em> surrogate explainer for <em>tabular data</em> without an interpretable representation.
+Panel (a) shows an instance selected to be explained for the black box whose decision boundary is shown by the blue and red background shading.
+Panel (b) depicts a collection of data sampled locally around the explained instance.
+Panel (c) illustrates distance-based weighting of this data sample.
+Finally, Panel (d) captures a surrogate linear model approximating the black-box decision boundary in this region.</span><a class="headerlink" href="#fig-surrogates-full-overview" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Formally, surrogates are built by optimising the objective <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> given in <a class="reference internal" href="#equation-eq-meta-explainers-surrogates-optimisation">Equation 1.1</a>.
+It balances the (human <a class="reference internal" href="../../preface/glossary.html#term-explainee"><span class="xref std std-term">explainee</span></a>-perceived) complexity <span class="math notranslate nohighlight">\(\Omega : \mathcal{G} \rightarrow \mathbb{R}\)</span> of the surrogate model <span class="math notranslate nohighlight">\(g \in \mathcal{G}\)</span>, which is chosen from the space of a transparent family of models <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>, against its ability to approximate the explained black box <span class="math notranslate nohighlight">\(\mathcal{L} : \mathcal{F} \times \mathcal{G} \rightarrow \mathbb{R}\)</span>, where <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span> is the opaque model drawn from a family of models <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> compatible with this explainer.</p>
+<div class="math notranslate nohighlight" id="equation-eq-meta-explainers-surrogates-optimisation">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-eq-meta-explainers-surrogates-optimisation" title="Permalink to this equation">#</a></span>\[
+  \mathcal{O}(\mathcal{G}; \; f) =
+  \argmin_{g \in \mathcal{G}}
+  \overbrace{\Omega(g)}^{\text{complexity}} \; + \;\;\;
+  \overbrace{\mathcal{L}(f, g)}^{\text{fidelity}}
+\]</div>
+<p>For example, the complexity <span class="math notranslate nohighlight">\(\Omega\)</span> can be the number of non-zero (or <em>substantially</em> larger than zero) parameters of a linear model (<a class="reference internal" href="#equation-eq-meta-explainers-surrogates-complexity-linear">Equation 1.2</a>, where <span class="math notranslate nohighlight">\(\Theta_g\)</span> are the coefficients of the surrogate and <span class="math notranslate nohighlight">\({\Large\mathbb{1}} : \mathbb{R} \rightarrow \{0, 1\}\)</span> is an indicator function), or the size – depth or width – of a decision tree (<a class="reference internal" href="#equation-eq-meta-explainers-surrogates-complexity-tree">Equation 1.3</a>, where <span class="math notranslate nohighlight">\(d\)</span> is the dimensionality of the data space <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>).</p>
+<div class="math notranslate nohighlight" id="equation-eq-meta-explainers-surrogates-complexity-linear">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-eq-meta-explainers-surrogates-complexity-linear" title="Permalink to this equation">#</a></span>\[
+  \Omega(g) = \frac{\sum_{\theta \in \Theta_g} {\Large\mathbb{1}} \left(\theta\right)}{|\Theta_g|}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-meta-explainers-surrogates-complexity-tree">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-eq-meta-explainers-surrogates-complexity-tree" title="Permalink to this equation">#</a></span>\[
+  \Omega(g; \; d) = \frac{\text{depth}(g)}{d}
+  \;\;\;\;\text{or}\;\;\;\;
+  \Omega(g; \; d) = \frac{\text{width}(g)}{2^d}
+\]</div>
+<p>The second component of the optimisation objective <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> – the <a class="reference internal" href="../../preface/glossary.html#term-fidelity"><span class="xref std std-term">fidelity</span></a> of the surrogate explainer <span class="math notranslate nohighlight">\(\mathcal{L} : \mathcal{F} \times \mathcal{G} \rightarrow \mathbb{R}\)</span> – measures how well it mimics the predictions of the explained black box (more specifically, its decision surface contained within the subspace of interest).</p>
+<p>The formulation of fidelity <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> depends on the type of the explained black box.
+For <em>regressors</em> and <em>probabilistic classifiers</em> it is based on a weighted – determined by the proximity of each instance to the explained data point – squared error; in the latter scenario the numerical optimisation uses the probability of a single class <span class="math notranslate nohighlight">\(\mathring{c}\)</span> selected to be explained.
+<a class="reference internal" href="#equation-eq-meta-explainers-surrogates-loss-regression">Equation 1.4</a> defines the loss for these two cases, with the evaluation performed on a data set <span class="math notranslate nohighlight">\(X^\prime\)</span> captured in the interpretable representation <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span>, the surrogate model <span class="math notranslate nohighlight">\(g\)</span> operating on the interpretable domain <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span> as well, and the weighting <span class="math notranslate nohighlight">\(k(L(\cdot, \cdot))\)</span> also done in the interpretable space <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-meta-explainers-surrogates-loss-regression">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-eq-meta-explainers-surrogates-loss-regression" title="Permalink to this equation">#</a></span>\[
+  \mathcal{L}(f, g ; \; \mathring{x}, X^\prime, \mathring{c}) =
+  \sum_{x^\prime \in X^\prime} \;
+  \underbrace{k\left(L\left(\IR(\mathring{x}), \; x^\prime\right)\right)}_{\text{weighting factor}}
+  \; \times \;
+  \underbrace{\left(f_\mathring{c}\left(\IR^{-1}(x^\prime)\right) - g(x^\prime)\right)^{2}}_{\text{individual loss}}
+\]</div>
+<p>The loss <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> for <em>crisp classification</em>, on the other hand, is inspired by predictive accuracy – see <a class="reference internal" href="#equation-eq-meta-explainers-surrogates-loss-classification">Equation 1.5</a>.
+Here, the <em>individual loss</em> component is based on an indicator function whose role depends on whether the black box is a binary or multi-class classifier and how the local model was trained.
+Specifically, after choosing a class to be explained <span class="math notranslate nohighlight">\(\mathring{c}\)</span>, the target becomes <span class="math notranslate nohighlight">\(1\)</span> if it is this class and <span class="math notranslate nohighlight">\(0\)</span> otherwise – XXX which is also used to train the surrogate.
+For example, TODO</p>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe" style="margin-left: auto; margin-right: auto; margin-bottom: 1em;">
+    <thead>
+        <tr>
+            <th><span class="math">\(\mathring{c}\)</span></th>
+            <th><span class="math">\(\mathring{b}\)</span></th>
+            <th><span class="math">\(\mathring{a}\)</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1.00</td>
+            <td>2.00</td>
+            <td>3.00</td>
+        </tr>
+        <tr>
+            <td>1.00</td>
+            <td>2.00</td>
+            <td>3.00</td>
+        </tr>
+        <tr>
+            <td>1.00</td>
+            <td>2.00</td>
+            <td>3.00</td>
+        </tr>
+        <tr>
+            <td>1.00</td>
+            <td>2.00</td>
+            <td>3.00</td>
+        </tr>
+    </tbody>
+</table></div></div>
+<p>TODO</p>
+<div class="math notranslate nohighlight" id="equation-eq-meta-explainers-surrogates-loss-classification">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-eq-meta-explainers-surrogates-loss-classification" title="Permalink to this equation">#</a></span>\[
+  \mathcal{L}(f, g ; \; \mathring{x}, X^\prime, \mathring{c}) =
+  \sum_{x^\prime \in X^\prime} \;
+  k\left(L\left(\IR(\mathring{x}), \; x^\prime\right)\right)
+  \; \times \;
+  \underline{ {\Large\mathbb{1}} \left(f_\mathring{c}\left(\IR^{-1}(x^\prime)\right), \; g(x^\prime)\right)}
+\]</div>
+<p>Note that the <em>weights</em> can be computed with the distance metric applied to either the original <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> – i.e., <span class="math notranslate nohighlight">\(k\left(L\left(\mathring{x}, x\right)\right)\)</span> – or the interpretable <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span> – i.e., <span class="math notranslate nohighlight">\(k\left(L\left(\IR(\mathring{x}), x^\prime\right)\right)\)</span> – domain.
+Similarly, the surrogate model my be fitted to the original <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> – i.e., <span class="math notranslate nohighlight">\(\left(f_\mathring{c}\left(x\right), g(x)\right)\)</span> – or the interpretable <span class="math notranslate nohighlight">\(\mathcal{X}^\prime\)</span> – i.e., <span class="math notranslate nohighlight">\(\left(f_\mathring{c}\left(\IR^{-1}(x^\prime)\right), g(x^\prime)\right)\)</span> – domain.</p>
+<p>this – as well as the algo – assume a local explanation of a single instance, hence the weighting, in case of other scope, different weighting approaches can be used.</p>
+<p>In certain case when modelling multiple classes we may want to capture the complex behaviour,
+This can be achieved with multi-output surrogates <span id="id1">[<a class="reference internal" href="../../bibliography/bibliography.html#id2" title="Kacper Sokol and Peter Flach. LIMEtree: Interactively customisable explanations based on local surrogate multi-output regression trees. arXiv preprint arXiv:2005.01427, 2020. URL: https://arxiv.org/abs/2005.01427.">Sokol and Flach, 2020</a>]</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-meta-explainers-surrogates-loss-multioutput">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-eq-meta-explainers-surrogates-loss-multioutput" title="Permalink to this equation">#</a></span>\[
+  \mathcal{L}(f, g ; \; \mathring{x}, X^\prime, \mathring{C}) =
+  \frac{1}{\sum_{x^\prime \in X^\prime} \omega(x^\prime; \; \mathring{x})}
+  \sum_{x^\prime \in X^\prime} \left(
+  \omega(x^\prime; \; \mathring{x}) \times
+  \frac{1}{2}\sum_{\mathring{c} \in \mathring{C}}
+  \left(f_\mathring{c}\left(\IR^{-1}(x^\prime)\right) -
+  g_\mathring{c}(x^\prime)\right)^2
+  \right)
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+  \omega(x^\prime; \; \mathring{x}) = k\left(L\left(\IR(\mathring{x}), x^\prime\right)\right)
+\]</div>
+</section>
+<section id="surrogates-across-data-types">
+<h2><span class="section-number">1.1.2. </span>Surrogates Across Data Types<a class="headerlink" href="#surrogates-across-data-types" title="Permalink to this headline">#</a></h2>
+<p>The building blocks of surrogate explainers .
+TODO</p>
+<p>Interpretable Representations XXX – generic description</p>
+<section id="text">
+<h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">#</a></h3>
+<p><strong><a class="reference internal" href="image.html#text-meta-explainers-surrogates-image-interpretable-representation"><span class="std std-ref">Interpretable Representation.</span></a></strong>
+TODO</p>
+<p><strong>Data Sampling.</strong>
+TODO</p>
+<p><strong>Explanation Generation.</strong>
+TODO</p>
+<p><a class="reference internal" href="image.html#text-meta-explainers-surrogates-image"><span class="std std-numref">Overview (§1.2)</span></a>
+<a class="reference internal" href="tabular/index.html#text-meta-explainers-surrogates-tabular"><span class="std std-numref">Overview (§1.3)</span></a>
+<a class="reference internal" href="image.html#text-meta-explainers-surrogates-image-interpretable-representation"><span class="std std-numref">Interpretable Representation (§1.2.1)</span></a>
+<a class="reference internal" href="tabular/interpretable_representation.html#text-meta-explainers-surrogates-tabular-interpretable-representation"><span class="std std-numref">Interpretable Representation (§1.3.1)</span></a>
+<a class="reference internal" href="image.html#text-meta-explainers-surrogates-image-data-sampling"><span class="std std-numref">Data Sampling (§1.2.2)</span></a>
+<a class="reference internal" href="tabular/data_sampling.html#text-meta-explainers-surrogates-tabular-data-sampling"><span class="std std-numref">Data Sampling (§1.3.2)</span></a>
+<a class="reference internal" href="image.html#text-meta-explainers-surrogates-image-explanation-generation"><span class="std std-numref">Explanation Generation (§1.2.3)</span></a>
+<a class="reference internal" href="tabular/explanation_generation.html#text-meta-explainers-surrogates-tabular-explanation-generation"><span class="std std-numref">Explanation Generation (§1.3.3)</span></a></p>
+</section>
+<section id="images">
+<h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="tabular-data">
+<h3>Tabular Data<a class="headerlink" href="#tabular-data" title="Permalink to this headline">#</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The official implementation of LIME[^lime_implementation] samples tabular data from the interpretable domain.
+This has two major consequences.</p>
+<ol class="simple">
+<li><p>The sampling is actually global, with locality introduced only via instance weighting.</p></li>
+<li><p>Since the sampled instances need to be restored back to the original representation to xxx, etc.</p></li>
+</ol>
+</div>
+<p>each component brings in assumptions and limitation that permeate to affect the resulting explanations</p>
+<p>TODO complexity for tree
+TODO complexity for line</p>
+</section>
+</section>
+<section id="explanations">
+<h2><span class="section-number">1.1.3. </span>Explanations<a class="headerlink" href="#explanations" title="Permalink to this headline">#</a></h2>
+<p>varying scope</p>
+<p>concept influence</p>
+<p>counterfactuals, e.g., with trees cite LIMEtree</p>
+<section id="linear">
+<h3>Linear<a class="headerlink" href="#linear" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="tree">
+<h3>Tree<a class="headerlink" href="#tree" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="multi-output-tree">
+<h3>Multi-output Tree<a class="headerlink" href="#multi-output-tree" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="evaluation">
+<h2><span class="section-number">1.1.4. </span>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h2>
+<p>Algorithmic evaluation of surrogates xxx
+eval components
+and fidelity of explanations</p>
+<figure class="align-default" id="fig-surrogates-eval" style="width: 95%">
+<div class="cell_output docutils container">
+<img alt="../../../_images/intro_6_0.svg" src="../../../_images/intro_6_0.svg" /></div>
+<figcaption>
+<p><span class="caption-number">Figure 1.3 </span><span class="caption-text">Overview of fidelity-based evaluation strategies for surrogates of <em>tabular</em> data, using the example of a <em>local</em>, <em>linear</em> explainer without an interpretable representation.
+Panels (a) and (b) show <em>data-driven</em> evaluation approaches; the former for a data subspace and the latter for the entire data space (gray shading).
+Panels (c) and (d) depict <em>model-driven</em> evaluation approaches; the former for the local (surrogate) decision boundary and the latter for the global (black-box) decision boundary.</span><a class="headerlink" href="#fig-surrogates-eval" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>different strategies for tabular data, images can only eb evaluated withing the scope of a single image or sentence.</p>
+<p>intuitive visualisation for the local and global, model specific and data-specific visualisations from the thesis.</p>
+</section>
+<section id="caveats">
+<h2><span class="section-number">1.1.5. </span>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">#</a></h2>
+<p>fidelity
+stochasticity: random sampling, operating on interpretable representation of tabular data</p>
+</section>
+<section id="additional-materials">
+<span id="text-meta-explainers-surrogates-overview-literature"></span><h2><span class="section-number">1.1.6. </span>Additional Materials<a class="headerlink" href="#additional-materials" title="Permalink to this headline">#</a></h2>
+<p>Do a quick overview of surrogate literature.</p>
+<p>popular examples are treepan <span id="id2">[<a class="reference internal" href="../../bibliography/bibliography.html#id5" title="Mark Craven and Jude W Shavlik. Extracting tree-structured representations of trained networks. In Advances in neural information processing systems, 24–30. 1996.">Craven and Shavlik, 1996</a>]</span> and LIME <span id="id3">[<a class="reference internal" href="../../bibliography/bibliography.html#id12" title="Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. “Why should I trust you?”: Explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, San Francisco, CA, USA, August 13-17, 2016, 1135–1144. 2016.">Ribeiro <em>et al.</em>, 2016</a>]</span>,
+and a generalisation fo LIME bLIMEy, which is modular meta-algorithm for building surrogates</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./book/meta_explainers/surrogates"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Surrogates</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="image.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>Image Surrogates</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:kacper@xmlx.io">Kacper Sokol</a> and <a href="mailto:team@xmlx.io">XMLX Team</a> &ndash; <a href="https://xmlx.io/">xmlx.io</a>.<br> Distributed under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+<br/>
+  
+      &copy; Copyright 2021–2022.<br/>
+    <div class="extra_footer">
+      <p> This book delivers a comprehensive outlook on the most popular explainability concepts in Machine Learning. It covers a range of theoretical and practical topics across different difficulty levels, including but not limited to: high-level overviews & introductory examples; mathematical foundations; algorithmic implementations; practical advice & real-life caveats; and success & failure case studies. </p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

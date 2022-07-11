@@ -8,8 +8,9 @@
 
     <title>Modules, Data Sets and Models &#8212; eXplainable&lt;br&gt;Machine Learning</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,21 +20,18 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/xmlx.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -41,12 +39,13 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -55,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"macros": {"IR": "\\mathit{IR}", "argmin": "\\mathop{\\operatorname{arg\\,min}}\\limits", "argmax": "\\mathop{\\operatorname{arg\\,max}}\\limits"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://book.xmlx.io/book/preface/data.html" />
     <link rel="shortcut icon" href="../../_static/bulb.svg"/>
@@ -78,7 +77,21 @@ const thebe_selector_output = ".output, .cell_output"
                 </script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -87,9 +100,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -107,14 +121,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../README.html">
-   eXplainable Machine Learning
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    eXplainable Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="index.html">
    Preface
@@ -163,23 +178,18 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../meta_explainers/surrogates/interpretable_representations.html">
-       1.1. Binary Interpretable Representations for Tabular Data
+      <a class="reference internal" href="../meta_explainers/surrogates/intro.html">
+       1.1. Overview
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../meta_explainers/surrogates/data_sampling.html">
-       1.2. Data Sampling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../meta_explainers/surrogates/explanation_generation.html">
-       1.3. Explanation Generation
+      <a class="reference internal" href="../meta_explainers/surrogates/image.html">
+       1.2. Image Surrogates
       </a>
      </li>
      <li class="toctree-l3 has-children">
-      <a class="reference internal" href="../meta_explainers/surrogates/examples.html">
-       1.4. Interactive Examples
+      <a class="reference internal" href="../meta_explainers/surrogates/tabular/index.html">
+       1.3. Tabular Surrogates
       </a>
       <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
       <label for="toctree-checkbox-4">
@@ -188,12 +198,39 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="../meta_explainers/surrogates/ex_tabular.html">
+        <a class="reference internal" href="../meta_explainers/surrogates/tabular/interpretable_representation.html">
+         1.3.1. Binary Interpretable Representations for Tabular Data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../meta_explainers/surrogates/tabular/data_sampling.html">
+         1.3.2. Data Sampling
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../meta_explainers/surrogates/tabular/explanation_generation.html">
+         1.3.3. Explanation Generation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../meta_explainers/surrogates/examples/index.html">
+       1.4. Interactive Examples
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../meta_explainers/surrogates/examples/ex_tabular.html">
          1.4.1. Surrogate Explainer of Tabular Data
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../meta_explainers/surrogates/ex_ols.html">
+        <a class="reference internal" href="../meta_explainers/surrogates/examples/ex_ols.html">
          1.4.2. Investigating Linear Surrogate Explainers of Tabular Data
         </a>
        </li>
@@ -204,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../bibliography.html">
+  <a class="reference internal" href="../bibliography/bibliography.html">
    Bibliography
   </a>
  </li>
@@ -226,113 +263,262 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  <a href="https://doi.org/XX.XXXX/zenodo.XXXXXXX"><img src="https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg" alt="DOI"></a>
-
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
+            <div class="navbar_extra_footer">
+            <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE"><img src="https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-lightgrey" alt="Licence"></a> </br> <a href="https://doi.org/XX.XXXX/zenodo.XXXXXXX"><img src="https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg" alt="DOI"></a>
 
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../_sources/book/preface/data.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/book/preface/data.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xmlx-io/xml-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xmlx-io/xml-book/issues/new?title=Issue%20on%20page%20%2Fbook/preface/data.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/xmlx-io/xml-book/edit/master/book/preface/data.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/xmlx-io/xml-book/master?urlpath=lab/tree/book/preface/data.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/xmlx-io/xml-book/master?urlpath=lab/tree/book/preface/data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/xmlx-io/xml-book/blob/master/book/preface/data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book/issues/new?title=Issue%20on%20page%20%2Fbook/preface/data.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xmlx-io/xml-book/edit/master/book/preface/data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/book/preface/data.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../_sources/book/preface/data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#two-moons">
    Two Moons
@@ -391,12 +577,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Modules, Data Sets and Models</h1>
@@ -471,11 +656,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="modules-data-sets-and-models">
-<span id="text-preface-modules-data-models"></span><h1>Modules, Data Sets and Models<a class="headerlink" href="#modules-data-sets-and-models" title="Permalink to this headline">¶</a></h1>
+<span id="text-preface-modules-data-models"></span><h1>Modules, Data Sets and Models<a class="headerlink" href="#modules-data-sets-and-models" title="Permalink to this headline">#</a></h1>
 <p>TODO: discuss the code in <code class="docutils literal notranslate"><span class="pre">_code</span></code>.</p>
 <p>This section briefly introduces example data sets that we will use throughout this book.</p>
 <ul class="simple">
@@ -491,40 +677,40 @@ const thebe_selector_output = ".output, .cell_output"
 <p><strong>Reproducibility</strong>    
 To ensure reproducibility of the data – random generation of Two Moons and train/test split of both data sets – we fix the random seeds of the Python’s and numpy’s <code class="docutils literal notranslate"><span class="pre">random</span></code> modules.
 This can be easily done by calling <code class="docutils literal notranslate"><span class="pre">fatf.setup_random_seed(42)</span></code>, where <code class="docutils literal notranslate"><span class="pre">42</span></code> is the chosen random seed.
-This step is already integrated into the data set creation functions – <code class="docutils literal notranslate"><span class="pre">xml_book.data.generate_2d_moons</span></code> and <code class="docutils literal notranslate"><span class="pre">xml_book.data.generate_bikes</span></code> – and can be accessed with their <code class="docutils literal notranslate"><span class="pre">random_seed</span></code> parameter, e.g.:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">generate_2d_moons</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+This step is already integrated into the data set creation functions – <code class="docutils literal notranslate"><span class="pre">xml_book.data.data.generate_2d_moons</span></code> and <code class="docutils literal notranslate"><span class="pre">xml_book.data.data.generate_bikes</span></code> – and can be accessed with their <code class="docutils literal notranslate"><span class="pre">random_seed</span></code> parameter, e.g.:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">generate_2d_moons</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If called without this parameter or with <code class="docutils literal notranslate"><span class="pre">None</span></code>, the random seed is not fixed.</p>
 <p>Similarly, we may wish to train reproducible models.
 This can be achieved by using the <code class="docutils literal notranslate"><span class="pre">random_state</span></code> parameter, which is available for every scikit-learn model class, e.g., <code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC(random_state=42)</span></code>.
-Again, this functionality has already been integrated into the model creation functions in the <code class="docutils literal notranslate"><span class="pre">xml_book.models</span></code> library – <code class="docutils literal notranslate"><span class="pre">xml_book.models.get_random_forest</span></code> and <code class="docutils literal notranslate"><span class="pre">xml_book.models.get_svc</span></code> – and can be accessed via their <code class="docutils literal notranslate"><span class="pre">random_seed</span></code> parameter, e.g.:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+Again, this functionality has already been integrated into the model creation functions in the <code class="docutils literal notranslate"><span class="pre">xml_book.models.tabular</span></code> library – <code class="docutils literal notranslate"><span class="pre">xml_book.models.tabular.get_random_forest</span></code> and <code class="docutils literal notranslate"><span class="pre">xml_book.models.tabular.get_svc</span></code> – and can be accessed via their <code class="docutils literal notranslate"><span class="pre">random_seed</span></code> parameter, e.g.:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">tabular</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If called without this parameter or with <code class="docutils literal notranslate"><span class="pre">None</span></code>, the random seed is not fixed.</p>
 <div class="tip admonition">
 <p class="admonition-title">Displaying the source of a function</p>
 <p>If you want to see the source code of any function, you can use the following <em>magic</em> command available in Jupyter Notebooks:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">??</span> xml_book.models.get_random_forest
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">??</span> xml_book.models.tabular.get_random_forest
 </pre></div>
 </div>
 </div>
 <section id="two-moons">
-<h2>Two Moons<a class="headerlink" href="#two-moons" title="Permalink to this headline">¶</a></h2>
+<h2>Two Moons<a class="headerlink" href="#two-moons" title="Permalink to this headline">#</a></h2>
 <p>First, let’s generate a <em>toy</em> data set that is two-dimensional and easy to visualise.
 It will help us to introduce plenty of concepts throughout this book.</p>
 <p>To this end, we use scikit-learn’s <code class="docutils literal notranslate"><span class="pre">sklearn.datasets.make_moons</span></code> function.
 We generate a two moons data set with 1500 samples and 0.25 noise.
 Next, we scale both of its features to the [0, 1] range.
 Then, we separate 20% of the data into a dedicated <em>test</em> set.</p>
-<p>For convenience, this procedure is neatly wrapped inside the <code class="docutils literal notranslate"><span class="pre">generate_2d_moons</span></code> function in a dedicated module <code class="docutils literal notranslate"><span class="pre">xml_book.data</span></code> distributed with this book.</p>
+<p>For convenience, this procedure is neatly wrapped inside the <code class="docutils literal notranslate"><span class="pre">generate_2d_moons</span></code> function in a dedicated module <code class="docutils literal notranslate"><span class="pre">xml_book.data.data</span></code> distributed with this book.</p>
 <p>Let’s generate this data set and plot the corresponding <em>training</em> and <em>test</em> set.</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate 2-D moons data set</span>
 <span class="n">moons_train_X</span><span class="p">,</span> <span class="n">moons_test_X</span><span class="p">,</span> <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">moons_test_y</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">xml_book</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">generate_2d_moons</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">xmlb_data</span><span class="o">.</span><span class="n">generate_2d_moons</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -532,11 +718,11 @@ Then, we separate 20% of the data into a dedicated <em>test</em> set.</p>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../_images/data_5_0.png"><img alt="moons-train" src="../../_images/data_5_0.png" style="width: 300px;" /></a>
+<figure class="align-default" id="fig-moons-train">
+<a class="reference internal image-reference" href="../../_images/data_5_0.svg"><img alt="moons-train" src="../../_images/data_5_0.svg" width="300px" /></a>
 <figcaption>
 <p><span class="caption-text"><p>Two Moons training data.</p>
-</span></p>
+</span><a class="headerlink" href="#fig-moons-train" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -544,7 +730,7 @@ Then, we separate 20% of the data into a dedicated <em>test</em> set.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <figure class="align-default">
-<a class="reference internal image-reference" href="../../_images/data_6_0.png"><img alt="moons-test" src="../../_images/data_6_0.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/data_6_0.svg"><img alt="moons-test" src="../../_images/data_6_0.svg" width="300px" /></a>
 <figcaption>
 <p><span class="caption-text"><p>Two Moons test data.</p>
 </span></p>
@@ -554,7 +740,7 @@ Then, we separate 20% of the data into a dedicated <em>test</em> set.</p>
 </div>
 </section>
 <section id="bikes">
-<h2>Bikes<a class="headerlink" href="#bikes" title="Permalink to this headline">¶</a></h2>
+<h2>Bikes<a class="headerlink" href="#bikes" title="Permalink to this headline">#</a></h2>
 <p>Our second data set is <em>Bike Sharing</em>, which is distributed via the <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/bike+sharing+dataset">UCI repository</a>.
 It records a number of bike rentals (target) along various weather conditions and date artefacts (features).
 The version used in this tutorial has the following 11 features:</p>
@@ -603,7 +789,7 @@ We create a target variable that describes the day as having <strong>low</strong
 <p>where <span class="math notranslate nohighlight">\(y\)</span> is the number of bikes rented on a given day.</p>
 <hr class="docutils" />
 <p>All of this processing is done in the <code class="docutils literal notranslate"><span class="pre">generate_bikes</span></code> function, which
-is available in the <code class="docutils literal notranslate"><span class="pre">xml_book.data</span></code> library.
+is available in the <code class="docutils literal notranslate"><span class="pre">xml_book.data.data</span></code> library.
 Let’s use it to load the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,17 +798,17 @@ Let’s use it to load the data.</p>
  <span class="n">bikes_train_y</span><span class="p">,</span>
  <span class="n">bikes_test_y</span><span class="p">,</span>
  <span class="n">bikes_feature_names</span><span class="p">,</span>
- <span class="n">bikes_target_name</span><span class="p">)</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">generate_bikes</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+ <span class="n">bikes_target_name</span><span class="p">)</span> <span class="o">=</span> <span class="n">xmlb_data</span><span class="o">.</span><span class="n">generate_bikes</span><span class="p">(</span><span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="n">bikes_target_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:47 fatf         INFO     Seeding RNGs using the input parameter.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:12 fatf         INFO     Seeding RNGs using the input parameter.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:47 fatf         INFO     Seeding RNGs with 42.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:12 fatf         INFO     Seeding RNGs with 42.
 </pre></div>
 </div>
 </div>
@@ -669,12 +855,11 @@ Testing instances number: 147.
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Class Distribution of Test Data&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/data_11_1.png" src="../../_images/data_11_1.png" />
-</div>
+<img alt="../../_images/data_11_1.svg" src="../../_images/data_11_1.svg" /></div>
 </div>
 </section>
 <section id="training-models">
-<h2>Training Models<a class="headerlink" href="#training-models" title="Permalink to this headline">¶</a></h2>
+<h2>Training Models<a class="headerlink" href="#training-models" title="Permalink to this headline">#</a></h2>
 <p>Now, let’s train <em>black box</em> models on these data sets and evaluate their
 train and test set predictive performance.
 We will use two models:</p>
@@ -684,23 +869,23 @@ classifier; and</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC</span></code> operated as a <em>crisp</em> (non-probabilistic) classifier.</p></li>
 </ul>
 <section id="id1">
-<h3>Two Moons<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Two Moons<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <section id="random-forest">
-<h4>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h4>
+<h4>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">#</a></h4>
 <p>Let’s start with a simple <em>probabilistic</em> model based on the Random Forest
 classifier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_moons_probabilistic</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_random_forest</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_moons_probabilistic</span> <span class="o">=</span> <span class="n">xmlb_tabular_models</span><span class="o">.</span><span class="n">get_random_forest</span><span class="p">(</span>
     <span class="n">moons_train_X</span><span class="p">,</span> <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs using the input parameter.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs with 42.
 </pre></div>
 </div>
 </div>
@@ -745,20 +930,20 @@ classifier.</p>
 </div>
 </section>
 <section id="support-vector-machine">
-<h4>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">¶</a></h4>
+<h4>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">#</a></h4>
 <p>Next, we train a simple crisp (non-probabilistic) model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_moons_crisp</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_moons_crisp</span> <span class="o">=</span> <span class="n">xmlb_tabular_models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span>
     <span class="n">moons_train_X</span><span class="p">,</span> <span class="n">moons_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs using the input parameter.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs with 42.
 </pre></div>
 </div>
 </div>
@@ -804,23 +989,23 @@ classifier.</p>
 </section>
 </section>
 <section id="id2">
-<h3>Bikes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Bikes<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <section id="id3">
-<h4>Random Forest<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<h4>Random Forest<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
 <p>Let’s start with a simple <em>probabilistic</em> model based on the Random Forest
 classifier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_probabilistic</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_random_forest</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_probabilistic</span> <span class="o">=</span> <span class="n">xmlb_tabular_models</span><span class="o">.</span><span class="n">get_random_forest</span><span class="p">(</span>
     <span class="n">bikes_train_X</span><span class="p">,</span> <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs using the input parameter.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs with 42.
 </pre></div>
 </div>
 </div>
@@ -865,20 +1050,20 @@ classifier.</p>
 </div>
 </section>
 <section id="id4">
-<h4>Support Vector Machine<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<h4>Support Vector Machine<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
 <p>Next, we train a simple crisp (non-probabilistic) model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_crisp</span> <span class="o">=</span> <span class="n">xml_book</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_bikes_crisp</span> <span class="o">=</span> <span class="n">xmlb_tabular_models</span><span class="o">.</span><span class="n">get_svc</span><span class="p">(</span>
     <span class="n">bikes_train_X</span><span class="p">,</span> <span class="n">bikes_train_y</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs using the input parameter.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs using the input parameter.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Mar-21 18:35:51 fatf         INFO     Seeding RNGs with 42.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22-Jul-10 23:03:13 fatf         INFO     Seeding RNGs with 42.
 </pre></div>
 </div>
 </div>
@@ -925,7 +1110,7 @@ classifier.</p>
 </section>
 </section>
 <section id="jupyter-variable-storage">
-<h2>Jupyter Variable Storage<a class="headerlink" href="#jupyter-variable-storage" title="Permalink to this headline">¶</a></h2>
+<h2>Jupyter Variable Storage<a class="headerlink" href="#jupyter-variable-storage" title="Permalink to this headline">#</a></h2>
 <p>(<strong>This functionality is not available in Colab.</strong>)</p>
 <p>If you wish to reuse any of these variables in other notebooks,
 you can store and load them with Jupyter <em>magic</em>: <code class="docutils literal notranslate"><span class="pre">%store</span></code> and <code class="docutils literal notranslate"><span class="pre">%store</span> <span class="pre">-r</span></code>
@@ -1090,9 +1275,11 @@ You can also list all of the stored variables by using the <code class="docutils
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="preliminary.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1108,29 +1295,33 @@ You can also list all of the stored variables by using the <code class="docutils
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By <a href="mailto:kacper@xmlx.io">Kacper Sokol</a> and <a href="mailto:team@xmlx.io">XMLX Team</a> – <a href="https://xmlx.io/">xmlx.io</a>.<br> Distributed under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="mailto:kacper@xmlx.io">Kacper Sokol</a> and <a href="mailto:team@xmlx.io">XMLX Team</a> &ndash; <a href="https://xmlx.io/">xmlx.io</a>.<br> Distributed under <a href="https://github.com/xmlx-io/xml-book/blob/master/LICENCE">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>.
 <br/>
-    
-        &copy; Copyright 2021–2022.<br/>
-      <div class="extra_footer">
-        <p> This book delivers a comprehensive outlook on the most popular explainability concepts in Machine Learning. It covers a range of theoretical and practical topics across different difficulty levels, including but not limited to: high-level overviews & introductory examples; mathematical foundations; algorithmic implementations; practical advice & real-life caveats; and success & failure case studies. </p>
+  
+      &copy; Copyright 2021–2022.<br/>
+    <div class="extra_footer">
+      <p> This book delivers a comprehensive outlook on the most popular explainability concepts in Machine Learning. It covers a range of theoretical and practical topics across different difficulty levels, including but not limited to: high-level overviews & introductory examples; mathematical foundations; algorithmic implementations; practical advice & real-life caveats; and success & failure case studies. </p>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

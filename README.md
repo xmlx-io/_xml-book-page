@@ -1,7 +1,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/xmlx-io/xml-book?display_name=tag&logo=github)](https://github.com/xmlx-io/xml-book/releases/latest)  
 [![Read Book][book-badge]](https://book.xmlx.io)
 [![Read Docs](https://img.shields.io/badge/read-docs-blue.svg?logo=gitbook)](https://book.xmlx.io/docs)  
-[![Licence](https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-red)](LICENCE)
+[![Licence](https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-lightgrey)](LICENCE)
 [![CLA](https://img.shields.io/badge/CLA-Apache%202.2-red)](CLA.md)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)  
 [![DOI](https://zenodo.org/badge/DOI/XX.XXXX/zenodo.XXXXXXX.svg)](https://doi.org/XX.XXXX/zenodo.XXXXXXX)

@@ -1,8 +1,7 @@
 (text:preface:glossary)=
 # Glossary #
 
-A glossary of terms commonly used throughout the *eXplainable Machine Learning*
-book.
+A glossary of terms used throughout the *eXplainable Machine Learning* book.
 
 ```{glossary}
 AI
@@ -11,8 +10,32 @@ AI
 API
   Application Programming Interface
 
+bag-of-words
+  TODO
+
+black box
+  TODO
+
 bLIMEy
-  build LIME yourself {cite:p}`sokol2019blimey`
+  build {term}`LIME` yourself {cite:p}`sokol2019blimey`
+
+counterfactual
+  TODO
+
+crisp classification
+  TODO
+
+explainee
+  TODO
+
+feature importance
+  Type of an explanation that TODO
+
+feature influence
+  Type of an explanation that TODO
+
+fidelity
+  TODO
 
 GDPR
   General Data Protection Regulation
@@ -23,11 +46,17 @@ ICE
 IML
   Interpretable Machine Learning
 
+interpretable representation
+  TODO
+
 IR
-  Interpretable Representation
+  {term}`Interpretable Representation<interpretable representation>`
 
 LIME
   Local Interpretable Model-agnostic Explanations {cite:p}`ribeiro2016why`
+
+meta-explainer
+  TODO
 
 Mixup
   class-aware sampling algorithm for tabular data {cite:p}`zhang2018mixup`
@@ -50,6 +79,12 @@ PD
 PI
   Permutation Importance {cite:p}`breiman2001random`
 
+Python
+  TODO
+
+R
+  TODO
+
 RGB
   colour space in which individual colours are encoded as a number triplet in the 0--255 range signifying the intensity of Red, Green and Blue component respectively, e.g., (0, 0, 255) is pure blue
 
@@ -61,6 +96,12 @@ scikit-learn
 
 SLIC
   image segmentation algorithm based on k-means clustering in the RGB colour space {cite:p}`achanta2012slic`
+
+super-pixel
+  TODO
+
+surrogate explainer
+  TODO
 
 XAI
   eXplainable Artificial Intelligence
